@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrettyScreenSHOT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abccaa58f85af1bd40279bf2e83ab860f62d2f81")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrettyScreenSHOT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrettyScreenSHOT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
