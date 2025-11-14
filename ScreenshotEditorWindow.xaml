@@ -63,7 +63,7 @@
                     <TextBlock Text="BLUR" FontSize="10"/>
                 </Button>
                 
-                <Button Tag="text" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Tekst" IsEnabled="False">
+                <Button Tag="text" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Text">
                     <TextBlock Text="TEXT" FontSize="10"/>
                 </Button>
                 
@@ -79,7 +79,7 @@
                 <!-- Size Slider -->
                 <TextBlock Text="GRUBOSC:" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="11" FontWeight="Bold" Foreground="#AAAAAA"/>
                 <Slider x:Name="SizeSlider" Width="100" Minimum="1" Maximum="30" Value="3" VerticalAlignment="Center" 
-                        Background="#3F3F3F" Foreground="#60A5FA"/>
+                        Background="#3F3F3F" Foreground="#60A5FA" ValueChanged="SizeSlider_ValueChanged"/>
                 <TextBlock x:Name="SizeLabel" Text="3px" VerticalAlignment="Center" Margin="5,0,10,0" FontSize="11" Foreground="#AAAAAA"/>
                 
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="10,0" Background="#404040"/>
@@ -94,6 +94,10 @@
                 </Button>
                 
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="10,0" Background="#404040"/>
+                
+                <Button Click="OnUploadClick" Background="#9C27B0" Foreground="White" Padding="15,8" Margin="5" ToolTip="Upload do chmury">
+                    <TextBlock Text="UPLOAD" FontSize="12" FontWeight="Bold"/>
+                </Button>
                 
                 <Button Click="OnSaveClick" Background="#4CAF50" Foreground="White" Padding="15,8" Margin="5" ToolTip="Zapisz screenshot">
                     <TextBlock Text="ZAPISZ" FontSize="12" FontWeight="Bold"/>

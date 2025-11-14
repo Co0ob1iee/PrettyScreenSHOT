@@ -52,7 +52,7 @@ namespace PrettyScreenSHOT {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PrettyScreenSHOT;component/screenshotoverlay.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PrettyScreenSHOT;V1.0.0.0;component/screenshotoverlay.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ScreenshotOverlay.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

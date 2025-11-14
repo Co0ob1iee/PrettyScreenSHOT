@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Menu_EditLastScreenshot" xml:space="preserve">
+    <value>Modifier la dernière capture</value>
+  </data>
+  <data name="Menu_History" xml:space="preserve">
+    <value>Historique des captures</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="Tray_Tooltip" xml:space="preserve">
+    <value>PrettyScreenSHOT - Appuyez sur IMPR ÉCRAN</value>
+  </data>
+  <data name="Notification_ScreenshotSaved" xml:space="preserve">
+    <value>Capture enregistrée ! Cliquez pour modifier.</value>
+  </data>
+  <data name="Notification_Title" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="Editor_Title" xml:space="preserve">
+    <value>Éditeur de capture</value>
+  </data>
+  <data name="Editor_Tools" xml:space="preserve">
+    <value>OUTILS :</value>
+  </data>
+  <data name="Editor_Marker" xml:space="preserve">
+    <value>MARQUEUR</value>
+  </data>
+  <data name="Editor_Rectangle" xml:space="preserve">
+    <value>RECTANGLE</value>
+  </data>
+  <data name="Editor_Arrow" xml:space="preserve">
+    <value>FLÈCHE</value>
+  </data>
+  <data name="Editor_Blur" xml:space="preserve">
+    <value>FLU</value>
+  </data>
+  <data name="Editor_Text" xml:space="preserve">
+    <value>TEXTE</value>
+  </data>
+  <data name="Editor_Color" xml:space="preserve">
+    <value>COULEUR :</value>
+  </data>
+  <data name="Editor_Thickness" xml:space="preserve">
+    <value>ÉPAISSEUR :</value>
+  </data>
+  <data name="Editor_Clear" xml:space="preserve">
+    <value>EFFACER</value>
+  </data>
+  <data name="Editor_Undo" xml:space="preserve">
+    <value>ANNULER</value>
+  </data>
+  <data name="Editor_Save" xml:space="preserve">
+    <value>ENREGISTRER</value>
+  </data>
+  <data name="Editor_Cancel" xml:space="preserve">
+    <value>ANNULER</value>
+  </data>
+  <data name="Editor_ClearConfirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir effacer toutes les modifications ?</value>
+  </data>
+  <data name="Editor_Confirm" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Editor_Success" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="Editor_ScreenshotSaved" xml:space="preserve">
+    <value>Capture enregistrée !</value>
+  </data>
+  <data name="Editor_Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="History_Title" xml:space="preserve">
+    <value>Historique des captures</value>
+  </data>
+  <data name="History_Subtitle" xml:space="preserve">
+    <value>Toutes les captures enregistrées</value>
+  </data>
+  <data name="History_Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="TextInput_Title" xml:space="preserve">
+    <value>Ajouter du texte</value>
+  </data>
+  <data name="TextInput_Text" xml:space="preserve">
+    <value>Texte :</value>
+  </data>
+  <data name="TextInput_FontSize" xml:space="preserve">
+    <value>Taille de la police :</value>
+  </data>
+  <data name="TextInput_Preview" xml:space="preserve">
+    <value>Aperçu :</value>
+  </data>
+  <data name="TextInput_SampleText" xml:space="preserve">
+    <value>Exemple de texte</value>
+  </data>
+  <data name="TextInput_EnterText" xml:space="preserve">
+    <value>Entrez du texte !</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Langue :</value>
+  </data>
+  <data name="Settings_SavePath" xml:space="preserve">
+    <value>Chemin d'enregistrement :</value>
+  </data>
+  <data name="Settings_Browse" xml:space="preserve">
+    <value>Parcourir...</value>
+  </data>
+  <data name="Settings_Hotkey" xml:space="preserve">
+    <value>Raccourci clavier :</value>
+  </data>
+  <data name="Settings_ImageFormat" xml:space="preserve">
+    <value>Format d'image :</value>
+  </data>
+  <data name="Settings_ImageQuality" xml:space="preserve">
+    <value>Qualité d'image :</value>
+  </data>
+  <data name="Settings_AutoSave" xml:space="preserve">
+    <value>Enregistrement automatique</value>
+  </data>
+  <data name="Settings_CopyToClipboard" xml:space="preserve">
+    <value>Copier dans le presse-papiers</value>
+  </data>
+  <data name="Settings_ShowNotifications" xml:space="preserve">
+    <value>Afficher les notifications</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Settings_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Settings_Reset" xml:space="preserve">
+    <value>Réinitialiser par défaut</value>
+  </data>
+  <data name="Settings_ResetConfirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir réinitialiser tous les paramètres par défaut ?</value>
+  </data>
+</root>
+

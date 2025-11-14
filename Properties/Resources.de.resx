@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Menu_EditLastScreenshot" xml:space="preserve">
+    <value>Letzten Screenshot bearbeiten</value>
+  </data>
+  <data name="Menu_History" xml:space="preserve">
+    <value>Screenshot-Verlauf</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="Tray_Tooltip" xml:space="preserve">
+    <value>PrettyScreenSHOT - Drücken Sie DRUCK</value>
+  </data>
+  <data name="Notification_ScreenshotSaved" xml:space="preserve">
+    <value>Screenshot gespeichert! Klicken Sie zum Bearbeiten.</value>
+  </data>
+  <data name="Notification_Title" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Editor_Title" xml:space="preserve">
+    <value>Screenshot-Editor</value>
+  </data>
+  <data name="Editor_Tools" xml:space="preserve">
+    <value>WERKZEUGE:</value>
+  </data>
+  <data name="Editor_Marker" xml:space="preserve">
+    <value>MARKER</value>
+  </data>
+  <data name="Editor_Rectangle" xml:space="preserve">
+    <value>RECHTECK</value>
+  </data>
+  <data name="Editor_Arrow" xml:space="preserve">
+    <value>PFEIL</value>
+  </data>
+  <data name="Editor_Blur" xml:space="preserve">
+    <value>UNSCHÄRFE</value>
+  </data>
+  <data name="Editor_Text" xml:space="preserve">
+    <value>TEXT</value>
+  </data>
+  <data name="Editor_Color" xml:space="preserve">
+    <value>FARBE:</value>
+  </data>
+  <data name="Editor_Thickness" xml:space="preserve">
+    <value>DICKE:</value>
+  </data>
+  <data name="Editor_Clear" xml:space="preserve">
+    <value>LÖSCHEN</value>
+  </data>
+  <data name="Editor_Undo" xml:space="preserve">
+    <value>RÜCKGÄNGIG</value>
+  </data>
+  <data name="Editor_Save" xml:space="preserve">
+    <value>SPEICHERN</value>
+  </data>
+  <data name="Editor_Cancel" xml:space="preserve">
+    <value>ABBRECHEN</value>
+  </data>
+  <data name="Editor_ClearConfirm" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie alle Änderungen löschen möchten?</value>
+  </data>
+  <data name="Editor_Confirm" xml:space="preserve">
+    <value>Bestätigung</value>
+  </data>
+  <data name="Editor_Success" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="Editor_ScreenshotSaved" xml:space="preserve">
+    <value>Screenshot gespeichert!</value>
+  </data>
+  <data name="Editor_Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="History_Title" xml:space="preserve">
+    <value>Screenshot-Verlauf</value>
+  </data>
+  <data name="History_Subtitle" xml:space="preserve">
+    <value>Alle gespeicherten Screenshots</value>
+  </data>
+  <data name="History_Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="TextInput_Title" xml:space="preserve">
+    <value>Text hinzufügen</value>
+  </data>
+  <data name="TextInput_Text" xml:space="preserve">
+    <value>Text:</value>
+  </data>
+  <data name="TextInput_FontSize" xml:space="preserve">
+    <value>Schriftgröße:</value>
+  </data>
+  <data name="TextInput_Preview" xml:space="preserve">
+    <value>Vorschau:</value>
+  </data>
+  <data name="TextInput_SampleText" xml:space="preserve">
+    <value>Beispieltext</value>
+  </data>
+  <data name="TextInput_EnterText" xml:space="preserve">
+    <value>Text eingeben!</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Sprache:</value>
+  </data>
+  <data name="Settings_SavePath" xml:space="preserve">
+    <value>Speicherpfad:</value>
+  </data>
+  <data name="Settings_Browse" xml:space="preserve">
+    <value>Durchsuchen...</value>
+  </data>
+  <data name="Settings_Hotkey" xml:space="preserve">
+    <value>Tastenkombination:</value>
+  </data>
+  <data name="Settings_ImageFormat" xml:space="preserve">
+    <value>Bildformat:</value>
+  </data>
+  <data name="Settings_ImageQuality" xml:space="preserve">
+    <value>Bildqualität:</value>
+  </data>
+  <data name="Settings_AutoSave" xml:space="preserve">
+    <value>Automatisch speichern</value>
+  </data>
+  <data name="Settings_CopyToClipboard" xml:space="preserve">
+    <value>In Zwischenablage kopieren</value>
+  </data>
+  <data name="Settings_ShowNotifications" xml:space="preserve">
+    <value>Benachrichtigungen anzeigen</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Settings_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Settings_Reset" xml:space="preserve">
+    <value>Auf Standard zurücksetzen</value>
+  </data>
+  <data name="Settings_ResetConfirm" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie alle Einstellungen auf die Standardwerte zurücksetzen möchten?</value>
+  </data>
+</root>
+

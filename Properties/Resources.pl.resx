@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Menu_EditLastScreenshot" xml:space="preserve">
+    <value>Edytuj ostatni screenshot</value>
+  </data>
+  <data name="Menu_History" xml:space="preserve">
+    <value>Historia screenshotów</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="Menu_Exit" xml:space="preserve">
+    <value>Wyjście</value>
+  </data>
+  <data name="Tray_Tooltip" xml:space="preserve">
+    <value>PrettyScreenSHOT - Naciśnij PRTSCN</value>
+  </data>
+  <data name="Notification_ScreenshotSaved" xml:space="preserve">
+    <value>Zrzut ekranu zapisany! Kliknij aby edytować.</value>
+  </data>
+  <data name="Notification_Title" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Editor_Title" xml:space="preserve">
+    <value>Edytor Screenshotów</value>
+  </data>
+  <data name="Editor_Tools" xml:space="preserve">
+    <value>NARZĘDZIA:</value>
+  </data>
+  <data name="Editor_Marker" xml:space="preserve">
+    <value>MARKER</value>
+  </data>
+  <data name="Editor_Rectangle" xml:space="preserve">
+    <value>PROSTOKĄT</value>
+  </data>
+  <data name="Editor_Arrow" xml:space="preserve">
+    <value>STRZAŁKA</value>
+  </data>
+  <data name="Editor_Blur" xml:space="preserve">
+    <value>ROZMYCIE</value>
+  </data>
+  <data name="Editor_Text" xml:space="preserve">
+    <value>TEKST</value>
+  </data>
+  <data name="Editor_Color" xml:space="preserve">
+    <value>KOLOR:</value>
+  </data>
+  <data name="Editor_Thickness" xml:space="preserve">
+    <value>GRUBOŚĆ:</value>
+  </data>
+  <data name="Editor_Clear" xml:space="preserve">
+    <value>WYCZYŚĆ</value>
+  </data>
+  <data name="Editor_Undo" xml:space="preserve">
+    <value>COFNIJ</value>
+  </data>
+  <data name="Editor_Save" xml:space="preserve">
+    <value>ZAPISZ</value>
+  </data>
+  <data name="Editor_Cancel" xml:space="preserve">
+    <value>ANULUJ</value>
+  </data>
+  <data name="Editor_ClearConfirm" xml:space="preserve">
+    <value>Czy na pewno chcesz wyczyścić wszystkie zmiany?</value>
+  </data>
+  <data name="Editor_Confirm" xml:space="preserve">
+    <value>Potwierdzenie</value>
+  </data>
+  <data name="Editor_Success" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="Editor_ScreenshotSaved" xml:space="preserve">
+    <value>Screenshot zapisany!</value>
+  </data>
+  <data name="Editor_Error" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="History_Title" xml:space="preserve">
+    <value>Historia Screenshotów</value>
+  </data>
+  <data name="History_Subtitle" xml:space="preserve">
+    <value>Wszystkie zapisane screenshoty</value>
+  </data>
+  <data name="History_Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="TextInput_Title" xml:space="preserve">
+    <value>Dodaj Tekst</value>
+  </data>
+  <data name="TextInput_Text" xml:space="preserve">
+    <value>Tekst:</value>
+  </data>
+  <data name="TextInput_FontSize" xml:space="preserve">
+    <value>Rozmiar Czcionki:</value>
+  </data>
+  <data name="TextInput_Preview" xml:space="preserve">
+    <value>Podgląd:</value>
+  </data>
+  <data name="TextInput_SampleText" xml:space="preserve">
+    <value>Przykładowy Tekst</value>
+  </data>
+  <data name="TextInput_EnterText" xml:space="preserve">
+    <value>Wpisz tekst!</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Język:</value>
+  </data>
+  <data name="Settings_SavePath" xml:space="preserve">
+    <value>Ścieżka zapisu:</value>
+  </data>
+  <data name="Settings_Browse" xml:space="preserve">
+    <value>Przeglądaj...</value>
+  </data>
+  <data name="Settings_Hotkey" xml:space="preserve">
+    <value>Skrót klawiszowy:</value>
+  </data>
+  <data name="Settings_ImageFormat" xml:space="preserve">
+    <value>Format obrazu:</value>
+  </data>
+  <data name="Settings_ImageQuality" xml:space="preserve">
+    <value>Jakość obrazu:</value>
+  </data>
+  <data name="Settings_AutoSave" xml:space="preserve">
+    <value>Automatyczne zapisywanie</value>
+  </data>
+  <data name="Settings_CopyToClipboard" xml:space="preserve">
+    <value>Kopiuj do schowka</value>
+  </data>
+  <data name="Settings_ShowNotifications" xml:space="preserve">
+    <value>Pokaż powiadomienia</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="Settings_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="Settings_Reset" xml:space="preserve">
+    <value>Przywróć domyślne</value>
+  </data>
+  <data name="Settings_ResetConfirm" xml:space="preserve">
+    <value>Czy na pewno chcesz przywrócić wszystkie ustawienia do domyślnych?</value>
+  </data>
+  <data name="Editor_CloudNotConfigured" xml:space="preserve">
+    <value>Cloud provider nie jest skonfigurowany. Przejdź do ustawień i wybierz provider (np. Imgur) oraz wprowadź API key.</value>
+  </data>
+  <data name="Editor_CloudNotConfiguredTitle" xml:space="preserve">
+    <value>Brak konfiguracji</value>
+  </data>
+  <data name="Editor_Uploading" xml:space="preserve">
+    <value>UPLOADING...</value>
+  </data>
+  <data name="Editor_Upload" xml:space="preserve">
+    <value>UPLOAD</value>
+  </data>
+  <data name="Editor_UploadSuccess" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="Editor_UploadSuccessMessage" xml:space="preserve">
+    <value>Upload zakończony pomyślnie!{0}{0}URL: {1}{0}{0}URL został skopiowany do schowka.</value>
+  </data>
+  <data name="Editor_UploadError" xml:space="preserve">
+    <value>Błąd uploadu</value>
+  </data>
+  <data name="Editor_UploadErrorMessage" xml:space="preserve">
+    <value>Błąd uploadu:{0}{0}{1}</value>
+  </data>
+  <data name="Editor_ErrorWithMessage" xml:space="preserve">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="Editor_SizeLabel" xml:space="preserve">
+    <value>{0}px</value>
+  </data>
+  <data name="Editor_Tooltip_Marker" xml:space="preserve">
+    <value>Marker - Rysuj</value>
+  </data>
+  <data name="Editor_Tooltip_Rectangle" xml:space="preserve">
+    <value>Prostokąt</value>
+  </data>
+  <data name="Editor_Tooltip_Arrow" xml:space="preserve">
+    <value>Strzałka</value>
+  </data>
+  <data name="Editor_Tooltip_Blur" xml:space="preserve">
+    <value>Blur - Zamazywanie</value>
+  </data>
+  <data name="Editor_Tooltip_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="Editor_Tooltip_Color" xml:space="preserve">
+    <value>Zmień kolor</value>
+  </data>
+  <data name="Editor_Tooltip_Clear" xml:space="preserve">
+    <value>Wyczyść wszystko</value>
+  </data>
+  <data name="Editor_Tooltip_Undo" xml:space="preserve">
+    <value>Cofnij ostatnią akcję</value>
+  </data>
+  <data name="Editor_Tooltip_Upload" xml:space="preserve">
+    <value>Upload do chmury</value>
+  </data>
+  <data name="Editor_Tooltip_Save" xml:space="preserve">
+    <value>Zapisz screenshot</value>
+  </data>
+  <data name="Editor_Tooltip_Cancel" xml:space="preserve">
+    <value>Anuluj bez zapisu</value>
+  </data>
+  <data name="History_Uploading" xml:space="preserve">
+    <value>Uploadowanie...</value>
+  </data>
+  <data name="History_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="History_UploadSuccess" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="History_UploadSuccessMessage" xml:space="preserve">
+    <value>Upload zakończony pomyślnie!{0}{0}URL: {1}{0}{0}URL został skopiowany do schowka.</value>
+  </data>
+  <data name="History_UploadError" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="History_UploadErrorMessage" xml:space="preserve">
+    <value>Upload nieudany:{0}{0}{1}</value>
+  </data>
+  <data name="History_ErrorWithMessage" xml:space="preserve">
+    <value>Błąd: {0}</value>
+  </data>
+  <data name="History_UrlCopied" xml:space="preserve">
+    <value>URL skopiowany do schowka:{0}{0}{1}</value>
+  </data>
+  <data name="History_CloudUrlTitle" xml:space="preserve">
+    <value>URL chmury</value>
+  </data>
+  <data name="History_SearchPlaceholder" xml:space="preserve">
+    <value>Szukaj screenshotów...</value>
+  </data>
+  <data name="History_ClearFilters" xml:space="preserve">
+    <value>Wyczyść</value>
+  </data>
+  <data name="Settings_Subtitle" xml:space="preserve">
+    <value>Konfiguracja ustawień aplikacji</value>
+  </data>
+  <data name="Settings_AutoUpload" xml:space="preserve">
+    <value>Automatyczny upload</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Motyw:</value>
+  </data>
+  <data name="Settings_InvalidPath" xml:space="preserve">
+    <value>Nieprawidłowa ścieżka zapisu!</value>
+  </data>
+  <data name="Settings_SaveSuccess" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="Settings_SaveSuccessMessage" xml:space="preserve">
+    <value>Ustawienia zapisane pomyślnie!</value>
+  </data>
+  <data name="Settings_SaveError" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="Settings_ErrorWithMessage" xml:space="preserve">
+    <value>Błąd zapisu ustawień: {0}</value>
+  </data>
+  <data name="SaveDialog_Title" xml:space="preserve">
+    <value>Zapisz Screenshot</value>
+  </data>
+  <data name="SaveDialog_Category" xml:space="preserve">
+    <value>Kategoria:</value>
+  </data>
+  <data name="SaveDialog_Tags" xml:space="preserve">
+    <value>Tagi (oddzielone przecinkami):</value>
+  </data>
+  <data name="SaveDialog_TagsPlaceholder" xml:space="preserve">
+    <value>np. praca, ważne, błąd</value>
+  </data>
+  <data name="SaveDialog_Notes" xml:space="preserve">
+    <value>Notatki:</value>
+  </data>
+  <data name="SaveDialog_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="SaveDialog_Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+</root>
+
