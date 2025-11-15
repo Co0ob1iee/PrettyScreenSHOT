@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Win32;
 
@@ -184,6 +185,19 @@ namespace PrettyScreenSHOT
             videoManager?.Dispose();
             recordingTimer?.Stop();
             base.OnClosed(e);
+        }
+
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void OnCloseClick(object sender, RoutedEventArgs e)
+        {
+            CancelButton_Click(sender, e);
         }
     }
 }

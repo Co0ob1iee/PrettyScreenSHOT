@@ -1,6 +1,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace PrettyScreenSHOT
 {
@@ -271,6 +272,19 @@ namespace PrettyScreenSHOT
                 LoadSettings();
                 LoadLocalizedStrings();
             }
+        }
+
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void OnCloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

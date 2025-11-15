@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using WindowsColor = System.Windows.Media.Color;
 using WindowsFontStyle = System.Windows.FontStyle;
@@ -172,6 +173,14 @@ namespace PrettyScreenSHOT
         {
             this.DialogResult = false;
             this.Close();
+        }
+
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
     }
 }
