@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Wpf.Ui.Controls;
 using Point = System.Windows.Point;
 using Color = System.Windows.Media.Color;
 using Pen = System.Windows.Media.Pen;
@@ -14,7 +15,7 @@ using WindowsFontFamily = System.Windows.Media.FontFamily;
 
 namespace PrettyScreenSHOT
 {
-    public partial class ScreenshotEditorWindow : Window, IDisposable
+    public partial class ScreenshotEditorWindow : FluentWindow, IDisposable
     {
         private BitmapSource? originalBitmap;
         private DrawingVisual? drawingVisual;
@@ -796,14 +797,6 @@ namespace PrettyScreenSHOT
         {
             Dispose();
             base.OnClosed(e);
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
         }
 
         public void Dispose()
