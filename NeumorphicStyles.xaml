@@ -2,11 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Neumorphic Colors -->
-    <Color x:Key="NeumorphicBase">#E5E5E5</Color>
-    <Color x:Key="NeumorphicLightShadow">#FFFFFF</Color>
-    <Color x:Key="NeumorphicDarkShadow">#B0B0B0</Color>
-    <Color x:Key="NeumorphicText">#212121</Color>
-    <Color x:Key="NeumorphicTextSecondary">#666666</Color>
+    <Color x:Key="NeumorphicBase">#F0F0F0</Color>          <!-- Jasne tło główne -->
+    <Color x:Key="NeumorphicLightShadow">#FFFFFF</Color>   <!-- Jasny cień (góra/lewo) -->
+    <Color x:Key="NeumorphicDarkShadow">#BEBEBE</Color>    <!-- Ciemny cień (dół/prawo) -->
+    <Color x:Key="NeumorphicText">#212121</Color>          <!-- Tekst główny -->
+    <Color x:Key="NeumorphicTextSecondary">#666666</Color> <!-- Tekst drugorzędny -->
+    <Color x:Key="NeumorphicAccent">#E8E8E8</Color>        <!-- Subtelny akcent (hover) -->
+    <Color x:Key="NeumorphicPressed">#DDDDDD</Color>       <!-- Wciśnięty element -->
 
     <!-- Neumorphic Brushes -->
     <SolidColorBrush x:Key="NeumorphicBaseBrush" Color="{StaticResource NeumorphicBase}"/>
@@ -14,12 +16,21 @@
     <SolidColorBrush x:Key="NeumorphicDarkShadowBrush" Color="{StaticResource NeumorphicDarkShadow}"/>
     <SolidColorBrush x:Key="NeumorphicTextBrush" Color="{StaticResource NeumorphicText}"/>
     <SolidColorBrush x:Key="NeumorphicTextSecondaryBrush" Color="{StaticResource NeumorphicTextSecondary}"/>
+    <SolidColorBrush x:Key="NeumorphicAccentBrush" Color="{StaticResource NeumorphicAccent}"/>
+    <SolidColorBrush x:Key="NeumorphicPressedBrush" Color="{StaticResource NeumorphicPressed}"/>
 
     <!-- Reusable shadow effects (swap whole Effect in triggers) -->
-    <DropShadowEffect x:Key="PanelEffect" Color="Black" Direction="135" ShadowDepth="5" BlurRadius="15" Opacity="0.12"/>
-    <DropShadowEffect x:Key="ButtonEffect_Default" Color="Black" Direction="135" ShadowDepth="4" BlurRadius="10" Opacity="0.15"/>
-    <DropShadowEffect x:Key="ButtonEffect_Hover" Color="Black" Direction="135" ShadowDepth="6" BlurRadius="12" Opacity="0.2"/>
-    <DropShadowEffect x:Key="ButtonEffect_Pressed" Color="Black" Direction="135" ShadowDepth="2" BlurRadius="6" Opacity="0.25"/>
+    <!-- Soft shadow dla paneli głównych -->
+    <DropShadowEffect x:Key="PanelEffect" Color="Black" Direction="135" ShadowDepth="8" BlurRadius="20" Opacity="0.06"/>
+
+    <!-- Shadow effects dla przycisków -->
+    <DropShadowEffect x:Key="ButtonEffect_Default" Color="Black" Direction="135" ShadowDepth="4" BlurRadius="10" Opacity="0.1"/>
+    <DropShadowEffect x:Key="ButtonEffect_Hover" Color="Black" Direction="135" ShadowDepth="6" BlurRadius="14" Opacity="0.12"/>
+    <DropShadowEffect x:Key="ButtonEffect_Pressed" Color="Black" Direction="135" ShadowDepth="2" BlurRadius="6" Opacity="0.15"/>
+
+    <!-- Dodatkowe efekty dla wklęsłych elementów -->
+    <DropShadowEffect x:Key="InsetEffect_Light" Color="White" Direction="315" ShadowDepth="2" BlurRadius="6" Opacity="0.6"/>
+    <DropShadowEffect x:Key="InsetEffect_Dark" Color="{StaticResource NeumorphicDarkShadow}" Direction="135" ShadowDepth="2" BlurRadius="6" Opacity="0.2"/>
 
     <!-- Neumorphic Raised Border (Wypukły) -->
     <Style x:Key="NeumorphicRaisedBorder" TargetType="Border">
@@ -80,19 +91,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="mainBorder" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#EDEDED"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
                             <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="mainBorder" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#DDDDDD"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource NeumorphicPressedBrush}"/>
                             <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Pressed}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -119,11 +122,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#E0E0E0"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
                             <Setter TargetName="border" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -167,19 +166,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="mainBorder" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#EDEDED"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
                             <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="mainBorder" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#DDDDDD"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource NeumorphicPressedBrush}"/>
                             <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Pressed}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -236,11 +227,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="innerBorder" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#EDEDED"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="innerBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -250,22 +237,363 @@
 
     <!-- Neumorphic Slider -->
     <Style x:Key="NeumorphicSlider" TargetType="Slider">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#4CAF50"/>
-        <Setter Property="Height" Value="20"/>
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="Height" Value="24"/>
         <Setter Property="Margin" Value="8,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Track - wklęsły rowek -->
+                        <Border Grid.Row="0"
+                                Height="8"
+                                VerticalAlignment="Center"
+                                Background="{StaticResource NeumorphicBaseBrush}"
+                                CornerRadius="4"
+                                BorderThickness="0">
+                            <!-- Wklęsły efekt -->
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                    BorderThickness="1,1,0,0"
+                                    CornerRadius="4">
+                                <Border BorderBrush="#FFFFFF"
+                                        BorderThickness="0,0,1,1"
+                                        CornerRadius="4"
+                                        Background="{StaticResource NeumorphicAccentBrush}">
+                                    <Track x:Name="PART_Track" Grid.Row="0">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="Slider.DecreaseLarge" Style="{x:Null}" Opacity="0"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="Slider.IncreaseLarge" Style="{x:Null}" Opacity="0"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <!-- Thumb - wypukłe kółko -->
+                                            <Thumb Width="20" Height="20">
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="{StaticResource NeumorphicBaseBrush}"
+                                                                CornerRadius="10"
+                                                                BorderThickness="0">
+                                                            <!-- Wypukły efekt -->
+                                                            <Border BorderBrush="#FFFFFF"
+                                                                    BorderThickness="1.5,1.5,0,0"
+                                                                    CornerRadius="10">
+                                                                <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                                                        BorderThickness="0,0,1.5,1.5"
+                                                                        CornerRadius="10"/>
+                                                            </Border>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic ScrollBar -->
+    <Style x:Key="NeumorphicScrollBar" TargetType="ScrollBar">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Width" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid>
+                        <!-- Track - wklęsły -->
+                        <Border Background="{StaticResource NeumorphicBaseBrush}"
+                                CornerRadius="6"
+                                BorderThickness="0"
+                                Margin="2">
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                    BorderThickness="1,1,0,0"
+                                    CornerRadius="6">
+                                <Border BorderBrush="#FFFFFF"
+                                        BorderThickness="0,0,1,1"
+                                        CornerRadius="6"
+                                        Background="{StaticResource NeumorphicAccentBrush}">
+                                    <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.LineUpCommand" Style="{x:Null}" Opacity="0"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.LineDownCommand" Style="{x:Null}" Opacity="0"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <!-- Thumb - wypukły -->
+                                            <Thumb>
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="{StaticResource NeumorphicBaseBrush}"
+                                                                CornerRadius="5"
+                                                                MinHeight="30"
+                                                                Margin="1"
+                                                                BorderThickness="0">
+                                                            <Border BorderBrush="#FFFFFF"
+                                                                    BorderThickness="1,1,0,0"
+                                                                    CornerRadius="5">
+                                                                <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                                                        BorderThickness="0,0,1,1"
+                                                                        CornerRadius="5"/>
+                                                            </Border>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Neumorphic TextBlock -->
     <Style x:Key="NeumorphicTextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Light"/>
     </Style>
 
     <!-- Neumorphic TextBlock Secondary -->
     <Style x:Key="NeumorphicTextBlockSecondary" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource NeumorphicTextSecondaryBrush}"/>
         <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+
+    <!-- Neumorphic Heading (H1) -->
+    <Style x:Key="NeumorphicHeading" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
+    <!-- Neumorphic Heading Large (H2) -->
+    <Style x:Key="NeumorphicHeadingLarge" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
+    <!-- Neumorphic Heading Small (H3) -->
+    <Style x:Key="NeumorphicHeadingSmall" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+    </Style>
+
+    <!-- Neumorphic CheckBox -->
+    <Style x:Key="NeumorphicCheckBox" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="8,0,0,0"/>
+        <Setter Property="Margin" Value="0,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Checkbox box -->
+                        <Border x:Name="CheckBoxBorder"
+                                Width="20" Height="20"
+                                Background="{StaticResource NeumorphicBaseBrush}"
+                                CornerRadius="6"
+                                BorderThickness="0"
+                                Margin="0,0,8,0"
+                                VerticalAlignment="Center">
+                            <!-- Wklęsły efekt dla unchecked -->
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                    BorderThickness="1.5,1.5,0,0"
+                                    CornerRadius="6">
+                                <Border BorderBrush="#FFFFFF"
+                                        BorderThickness="0,0,1,1"
+                                        CornerRadius="6"
+                                        Background="{StaticResource NeumorphicAccentBrush}">
+                                    <!-- Checkmark -->
+                                    <TextBlock x:Name="CheckMark"
+                                               Text="✓"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="{StaticResource NeumorphicTextBrush}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Visibility="Collapsed"/>
+                                </Border>
+                            </Border>
+                        </Border>
+                        <!-- Content -->
+                        <ContentPresenter VerticalAlignment="Center"
+                                         Margin="{TemplateBinding Padding}"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <!-- Checked state - wypukły z checkmark -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="CheckBoxBorder" Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+                        </Trigger>
+                        <!-- Hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CheckBoxBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic ComboBox -->
+    <Style x:Key="NeumorphicComboBox" TargetType="ComboBox">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Main ComboBox body - wklęsły -->
+                        <Border x:Name="MainBorder"
+                                Background="{StaticResource NeumorphicBaseBrush}"
+                                CornerRadius="10"
+                                BorderThickness="0">
+                            <!-- Wklęsły efekt -->
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                    BorderThickness="1.5,1.5,0,0"
+                                    CornerRadius="10">
+                                <Border BorderBrush="#FFFFFF"
+                                        BorderThickness="0,0,1,1"
+                                        CornerRadius="10"
+                                        Background="{StaticResource NeumorphicAccentBrush}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Content -->
+                                        <ContentPresenter Grid.Column="0"
+                                                         Content="{TemplateBinding SelectionBoxItem}"
+                                                         ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                         Margin="{TemplateBinding Padding}"
+                                                         VerticalAlignment="Center"
+                                                         HorizontalAlignment="Left"/>
+
+                                        <!-- Dropdown arrow - wypukły -->
+                                        <Border Grid.Column="1"
+                                                Width="30" Height="30"
+                                                Background="{StaticResource NeumorphicBaseBrush}"
+                                                CornerRadius="8"
+                                                Margin="5,0,5,0"
+                                                BorderThickness="0">
+                                            <Border BorderBrush="#FFFFFF"
+                                                    BorderThickness="1,1,0,0"
+                                                    CornerRadius="8">
+                                                <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                                        BorderThickness="0,0,1,1"
+                                                        CornerRadius="8">
+                                                    <TextBlock Text="▼"
+                                                               FontSize="10"
+                                                               Foreground="{StaticResource NeumorphicTextSecondaryBrush}"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"/>
+                                                </Border>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Border>
+
+                        <!-- Popup -->
+                        <Popup x:Name="PART_Popup"
+                               AllowsTransparency="True"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               Placement="Bottom"
+                               PopupAnimation="Slide">
+                            <Border Background="{StaticResource NeumorphicBaseBrush}"
+                                    CornerRadius="10"
+                                    BorderThickness="0"
+                                    Margin="5"
+                                    Effect="{StaticResource PanelEffect}">
+                                <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic ComboBoxItem -->
+    <Style x:Key="NeumorphicComboBoxItem" TargetType="ComboBoxItem">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="Padding" Value="10,8"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="ItemBorder"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            Margin="2">
+                        <ContentPresenter/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource NeumorphicPressedBrush}"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Depressed Border (Wklęsły panel) -->
+    <Style x:Key="NeumorphicDepressedBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12"/>
+    </Style>
+
+    <!-- Neumorphic Flat Panel (bez cieni - do grupowania) -->
+    <Style x:Key="NeumorphicFlatPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
     </Style>
 
 </ResourceDictionary>
