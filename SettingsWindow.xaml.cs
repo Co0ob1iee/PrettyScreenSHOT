@@ -2,6 +2,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using PrettyScreenSHOT.Services;
+using Wpf.Ui.Appearance;
 
 namespace PrettyScreenSHOT
 {
@@ -12,10 +14,9 @@ namespace PrettyScreenSHOT
         public SettingsWindow()
         {
             InitializeComponent();
-            
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
-            
+
+            // WPF UI applies themes globally - no need to apply per-window
+
             // Subscribe to Loaded to attach event handlers after UI is ready
             this.Loaded += SettingsWindow_Loaded;
 
@@ -251,9 +252,10 @@ namespace PrettyScreenSHOT
             if (ThemeComboBox != null && ThemeComboBox.SelectedItem != null)
             {
                 var themeName = ThemeComboBox.SelectedItem.ToString();
-                if (System.Enum.TryParse<Theme>(themeName, true, out var theme))
+                if (!string.IsNullOrEmpty(themeName))
                 {
-                    ThemeManager.Instance.SetTheme(theme);
+                    // Apply theme using WPF UI ThemeService
+                    ThemeService.Instance.SetTheme(themeName);
                 }
             }
         }

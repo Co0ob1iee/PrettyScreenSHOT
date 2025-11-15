@@ -35,8 +35,7 @@ namespace PrettyScreenSHOT
         {
             InitializeComponent();
 
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
+            // WPF UI applies themes globally - no need to apply per-window
 
             LoadLocalizedStrings();
             InitializeDefaults();

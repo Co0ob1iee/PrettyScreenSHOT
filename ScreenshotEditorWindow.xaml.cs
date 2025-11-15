@@ -69,10 +69,9 @@ namespace PrettyScreenSHOT
             
             // Załaduj lokalizowane teksty
             LoadLocalizedStrings();
-            
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
-            
+
+            // WPF UI applies themes globally - no need to apply per-window
+
             // Zarejestruj skróty klawiszowe
             KeyboardShortcutsManager.Instance.RegisterWindowShortcuts(this);
             

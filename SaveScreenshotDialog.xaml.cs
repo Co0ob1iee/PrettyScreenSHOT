@@ -16,10 +16,9 @@ namespace PrettyScreenSHOT
         public SaveScreenshotDialog()
         {
             InitializeComponent();
-            
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
-            
+
+            // WPF UI applies themes globally - no need to apply per-window
+
             // Załaduj lokalizowane teksty
             LoadLocalizedStrings();
             
