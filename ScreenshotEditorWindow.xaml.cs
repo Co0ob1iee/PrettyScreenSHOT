@@ -799,6 +799,14 @@ namespace PrettyScreenSHOT
             base.OnClosed(e);
         }
 
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);

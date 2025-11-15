@@ -1,45 +1,96 @@
 <Window x:Class="PrettyScreenSHOT.SaveScreenshotDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Save Screenshot" Height="400" Width="500" WindowStartupLocation="CenterOwner"
-        Background="#1E1E1E" Foreground="White"
-        ShowInTaskbar="False" WindowStyle="ToolWindow" ResizeMode="NoResize">
-    
-    <StackPanel Margin="20">
-        <!-- Category -->
-        <TextBlock x:Name="CategoryLabel" Text="Category:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-        <ComboBox x:Name="CategoryComboBox" Background="#2D2D2D" Foreground="White" BorderBrush="#404040"
-                 Padding="8" Margin="0,0,0,15" IsEditable="True">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        
-        <!-- Tags -->
-        <TextBlock x:Name="TagsLabel" Text="Tags (comma separated):" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-        <TextBox x:Name="TagsTextBox" Background="#2D2D2D" Foreground="White" BorderBrush="#404040"
-                 Padding="10,8" Margin="0,0,0,15" TextWrapping="Wrap"
-                 Tag="e.g., work, important, bug"/>
-        
-        <!-- Notes -->
-        <TextBlock x:Name="NotesLabel" Text="Notes:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-        <TextBox x:Name="NotesTextBox" Background="#2D2D2D" Foreground="White" BorderBrush="#404040"
-                 Padding="10,8" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
-                 Margin="0,0,0,20"/>
-        
-        <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="CancelButton" Click="OnCancelClick" Background="#F44336" Foreground="White" 
-                    Padding="20,10" Margin="5" Width="100">
-                <TextBlock Text="Cancel" FontWeight="Bold"/>
-            </Button>
-            <Button x:Name="SaveButton" Click="OnSaveClick" Background="#4CAF50" Foreground="White" 
-                    Padding="20,10" Margin="5" Width="100">
-                <TextBlock Text="Save" FontWeight="Bold"/>
-            </Button>
-        </StackPanel>
-    </StackPanel>
-</Window>
+        Title="Save Screenshot" Height="450" Width="520" WindowStartupLocation="CenterOwner"
+        Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
+        ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Neumorphic window chrome -->
+    <Border Style="{StaticResource NeumorphicPanel}" CornerRadius="18" Margin="15" Padding="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Custom Title Bar -->
+            <Border Grid.Row="0" Background="Transparent" Padding="15,10" CornerRadius="18,18,0,0"
+                    MouseLeftButtonDown="OnTitleBarMouseDown">
+                <DockPanel>
+                    <TextBlock Text="Save Screenshot" FontSize="20"
+                               Style="{StaticResource NeumorphicHeading}"
+                               VerticalAlignment="Center" DockPanel.Dock="Left"/>
+
+                    <Button Click="OnCancelClick" Style="{StaticResource NeumorphicCircularButton}"
+                            Width="32" Height="32" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" ToolTip="Zamknij">
+                        <TextBlock Text="✕" FontSize="16"/>
+                    </Button>
+                </DockPanel>
+            </Border>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="1" Margin="20,10,20,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <!-- Category -->
+                    <TextBlock x:Name="CategoryLabel" Text="Category:"
+                               Style="{StaticResource NeumorphicTextBlockSecondary}"
+                               FontWeight="Bold" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="CategoryComboBox"
+                             Style="{StaticResource NeumorphicComboBox}"
+                             Padding="8" Margin="0,0,0,15" IsEditable="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource NeumorphicTextBlock}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <!-- Tags -->
+                    <TextBlock x:Name="TagsLabel" Text="Tags (comma separated):"
+                               Style="{StaticResource NeumorphicTextBlockSecondary}"
+                               FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TagsTextBox"
+                            Style="{StaticResource NeumorphicTextBox}"
+                            Padding="10,8" Margin="0,0,0,15" TextWrapping="Wrap"
+                            Tag="e.g., work, important, bug"/>
+
+                    <!-- Notes -->
+                    <TextBlock x:Name="NotesLabel" Text="Notes:"
+                               Style="{StaticResource NeumorphicTextBlockSecondary}"
+                               FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="NotesTextBox"
+                            Style="{StaticResource NeumorphicTextBox}"
+                            Padding="10,8" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                    <Button x:Name="CancelButton" Click="OnCancelClick"
+                            Style="{StaticResource NeumorphicRaisedButton}"
+                            Padding="20,10" Margin="5" Width="100">
+                        <TextBlock Text="Cancel" Style="{StaticResource NeumorphicTextBlock}"/>
+                    </Button>
+                    <Button x:Name="SaveButton" Click="OnSaveClick"
+                            Style="{StaticResource NeumorphicDepressedButton}"
+                            Padding="20,10" Margin="5" Width="100">
+                        <TextBlock Text="Save" Style="{StaticResource NeumorphicTextBlock}" FontWeight="Bold"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

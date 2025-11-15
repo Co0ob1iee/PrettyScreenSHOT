@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -179,13 +180,26 @@ namespace PrettyScreenSHOT
             currentSearchText = null;
             currentCategory = null;
             currentTags = null;
-            
+
             if (SearchTextBox != null)
                 SearchTextBox.Text = "";
             if (CategoryComboBox != null)
                 CategoryComboBox.SelectedItem = null;
-            
+
             ApplyFilters();
+        }
+
+        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void OnCloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 
