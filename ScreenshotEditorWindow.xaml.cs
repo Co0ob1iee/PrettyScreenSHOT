@@ -807,6 +807,167 @@ namespace PrettyScreenSHOT
             }
         }
 
+        // === KEYBOARD SHORTCUTS ===
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Ctrl+Z - Undo
+            if (e.Key == Key.Z && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                Undo();
+                e.Handled = true;
+                return;
+            }
+
+            // Del - Clear
+            if (e.Key == Key.Delete)
+            {
+                ClearAll();
+                e.Handled = true;
+                return;
+            }
+
+            // Ctrl+S - Save
+            if (e.Key == Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                SaveScreenshot();
+                e.Handled = true;
+                return;
+            }
+
+            // Esc - Cancel
+            if (e.Key == Key.Escape)
+            {
+                OnCancelClick(this, new RoutedEventArgs());
+                e.Handled = true;
+                return;
+            }
+
+            // Ctrl+C - Copy to clipboard
+            if (e.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                // Skopiuj aktualny screenshot do schowka
+                CopyToClipboard();
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void CopyToClipboard()
+        {
+            try
+            {
+                var finalBitmap = RenderFinalImage();
+                if (finalBitmap != null)
+                {
+                    System.Windows.Clipboard.SetImage(finalBitmap);
+                    DebugHelper.LogDebug("Screenshot copied to clipboard via Ctrl+C");
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugHelper.LogError("ScreenshotEditorWindow", "Failed to copy to clipboard", ex);
+            }
+        }
+
+        // === DRAG & DROP ===
+        private void Canvas_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effects = DragDropEffects.Copy;
+                // Visual feedback - zmień kursor na copy
+                EditorCanvas.Opacity = 0.8;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+            e.Handled = true;
+        }
+
+        private void Canvas_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files != null && files.Length > 0)
+                {
+                    string ext = System.IO.Path.GetExtension(files[0]).ToLower();
+                    if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".bmp" || ext == ".gif")
+                    {
+                        e.Effects = DragDropEffects.Copy;
+                    }
+                    else
+                    {
+                        e.Effects = DragDropEffects.None;
+                    }
+                }
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+            e.Handled = true;
+        }
+
+        private void Canvas_Drop(object sender, DragEventArgs e)
+        {
+            // Przywróć opacity
+            EditorCanvas.Opacity = 1.0;
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files != null && files.Length > 0)
+                {
+                    string filePath = files[0];
+                    string ext = System.IO.Path.GetExtension(filePath).ToLower();
+
+                    if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".bmp" || ext == ".gif")
+                    {
+                        try
+                        {
+                            // Załaduj nowy obraz
+                            var bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.UriSource = new Uri(filePath);
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
+                            bitmap.Freeze();
+
+                            // Zastąp obecny screenshot
+                            LoadScreenshot(bitmap);
+                            DebugHelper.LogDebug($"Image loaded from drag & drop: {filePath}");
+
+                            System.Windows.MessageBox.Show(
+                                $"Obraz załadowany pomyślnie!\n{System.IO.Path.GetFileName(filePath)}",
+                                "Drag & Drop",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            DebugHelper.LogError("ScreenshotEditorWindow", "Failed to load dropped image", ex);
+                            System.Windows.MessageBox.Show(
+                                $"Nie udało się załadować obrazu:\n{ex.Message}",
+                                "Błąd",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show(
+                            "Nieobsługiwany format pliku!\nObsługiwane: PNG, JPG, BMP, GIF",
+                            "Błąd",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                    }
+                }
+            }
+            e.Handled = true;
+        }
+
         public void Dispose()
         {
             Dispose(true);
