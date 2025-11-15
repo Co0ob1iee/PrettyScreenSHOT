@@ -391,6 +391,15 @@
   <data name="VideoCapture_VideoSavedMessage" xml:space="preserve">
     <value>视频已保存到：{0}{1}</value>
   </data>
+  <data name="VideoCapture_Recording" xml:space="preserve">
+    <value>正在录制...</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmMessage" xml:space="preserve">
+    <value>录制正在进行中。您要停止并放弃吗？</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmTitle" xml:space="preserve">
+    <value>确认</value>
+  </data>
   <data name="Editor_Tooltip_Copy" xml:space="preserve">
     <value>复制</value>
   </data>

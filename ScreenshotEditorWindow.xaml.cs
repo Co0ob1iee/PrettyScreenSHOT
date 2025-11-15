@@ -85,6 +85,80 @@ namespace PrettyScreenSHOT
         private void LoadLocalizedStrings()
         {
             Title = LocalizationHelper.GetString("Editor_Title");
+
+            // Title bar buttons
+            if (CopyButton != null)
+                CopyButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Copy");
+            if (DuplicateButton != null)
+                DuplicateButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Duplicate");
+            if (CloseButton != null)
+                CloseButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Close");
+
+            // System icons
+            if (WiFiButton != null)
+                WiFiButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_WiFi");
+            if (BatteryButton != null)
+                BatteryButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Battery");
+            if (PhoneButton != null)
+                PhoneButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Phone");
+            if (ShareButton != null)
+                ShareButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Share");
+            if (VolumeButton != null)
+                VolumeButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Volume");
+
+            // Color button
+            if (ColorButton != null)
+                ColorButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Color");
+
+            // Action buttons
+            if (ClearButton != null)
+                ClearButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Clear");
+            if (UndoButton != null)
+                UndoButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Undo");
+            if (UploadButton != null)
+                UploadButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Upload");
+            if (SaveButton != null)
+                SaveButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Save");
+            if (CancelButton != null)
+                CancelButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Cancel");
+
+            // Drawing tools
+            if (MarkerButton != null)
+                MarkerButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Marker");
+            if (RectangleButton != null)
+                RectangleButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Rectangle");
+            if (ArrowButton != null)
+                ArrowButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Arrow");
+            if (BlurButton != null)
+                BlurButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Blur");
+            if (TextToolButton != null)
+                TextToolButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Text");
+
+            // Text formatting
+            if (BoldButton != null)
+                BoldButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Bold");
+            if (ItalicButton != null)
+                ItalicButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Italic");
+            if (UnderlineButton != null)
+                UnderlineButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Underline");
+            if (StrikethroughButton != null)
+                StrikethroughButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Strikethrough");
+
+            // Text alignment
+            if (AlignLeftButton != null)
+                AlignLeftButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignLeft");
+            if (AlignCenterButton != null)
+                AlignCenterButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignCenter");
+            if (AlignRightButton != null)
+                AlignRightButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignRight");
+            if (JustifyButton != null)
+                JustifyButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Justify");
+
+            // Lists
+            if (BulletListButton != null)
+                BulletListButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_BulletList");
+            if (NumberedListButton != null)
+                NumberedListButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_NumberedList");
         }
 
         private void SetupEditor()

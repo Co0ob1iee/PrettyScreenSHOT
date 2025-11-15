@@ -26,12 +26,12 @@
                     MouseLeftButtonDown="OnTitleBarMouseDown">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
-                        <TextBlock Text="Video Capture" FontSize="20"
+                        <TextBlock x:Name="TitleTextBlock" Text="Video Capture" FontSize="20"
                                    Style="{StaticResource NeumorphicHeading}"
                                    VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <Button Click="OnCloseClick" Style="{StaticResource NeumorphicCircularButton}"
+                    <Button x:Name="CloseButton" Click="OnCloseClick" Style="{StaticResource NeumorphicCircularButton}"
                             Width="32" Height="32" DockPanel.Dock="Right"
                             HorizontalAlignment="Right" ToolTip="Zamknij">
                         <TextBlock Text="✕" FontSize="16"/>
@@ -53,7 +53,7 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Recording Area:"
+                        <TextBlock x:Name="RecordingAreaLabel" Grid.Column="0" Text="Recording Area:"
                                    Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"/>
                         <TextBlock Grid.Column="1" x:Name="AreaText" Text="Not selected"
                                    Style="{StaticResource NeumorphicTextBlock}"/>
@@ -64,7 +64,7 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Frame Rate:"
+                        <TextBlock x:Name="FrameRateTextLabel" Grid.Column="0" Text="Frame Rate:"
                                    Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"/>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                             <Slider x:Name="FrameRateSlider" Width="200" Minimum="1" Maximum="30" Value="10"
@@ -80,12 +80,12 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Format:"
+                        <TextBlock x:Name="FormatLabel" Grid.Column="0" Text="Format:"
                                    Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"/>
                         <ComboBox Grid.Column="1" x:Name="FormatComboBox" SelectedIndex="0"
                                  Style="{StaticResource NeumorphicComboBox}">
-                            <ComboBoxItem Content="GIF" Style="{StaticResource NeumorphicComboBoxItem}"/>
-                            <ComboBoxItem Content="MP4" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                            <ComboBoxItem x:Name="GifFormatItem" Content="GIF" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                            <ComboBoxItem x:Name="Mp4FormatItem" Content="MP4" Style="{StaticResource NeumorphicComboBoxItem}"/>
                         </ComboBox>
                     </Grid>
 
@@ -95,7 +95,7 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Recording Time:"
+                        <TextBlock x:Name="RecordingTimeLabel" Grid.Column="0" Text="Recording Time:"
                                    Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"/>
                         <TextBlock Grid.Column="1" x:Name="TimeText" Text="00:00"
                                    Style="{StaticResource NeumorphicTextBlock}"
@@ -108,7 +108,7 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Frames Captured:"
+                        <TextBlock x:Name="FramesCapturedLabel" Grid.Column="0" Text="Frames Captured:"
                                    Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"/>
                         <TextBlock Grid.Column="1" x:Name="FramesText" Text="0"
                                    Style="{StaticResource NeumorphicTextBlock}" FontSize="14"/>

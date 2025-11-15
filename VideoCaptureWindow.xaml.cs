@@ -33,8 +33,42 @@ namespace PrettyScreenSHOT
         private void LoadLocalizedStrings()
         {
             Title = LocalizationHelper.GetString("VideoCapture_Title");
+
+            // Title bar
+            if (TitleTextBlock != null)
+                TitleTextBlock.Text = LocalizationHelper.GetString("VideoCapture_Title");
+            if (CloseButton != null)
+                CloseButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Close");
+
+            // Status and labels
             if (StatusText != null)
                 StatusText.Text = LocalizationHelper.GetString("VideoCapture_ReadyToRecord");
+            if (RecordingAreaLabel != null)
+                RecordingAreaLabel.Text = LocalizationHelper.GetString("VideoCapture_RecordingArea");
+            if (AreaText != null)
+                AreaText.Text = LocalizationHelper.GetString("VideoCapture_NotSelected");
+            if (FrameRateTextLabel != null)
+                FrameRateTextLabel.Text = LocalizationHelper.GetString("VideoCapture_FrameRate");
+            if (FormatLabel != null)
+                FormatLabel.Text = LocalizationHelper.GetString("VideoCapture_Format");
+            if (RecordingTimeLabel != null)
+                RecordingTimeLabel.Text = LocalizationHelper.GetString("VideoCapture_RecordingTime");
+            if (FramesCapturedLabel != null)
+                FramesCapturedLabel.Text = LocalizationHelper.GetString("VideoCapture_FramesCaptured");
+
+            // ComboBox items
+            if (GifFormatItem != null)
+                GifFormatItem.Content = LocalizationHelper.GetString("VideoCapture_FormatGIF");
+            if (Mp4FormatItem != null)
+                Mp4FormatItem.Content = LocalizationHelper.GetString("VideoCapture_FormatMP4");
+
+            // Buttons
+            if (StartButton != null)
+                StartButton.Content = LocalizationHelper.GetString("VideoCapture_StartRecording");
+            if (StopButton != null)
+                StopButton.Content = LocalizationHelper.GetString("VideoCapture_StopRecording");
+            if (CancelButton != null)
+                CancelButton.Content = LocalizationHelper.GetString("VideoCapture_Cancel");
         }
 
         public void SetCaptureArea(Rectangle area)
@@ -80,7 +114,7 @@ namespace PrettyScreenSHOT
                 // Aktualizuj UI
                 StartButton.IsEnabled = false;
                 StopButton.IsEnabled = true;
-                StatusText.Text = "Recording...";
+                StatusText.Text = LocalizationHelper.GetString("VideoCapture_Recording");
                 StatusText.Foreground = new System.Windows.Media.SolidColorBrush(
                     System.Windows.Media.Color.FromRgb(244, 67, 54)); // Red
                 RecordingInfoGrid.Visibility = Visibility.Visible;
@@ -181,8 +215,9 @@ namespace PrettyScreenSHOT
             if (videoManager != null && videoManager.IsRecording)
             {
                 var result = System.Windows.MessageBox.Show(
-                    "Recording is in progress. Do you want to stop and discard?", 
-                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    LocalizationHelper.GetString("VideoCapture_CancelConfirmMessage"),
+                    LocalizationHelper.GetString("VideoCapture_CancelConfirmTitle"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {

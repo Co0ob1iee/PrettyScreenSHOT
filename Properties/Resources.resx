@@ -391,6 +391,15 @@
   <data name="VideoCapture_VideoSavedMessage" xml:space="preserve">
     <value>Video saved to:{0}{1}</value>
   </data>
+  <data name="VideoCapture_Recording" xml:space="preserve">
+    <value>Recording...</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmMessage" xml:space="preserve">
+    <value>Recording is in progress. Do you want to stop and discard?</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmTitle" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="Editor_Tooltip_Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
