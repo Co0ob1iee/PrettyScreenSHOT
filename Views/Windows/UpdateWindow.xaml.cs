@@ -5,14 +5,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using PrettyScreenSHOT.Helpers;
-using PrettyScreenSHOT.Models;
-using PrettyScreenSHOT.Services.Theme;
-using PrettyScreenSHOT.Services.Update;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
-    public partial class UpdateWindow : Window
+    public partial class UpdateWindow : FluentWindow
     {
         private UpdateInfo? updateInfo;
         private UpdateManager? updateManager;
@@ -123,19 +120,6 @@ namespace PrettyScreenSHOT.Views.Windows
         }
 
         private void LaterButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

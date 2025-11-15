@@ -370,6 +370,24 @@
   <data name="VideoCapture_Format" xml:space="preserve">
     <value>Format:</value>
   </data>
+  <data name="VideoCapture_FormatGIF" xml:space="preserve">
+    <value>GIF</value>
+  </data>
+  <data name="VideoCapture_FormatMP4" xml:space="preserve">
+    <value>MP4</value>
+  </data>
+  <data name="VideoCapture_StartRecording" xml:space="preserve">
+    <value>Rozpocznij nagrywanie</value>
+  </data>
+  <data name="VideoCapture_StopRecording" xml:space="preserve">
+    <value>Zatrzymaj nagrywanie</value>
+  </data>
+  <data name="VideoCapture_Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="VideoCapture_NotSelected" xml:space="preserve">
+    <value>Nie wybrano</value>
+  </data>
   <data name="VideoCapture_RecordingTime" xml:space="preserve">
     <value>Czas nagrywania:</value>
   </data>
@@ -444,6 +462,15 @@
   </data>
   <data name="Editor_Tooltip_AlignRight" xml:space="preserve">
     <value>Wyrównaj do prawej</value>
+  </data>
+  <data name="Editor_Tooltip_Justify" xml:space="preserve">
+    <value>Wyjustuj</value>
+  </data>
+  <data name="Editor_Tooltip_BulletList" xml:space="preserve">
+    <value>Lista punktowana</value>
+  </data>
+  <data name="Editor_Tooltip_NumberedList" xml:space="preserve">
+    <value>Lista numerowana</value>
   </data>
   <data name="Update_Title" xml:space="preserve">
     <value>Dostępna aktualizacja</value>
