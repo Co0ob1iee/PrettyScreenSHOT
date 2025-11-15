@@ -22,6 +22,19 @@ namespace PrettyScreenSHOT
         {
             InitializeComponent();
             videoManager = new VideoCaptureManager();
+
+            // Zastosuj theme
+            ThemeManager.Instance.ApplyTheme(this);
+
+            // Załaduj lokalizowane teksty
+            LoadLocalizedStrings();
+        }
+
+        private void LoadLocalizedStrings()
+        {
+            Title = LocalizationHelper.GetString("VideoCapture_Title");
+            if (StatusText != null)
+                StatusText.Text = LocalizationHelper.GetString("VideoCapture_ReadyToRecord");
         }
 
         public void SetCaptureArea(Rectangle area)
@@ -33,7 +46,7 @@ namespace PrettyScreenSHOT
         private void FrameRateSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             int fps = (int)e.NewValue;
-            FrameRateLabel.Text = $"{fps} FPS";
+            FrameRateLabel.Text = string.Format(LocalizationHelper.GetString("VideoCapture_FrameRateLabel"), fps);
             if (videoManager != null)
             {
                 videoManager.FrameRate = fps;
@@ -78,8 +91,11 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("VideoCapture", "Error starting recording", ex);
-                System.Windows.MessageBox.Show($"Error starting recording: {ex.Message}", "Error", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(
+                    string.Format(LocalizationHelper.GetString("VideoCapture_ErrorStarting"), ex.Message),
+                    LocalizationHelper.GetString("Editor_Error"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -121,17 +137,20 @@ namespace PrettyScreenSHOT
 
                 if (saveDialog.ShowDialog() == true)
                 {
-                    StatusText.Text = "Saving...";
+                    StatusText.Text = LocalizationHelper.GetString("VideoCapture_Saving");
                     StopButton.IsEnabled = false;
 
                     string outputPath = await videoManager.StopRecordingAsync(saveDialog.FileName, format);
 
-                    StatusText.Text = "Recording saved!";
+                    StatusText.Text = LocalizationHelper.GetString("VideoCapture_RecordingSaved");
                     StatusText.Foreground = new System.Windows.Media.SolidColorBrush(
                         System.Windows.Media.Color.FromRgb(76, 175, 80)); // Green
 
-                    System.Windows.MessageBox.Show($"Video saved to:\n{outputPath}", "Success", 
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    System.Windows.MessageBox.Show(
+                        string.Format(LocalizationHelper.GetString("VideoCapture_VideoSavedMessage"), "\n", outputPath),
+                        LocalizationHelper.GetString("Editor_Success"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
 
                     // Reset UI
                     StartButton.IsEnabled = true;
@@ -149,8 +168,11 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("VideoCapture", "Error stopping recording", ex);
-                System.Windows.MessageBox.Show($"Error saving video: {ex.Message}", "Error", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(
+                    string.Format(LocalizationHelper.GetString("VideoCapture_ErrorSaving"), ex.Message),
+                    LocalizationHelper.GetString("Editor_Error"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 

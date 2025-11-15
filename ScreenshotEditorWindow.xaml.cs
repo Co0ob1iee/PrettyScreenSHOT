@@ -557,7 +557,10 @@ namespace PrettyScreenSHOT
 
         private void OnClearClick(object sender, RoutedEventArgs e)
         {
-            if (System.Windows.MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (System.Windows.MessageBox.Show(
+                LocalizationHelper.GetString("Editor_ClearConfirm"),
+                LocalizationHelper.GetString("Editor_Confirm"),
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ClearAll();
             }

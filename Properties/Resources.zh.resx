@@ -343,5 +343,143 @@
   <data name="SaveDialog_Save" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="TextInput_EmptyText" xml:space="preserve">
+    <value>请输入要显示的文本！</value>
+  </data>
+  <data name="TextInput_EmptyTextTitle" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="VideoCapture_Title" xml:space="preserve">
+    <value>视频捕获</value>
+  </data>
+  <data name="VideoCapture_ReadyToRecord" xml:space="preserve">
+    <value>准备录制</value>
+  </data>
+  <data name="VideoCapture_RecordingArea" xml:space="preserve">
+    <value>录制区域：</value>
+  </data>
+  <data name="VideoCapture_AreaNotSelected" xml:space="preserve">
+    <value>未选择</value>
+  </data>
+  <data name="VideoCapture_FrameRate" xml:space="preserve">
+    <value>帧率：</value>
+  </data>
+  <data name="VideoCapture_FrameRateLabel" xml:space="preserve">
+    <value>{0} FPS</value>
+  </data>
+  <data name="VideoCapture_Format" xml:space="preserve">
+    <value>格式：</value>
+  </data>
+  <data name="VideoCapture_RecordingTime" xml:space="preserve">
+    <value>录制时间：</value>
+  </data>
+  <data name="VideoCapture_FramesCaptured" xml:space="preserve">
+    <value>已捕获帧数：</value>
+  </data>
+  <data name="VideoCapture_Saving" xml:space="preserve">
+    <value>保存中...</value>
+  </data>
+  <data name="VideoCapture_RecordingSaved" xml:space="preserve">
+    <value>录制已保存！</value>
+  </data>
+  <data name="VideoCapture_ErrorStarting" xml:space="preserve">
+    <value>开始录制时出错：{0}</value>
+  </data>
+  <data name="VideoCapture_ErrorSaving" xml:space="preserve">
+    <value>保存视频时出错：{0}</value>
+  </data>
+  <data name="VideoCapture_VideoSavedMessage" xml:space="preserve">
+    <value>视频已保存到：{0}{1}</value>
+  </data>
+  <data name="Editor_Tooltip_Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Editor_Tooltip_Duplicate" xml:space="preserve">
+    <value>复制副本</value>
+  </data>
+  <data name="Editor_Tooltip_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Editor_Tooltip_WiFi" xml:space="preserve">
+    <value>WiFi</value>
+  </data>
+  <data name="Editor_Tooltip_Battery" xml:space="preserve">
+    <value>电池</value>
+  </data>
+  <data name="Editor_Tooltip_Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Editor_Tooltip_Share" xml:space="preserve">
+    <value>分享</value>
+  </data>
+  <data name="Editor_Tooltip_Volume" xml:space="preserve">
+    <value>音量</value>
+  </data>
+  <data name="Editor_Tooltip_Bold" xml:space="preserve">
+    <value>加粗</value>
+  </data>
+  <data name="Editor_Tooltip_Italic" xml:space="preserve">
+    <value>斜体</value>
+  </data>
+  <data name="Editor_Tooltip_Underline" xml:space="preserve">
+    <value>下划线</value>
+  </data>
+  <data name="Editor_Tooltip_Strikethrough" xml:space="preserve">
+    <value>删除线</value>
+  </data>
+  <data name="Editor_Tooltip_AlignLeft" xml:space="preserve">
+    <value>左对齐</value>
+  </data>
+  <data name="Editor_Tooltip_AlignCenter" xml:space="preserve">
+    <value>居中</value>
+  </data>
+  <data name="Editor_Tooltip_AlignRight" xml:space="preserve">
+    <value>右对齐</value>
+  </data>
+  <data name="Update_Title" xml:space="preserve">
+    <value>可用更新</value>
+  </data>
+  <data name="Update_Subtitle" xml:space="preserve">
+    <value>有新版本可用！</value>
+  </data>
+  <data name="Update_CurrentVersion" xml:space="preserve">
+    <value>当前版本：</value>
+  </data>
+  <data name="Update_NewVersion" xml:space="preserve">
+    <value>新版本：</value>
+  </data>
+  <data name="Update_ReleaseDate" xml:space="preserve">
+    <value>发布日期：</value>
+  </data>
+  <data name="Update_FileSize" xml:space="preserve">
+    <value>文件大小：</value>
+  </data>
+  <data name="Update_ReleaseNotes" xml:space="preserve">
+    <value>发行说明：</value>
+  </data>
+  <data name="Update_LoadingNotes" xml:space="preserve">
+    <value>加载发行说明...</value>
+  </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>下载更新中...</value>
+  </data>
+  <data name="Update_Progress" xml:space="preserve">
+    <value>{0}%</value>
+  </data>
+  <data name="UpdateNotif_Title" xml:space="preserve">
+    <value>可用更新！</value>
+  </data>
+  <data name="UpdateNotif_VersionText" xml:space="preserve">
+    <value>版本 {0} 现已可用</value>
+  </data>
+  <data name="UpdateNotif_WhatsNew" xml:space="preserve">
+    <value>更新内容：</value>
+  </data>
+  <data name="UpdateNotif_Published" xml:space="preserve">
+    <value>发布于：</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
 </root>
 
