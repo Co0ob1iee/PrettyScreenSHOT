@@ -91,8 +91,16 @@ namespace PrettyScreenSHOT
 
             LastCapturedBitmap = bitmap;
 
-            History.Insert(0, item);
-            DebugHelper.LogDebug($"Screenshot added: {filename}");
+            // Sprint 3: Privacy Mode - nie dodawaj do historii jeśli włączony
+            if (!SettingsManager.Instance.PrivacyMode)
+            {
+                History.Insert(0, item);
+                DebugHelper.LogDebug($"Screenshot added to history: {filename}");
+            }
+            else
+            {
+                DebugHelper.LogDebug($"Screenshot saved (Privacy Mode - not added to history): {filename}");
+            }
         }
 
         public ScreenshotItem AddScreenshotWithMetadata(BitmapSource bitmap, string category, List<string> tags, string? notes)
@@ -160,8 +168,16 @@ namespace PrettyScreenSHOT
 
             LastCapturedBitmap = bitmap;
 
-            History.Insert(0, item);
-            DebugHelper.LogDebug($"Screenshot added with metadata: {filename}");
+            // Sprint 3: Privacy Mode - nie dodawaj do historii jeśli włączony
+            if (!SettingsManager.Instance.PrivacyMode)
+            {
+                History.Insert(0, item);
+                DebugHelper.LogDebug($"Screenshot added with metadata to history: {filename}");
+            }
+            else
+            {
+                DebugHelper.LogDebug($"Screenshot with metadata saved (Privacy Mode - not added to history): {filename}");
+            }
             
             // Automatyczny upload jeśli włączony
             if (SettingsManager.Instance.AutoUpload)

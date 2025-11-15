@@ -64,10 +64,8 @@ namespace PrettyScreenSHOT
                 AutoUploadCheckBox.Content = LocalizationHelper.GetString("Settings_AutoUpload");
             if (ThemeLabel != null)
                 ThemeLabel.Text = LocalizationHelper.GetString("Settings_Theme");
-            if (SubtitleText != null)
-                SubtitleText.Text = LocalizationHelper.GetString("Settings_Subtitle");
             SaveButton.Content = LocalizationHelper.GetString("Settings_Save");
-            CancelButton.Content = LocalizationHelper.GetString("Settings_Cancel");
+            CancelButton2.Content = LocalizationHelper.GetString("Settings_Cancel");
             ResetButton.Content = LocalizationHelper.GetString("Settings_Reset");
         }
 
@@ -123,6 +121,26 @@ namespace PrettyScreenSHOT
             ShowNotificationsCheckBox.IsChecked = settingsManager.ShowNotifications;
             if (AutoUploadCheckBox != null)
                 AutoUploadCheckBox.IsChecked = settingsManager.AutoUpload;
+
+            // Sprint 3: Advanced Capture Options
+            if (PrivacyModeCheckBox != null)
+                PrivacyModeCheckBox.IsChecked = settingsManager.PrivacyMode;
+            if (CaptureCursorCheckBox != null)
+                CaptureCursorCheckBox.IsChecked = settingsManager.CaptureCursor;
+            if (TimedCaptureComboBox != null)
+            {
+                int delay = settingsManager.TimedCaptureDelay;
+                foreach (System.Windows.Controls.ComboBoxItem item in TimedCaptureComboBox.Items)
+                {
+                    if (item.Tag != null && int.Parse(item.Tag.ToString()!) == delay)
+                    {
+                        TimedCaptureComboBox.SelectedItem = item;
+                        break;
+                    }
+                }
+                if (TimedCaptureComboBox.SelectedItem == null)
+                    TimedCaptureComboBox.SelectedIndex = 0; // Default to Disabled
+            }
 
             // Theme
             if (ThemeComboBox != null)
@@ -220,6 +238,17 @@ namespace PrettyScreenSHOT
                 if (ThemeComboBox != null && ThemeComboBox.SelectedItem != null)
                 {
                     settingsManager.Theme = ThemeComboBox.SelectedItem.ToString() ?? "Dark";
+                }
+
+                // Sprint 3: Advanced Capture Options
+                if (PrivacyModeCheckBox != null)
+                    settingsManager.PrivacyMode = PrivacyModeCheckBox.IsChecked ?? false;
+                if (CaptureCursorCheckBox != null)
+                    settingsManager.CaptureCursor = CaptureCursorCheckBox.IsChecked ?? false;
+                if (TimedCaptureComboBox != null && TimedCaptureComboBox.SelectedItem is System.Windows.Controls.ComboBoxItem selectedItem)
+                {
+                    if (selectedItem.Tag != null)
+                        settingsManager.TimedCaptureDelay = int.Parse(selectedItem.Tag.ToString()!);
                 }
 
                 System.Windows.MessageBox.Show(
