@@ -6,6 +6,8 @@ using System.Windows.Media;
 using WindowsColor = System.Windows.Media.Color;
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
+using WindowsFontFamily = System.Windows.Media.FontFamily;
+using WindowsBrushes = System.Windows.Media.Brushes;
 
 namespace PrettyScreenSHOT
 {
@@ -13,7 +15,7 @@ namespace PrettyScreenSHOT
     {
         public string InputText { get; private set; } = "";
         public new int FontSize { get; private set; } = 24;
-        public FontFamily FontFamily { get; private set; } = new FontFamily("Segoe UI");
+        public WindowsFontFamily FontFamily { get; private set; } = new WindowsFontFamily("Segoe UI");
         public WindowsFontWeight FontWeight { get; private set; } = FontWeights.Normal;
         public WindowsFontStyle FontStyle { get; private set; } = FontStyles.Normal;
         public TextDecorationCollection TextDecorations { get; private set; } = new TextDecorationCollection();
@@ -106,7 +108,7 @@ namespace PrettyScreenSHOT
             if (FontFamilyComboBox != null && FontFamilyComboBox.SelectedItem != null)
             {
                 var fontName = FontFamilyComboBox.SelectedItem.ToString();
-                PreviewText.FontFamily = new FontFamily(fontName);
+                PreviewText.FontFamily = new WindowsFontFamily(fontName);
             }
 
             // Ustaw właściwości tekstu
@@ -178,35 +180,35 @@ namespace PrettyScreenSHOT
             {
                 case 0: // Brak
                     BackgroundColor = null;
-                    PreviewText.Background = Brushes.Transparent;
+                    PreviewText.Background = WindowsBrushes.Transparent;
                     break;
                 case 1: // Biały
                     BackgroundColor = Colors.White;
-                    PreviewText.Background = Brushes.White;
+                    PreviewText.Background = WindowsBrushes.White;
                     break;
                 case 2: // Czarny
                     BackgroundColor = Colors.Black;
-                    PreviewText.Background = Brushes.Black;
+                    PreviewText.Background = WindowsBrushes.Black;
                     break;
                 case 3: // Żółty
                     BackgroundColor = Colors.Yellow;
-                    PreviewText.Background = Brushes.Yellow;
+                    PreviewText.Background = WindowsBrushes.Yellow;
                     break;
                 case 4: // Niebieski
                     BackgroundColor = Colors.LightBlue;
-                    PreviewText.Background = Brushes.LightBlue;
+                    PreviewText.Background = WindowsBrushes.LightBlue;
                     break;
                 case 5: // Zielony
                     BackgroundColor = Colors.LightGreen;
-                    PreviewText.Background = Brushes.LightGreen;
+                    PreviewText.Background = WindowsBrushes.LightGreen;
                     break;
                 case 6: // Różowy
                     BackgroundColor = Colors.Pink;
-                    PreviewText.Background = Brushes.Pink;
+                    PreviewText.Background = WindowsBrushes.Pink;
                     break;
                 default:
                     BackgroundColor = null;
-                    PreviewText.Background = Brushes.Transparent;
+                    PreviewText.Background = WindowsBrushes.Transparent;
                     break;
             }
         }
@@ -305,7 +307,7 @@ namespace PrettyScreenSHOT
             if (FontFamilyComboBox != null && FontFamilyComboBox.SelectedItem != null)
             {
                 var fontName = FontFamilyComboBox.SelectedItem.ToString();
-                FontFamily = new FontFamily(fontName);
+                FontFamily = new WindowsFontFamily(fontName);
             }
 
             FontWeight = BoldCheckBox?.IsChecked == true ? FontWeights.Bold : FontWeights.Normal;

@@ -64,10 +64,8 @@ namespace PrettyScreenSHOT
                 AutoUploadCheckBox.Content = LocalizationHelper.GetString("Settings_AutoUpload");
             if (ThemeLabel != null)
                 ThemeLabel.Text = LocalizationHelper.GetString("Settings_Theme");
-            if (SubtitleText != null)
-                SubtitleText.Text = LocalizationHelper.GetString("Settings_Subtitle");
             SaveButton.Content = LocalizationHelper.GetString("Settings_Save");
-            CancelButton.Content = LocalizationHelper.GetString("Settings_Cancel");
+            CancelButton2.Content = LocalizationHelper.GetString("Settings_Cancel");
             ResetButton.Content = LocalizationHelper.GetString("Settings_Reset");
         }
 
