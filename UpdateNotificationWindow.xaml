@@ -1,61 +1,60 @@
-<Window x:Class="PrettyScreenSHOT.UpdateNotificationWindow"
+<ui:FluentWindow x:Class="PrettyScreenSHOT.UpdateNotificationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Update Available" Height="450" Width="520" WindowStartupLocation="CenterScreen"
-        Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
-        ShowInTaskbar="True" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="Update Available"
+        Height="450"
+        Width="520"
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="True"
+        ResizeMode="NoResize"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Title bar -->
+            <RowDefinition Height="*"/>    <!-- Main content -->
+        </Grid.RowDefinitions>
 
-    <!-- Neumorphic window chrome -->
-    <Border Style="{StaticResource NeumorphicPanel}" CornerRadius="18" Margin="15" Padding="0">
-        <Grid>
+        <!-- Title Bar -->
+        <ui:TitleBar Grid.Row="0"
+                     Title="Update Available"
+                     Icon="pack://application:,,,/app.ico"
+                     ShowMaximize="False"/>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="20,12,20,20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="48"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>    <!-- Content -->
+                <RowDefinition Height="Auto"/> <!-- Buttons -->
             </Grid.RowDefinitions>
 
-            <!-- Custom Title Bar -->
-            <Border Grid.Row="0" Background="Transparent" Padding="15,10" CornerRadius="18,18,0,0"
-                    MouseLeftButtonDown="OnTitleBarMouseDown">
-                <DockPanel>
-                    <TextBlock Text="🎉 Update Available!" FontSize="20"
-                               Style="{StaticResource NeumorphicHeading}"
-                               VerticalAlignment="Center" DockPanel.Dock="Left"/>
+            <!-- Content -->
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="16">
+                    <TextBlock x:Name="VersionText"
+                               Text="Version 1.0.0 is now available"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
 
-                    <Button Click="OnCloseClick" Style="{StaticResource NeumorphicCircularButton}"
-                            Width="32" Height="32" DockPanel.Dock="Right"
-                            HorizontalAlignment="Right" ToolTip="Zamknij">
-                        <TextBlock Text="✕" FontSize="16"/>
-                    </Button>
-                </DockPanel>
-            </Border>
+                    <!-- Release Notes Card -->
+                    <ui:Card Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="What's New:"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"/>
+                            <TextBlock x:Name="ReleaseNotesText"
+                                       TextWrapping="Wrap"
+                                       Text="Loading release notes..."
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </ui:Card>
 
-            <!-- Main Content -->
-            <DockPanel Grid.Row="1" Margin="20,10,20,20">
-                <!-- Content -->
-                <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15">
-                    <StackPanel>
-                        <TextBlock x:Name="VersionText" Text="Version 1.0.0 is now available"
-                                   Style="{StaticResource NeumorphicTextBlockSecondary}"
-                                   Margin="0,0,0,20"/>
-
-                        <TextBlock Text="What's New:"
-                                   Style="{StaticResource NeumorphicHeadingSmall}"
-                                   Margin="0,0,0,10"/>
-                        <TextBlock x:Name="ReleaseNotesText" TextWrapping="Wrap"
-                                   Text="Loading release notes..."
-                                   Style="{StaticResource NeumorphicTextBlockSecondary}"
-                                   Margin="0,0,0,20"/>
-
-                        <!-- Update Info -->
-                        <Grid Margin="0,0,0,20">
+                    <!-- Update Info Card -->
+                    <ui:Card Padding="16">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -65,37 +64,64 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="File Size:"
-                                       Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"
-                                       Margin="0,0,10,5"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="FileSizeText" Text="-"
-                                       Style="{StaticResource NeumorphicTextBlock}" Margin="0,0,0,5"/>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="File Size:"
+                                       Margin="0,0,12,8"/>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       x:Name="FileSizeText"
+                                       Text="-"
+                                       Margin="0,0,0,8"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Published:"
-                                       Style="{StaticResource NeumorphicTextBlock}" FontWeight="Regular"
-                                       Margin="0,0,10,5"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="PublishedText" Text="-"
-                                       Style="{StaticResource NeumorphicTextBlock}" Margin="0,0,0,5"/>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Published:"
+                                       Margin="0,0,12,0"/>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       x:Name="PublishedText"
+                                       Text="-"/>
                         </Grid>
-                    </StackPanel>
-                </ScrollViewer>
-
-                <!-- Buttons -->
-                <StackPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
-                        <Button x:Name="UpdateNowButton" Content="Update Now" Click="UpdateNowButton_Click"
-                                Style="{StaticResource NeumorphicDepressedButton}" Width="150"/>
-                        <Button x:Name="LaterButton" Content="Later" Click="LaterButton_Click"
-                                Style="{StaticResource NeumorphicRaisedButton}" Width="100" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="SkipVersionButton" Content="Skip This Version" Click="SkipVersionButton_Click"
-                                Style="{StaticResource NeumorphicRaisedButton}" Width="150"/>
-                        <Button x:Name="ViewOnGitHubButton" Content="View on GitHub" Click="ViewOnGitHubButton_Click"
-                                Style="{StaticResource NeumorphicRaisedButton}" Width="150" Margin="10,0,0,0"/>
-                    </StackPanel>
+                    </ui:Card>
                 </StackPanel>
-            </DockPanel>
+            </ScrollViewer>
+
+            <!-- Action Buttons -->
+            <StackPanel Grid.Row="1" Spacing="8" Margin="0,16,0,0">
+                <!-- Primary Actions -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Spacing="8">
+                    <ui:Button x:Name="UpdateNowButton"
+                               Content="Update Now"
+                               Click="UpdateNowButton_Click"
+                               Icon="ArrowDownload24"
+                               Appearance="Primary"
+                               MinWidth="150"/>
+                    <ui:Button x:Name="LaterButton"
+                               Content="Later"
+                               Click="LaterButton_Click"
+                               Icon="Clock24"
+                               MinWidth="100"/>
+                </StackPanel>
+
+                <!-- Secondary Actions -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Spacing="8">
+                    <ui:Button x:Name="SkipVersionButton"
+                               Content="Skip This Version"
+                               Click="SkipVersionButton_Click"
+                               Icon="DismissCircle24"
+                               MinWidth="150"/>
+                    <ui:Button x:Name="ViewOnGitHubButton"
+                               Content="View on GitHub"
+                               Click="ViewOnGitHubButton_Click"
+                               Icon="Open24"
+                               MinWidth="150"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
-    </Border>
-</Window>
+    </Grid>
+</ui:FluentWindow>

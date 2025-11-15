@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class UpdateNotificationWindow : Window
+    public partial class UpdateNotificationWindow : FluentWindow
     {
         private UpdateInfo? updateInfo;
         private UpdateDownloader? downloader;
@@ -153,19 +154,6 @@ namespace PrettyScreenSHOT
                 FileName = url,
                 UseShellExecute = true
             });
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

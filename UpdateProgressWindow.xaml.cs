@@ -1,8 +1,9 @@
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class UpdateProgressWindow : Window
+    public partial class UpdateProgressWindow : FluentWindow
     {
         public UpdateProgressWindow()
         {
