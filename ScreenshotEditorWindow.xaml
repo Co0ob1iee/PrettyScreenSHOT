@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
 
             <!-- Custom Title Bar -->
-            <Border Grid.Row="0" Background="Transparent" Padding="10,8" CornerRadius="16,16,0,0">
+            <Border Grid.Row="0" Background="Transparent" Padding="10,8" CornerRadius="16,16,0,0" MouseLeftButtonDown="OnTitleBarMouseDown">
                 <DockPanel LastChildFill="True">
                     <TextBlock Text="Modern" FontSize="18" FontWeight="Bold" Foreground="{StaticResource NeumorphicTextBrush}" VerticalAlignment="Center" DockPanel.Dock="Left"/>
 
