@@ -33,23 +33,6 @@ namespace PrettyScreenSHOT.Services
         }
 
         /// <summary>
-        /// Sets the theme using legacy Theme enum (for backward compatibility).
-        /// </summary>
-        /// <param name="theme">Theme enum value</param>
-        public void SetTheme(Theme theme)
-        {
-            ApplicationTheme appTheme = theme switch
-            {
-                Theme.Light => ApplicationTheme.Light,
-                Theme.Dark => ApplicationTheme.Dark,
-                Theme.Neumorphic => ApplicationTheme.Light, // Map Neumorphic to Light
-                _ => ApplicationTheme.Dark
-            };
-
-            ApplyTheme(appTheme);
-        }
-
-        /// <summary>
         /// Applies the system theme (auto-detect from Windows settings).
         /// </summary>
         public void ApplySystemTheme()

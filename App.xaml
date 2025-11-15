@@ -10,9 +10,6 @@
                 <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />
 
-                <!-- Legacy Neumorphic Styles (will be removed after migration) -->
-                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
-
                 <!-- Custom WPF UI Styles -->
                 <ResourceDictionary Source="pack://application:,,,/Themes/WpfUiCustom.xaml"/>
             </ResourceDictionary.MergedDictionaries>
