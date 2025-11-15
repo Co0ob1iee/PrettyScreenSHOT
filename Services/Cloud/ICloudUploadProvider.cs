@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Cloud
 {
     /// <summary>
     /// Interfejs dla providerów uploadu do chmury

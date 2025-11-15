@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Theme
 {
     public enum Theme
     {

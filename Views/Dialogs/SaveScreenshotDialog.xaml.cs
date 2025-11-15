@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Dialogs
 {
     public partial class SaveScreenshotDialog : Window
     {

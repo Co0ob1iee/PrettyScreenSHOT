@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Cloud
 {
     /// <summary>
     /// Provider uploadu do Imgur (bezpłatny, popularny serwis)

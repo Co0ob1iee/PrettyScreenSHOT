@@ -5,7 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
+                <ResourceDictionary Source="/PrettyScreenSHOT;component/Resources/Styles/NeumorphicStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

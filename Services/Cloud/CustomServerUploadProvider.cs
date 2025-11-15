@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Cloud
 {
     /// <summary>
     /// Provider uploadu do własnego serwera (custom endpoint)

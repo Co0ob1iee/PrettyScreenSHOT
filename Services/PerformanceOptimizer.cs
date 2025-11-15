@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services
 {
     /// <summary>
     /// Klasa do optymalizacji wydajności - caching, lazy loading, memory management

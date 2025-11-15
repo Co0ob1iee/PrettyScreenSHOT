@@ -2,6 +2,14 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Cloud;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Theme;
+using PrettyScreenSHOT.Services.Update;
+using PrettyScreenSHOT.Views.Windows;
 
 namespace PrettyScreenSHOT
 {

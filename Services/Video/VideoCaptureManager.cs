@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using ImageMagick;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Video
 {
     /// <summary>
     /// Manager do nagrywania ekranu do GIF/MP4

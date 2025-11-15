@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Cloud
 {
     /// <summary>
     /// Provider uploadu do AWS S3

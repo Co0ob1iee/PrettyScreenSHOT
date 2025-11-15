@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Update
 {
     /// <summary>
     /// Główny manager do zarządzania aktualizacjami

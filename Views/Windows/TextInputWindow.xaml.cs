@@ -7,7 +7,7 @@ using WindowsColor = System.Windows.Media.Color;
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class TextInputWindow : Window
     {

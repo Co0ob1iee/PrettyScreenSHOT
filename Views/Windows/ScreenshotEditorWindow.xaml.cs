@@ -12,7 +12,7 @@ using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 using WindowsFontFamily = System.Windows.Media.FontFamily;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class ScreenshotEditorWindow : Window, IDisposable
     {

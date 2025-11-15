@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Resources;
 using System.Windows;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Helpers
 {
     public static class LocalizationHelper
     {

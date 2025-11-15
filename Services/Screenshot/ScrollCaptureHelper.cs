@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Screenshot
 {
     /// <summary>
     /// Helper do przechwytywania długich stron (scroll capture)
