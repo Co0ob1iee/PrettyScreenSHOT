@@ -4,10 +4,11 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using PrettyScreenSHOT.Services;
 using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : FluentWindow
     {
         private readonly SettingsManager settingsManager;
 
@@ -276,18 +277,8 @@ namespace PrettyScreenSHOT
             }
         }
 
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        // Removed OnTitleBarMouseDown - ui:TitleBar handles window dragging automatically
+        // Removed OnCloseClick - ui:TitleBar has built-in close button
     }
 }
 
