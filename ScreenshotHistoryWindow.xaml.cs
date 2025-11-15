@@ -4,10 +4,11 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class ScreenshotHistoryWindow : Window
+    public partial class ScreenshotHistoryWindow : FluentWindow
     {
         private CollectionViewSource? historyViewSource;
         private string? currentSearchText;
@@ -37,32 +38,21 @@ namespace PrettyScreenSHOT
 
         private void InitializeSearchAndFilter()
         {
-            // Ustaw placeholder dla wyszukiwania
+            // Ustaw placeholder dla wyszukiwania (ui:TextBox has built-in PlaceholderText property)
             if (SearchTextBox != null)
             {
-                SearchTextBox.Tag = LocalizationHelper.GetString("History_SearchPlaceholder");
-                SearchTextBox.GotFocus += (s, e) =>
-                {
-                    if (SearchTextBox.Text == SearchTextBox.Tag?.ToString())
-                        SearchTextBox.Text = "";
-                };
-                SearchTextBox.LostFocus += (s, e) =>
-                {
-                    if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
-                        SearchTextBox.Text = SearchTextBox.Tag?.ToString() ?? "";
-                };
-                SearchTextBox.Text = SearchTextBox.Tag?.ToString() ?? "";
+                SearchTextBox.PlaceholderText = LocalizationHelper.GetString("History_SearchPlaceholder");
             }
-            
+
             // Odśwież kategorie i tagi
             SearchAndFilterManager.Instance.RefreshCategoriesAndTags();
-            
+
             // Ustaw dostępne kategorie i tagi w ComboBox (jeśli istnieją w XAML)
             if (CategoryComboBox != null)
             {
                 CategoryComboBox.ItemsSource = SearchAndFilterManager.Instance.AvailableCategories;
             }
-            
+
             // Ustaw tekst przycisku Clear
             if (ClearFiltersButton != null)
             {
@@ -102,11 +92,7 @@ namespace PrettyScreenSHOT
         private void LoadLocalizedStrings()
         {
             Title = LocalizationHelper.GetString("History_Title");
-            if (TitleText != null)
-                TitleText.Text = LocalizationHelper.GetString("History_Title");
-            if (SubtitleText != null)
-                SubtitleText.Text = LocalizationHelper.GetString("History_Subtitle");
-            // DeleteText jest w DataTemplate, więc nie jest dostępny tutaj
+            // TitleBar displays Title automatically
         }
 
         private async void OnUploadClick(object sender, RoutedEventArgs e)
@@ -186,19 +172,6 @@ namespace PrettyScreenSHOT
                 CategoryComboBox.SelectedItem = null;
 
             ApplyFilters();
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 
