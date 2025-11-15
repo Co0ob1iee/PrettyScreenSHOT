@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Services.Cloud
 {

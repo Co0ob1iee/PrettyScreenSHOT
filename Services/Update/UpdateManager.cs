@@ -2,6 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Models;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Services.Update
 {

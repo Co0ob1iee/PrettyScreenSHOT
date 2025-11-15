@@ -5,6 +5,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Models;
+using PrettyScreenSHOT.Services.Theme;
+using PrettyScreenSHOT.Services.Update;
 
 namespace PrettyScreenSHOT.Views.Windows
 {

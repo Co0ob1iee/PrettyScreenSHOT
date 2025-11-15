@@ -11,6 +11,11 @@ using Forms = System.Windows.Forms; // alias to avoid ambiguity with System.Wind
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 using WindowsFontFamily = System.Windows.Media.FontFamily;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Cloud;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Theme;
 
 namespace PrettyScreenSHOT.Views.Windows
 {

@@ -2,8 +2,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using PrettyScreenSHOT.Services;
-using Wpf.Ui.Appearance;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Theme;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -15,7 +16,8 @@ namespace PrettyScreenSHOT.Views.Windows
         {
             InitializeComponent();
 
-            // WPF UI applies themes globally - no need to apply per-window
+            // Zastosuj theme
+            ThemeManager.Instance.ApplyTheme(this);
 
             // Subscribe to Loaded to attach event handlers after UI is ready
             this.Loaded += SettingsWindow_Loaded;

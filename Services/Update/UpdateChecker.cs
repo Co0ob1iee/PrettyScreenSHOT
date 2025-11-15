@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Models;
 
 namespace PrettyScreenSHOT.Services.Update
 {
