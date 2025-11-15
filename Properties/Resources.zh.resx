@@ -370,6 +370,24 @@
   <data name="VideoCapture_Format" xml:space="preserve">
     <value>格式：</value>
   </data>
+  <data name="VideoCapture_FormatGIF" xml:space="preserve">
+    <value>GIF</value>
+  </data>
+  <data name="VideoCapture_FormatMP4" xml:space="preserve">
+    <value>MP4</value>
+  </data>
+  <data name="VideoCapture_StartRecording" xml:space="preserve">
+    <value>开始录制</value>
+  </data>
+  <data name="VideoCapture_StopRecording" xml:space="preserve">
+    <value>停止录制</value>
+  </data>
+  <data name="VideoCapture_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="VideoCapture_NotSelected" xml:space="preserve">
+    <value>未选择</value>
+  </data>
   <data name="VideoCapture_RecordingTime" xml:space="preserve">
     <value>录制时间：</value>
   </data>
@@ -444,6 +462,15 @@
   </data>
   <data name="Editor_Tooltip_AlignRight" xml:space="preserve">
     <value>右对齐</value>
+  </data>
+  <data name="Editor_Tooltip_Justify" xml:space="preserve">
+    <value>两端对齐</value>
+  </data>
+  <data name="Editor_Tooltip_BulletList" xml:space="preserve">
+    <value>项目符号列表</value>
+  </data>
+  <data name="Editor_Tooltip_NumberedList" xml:space="preserve">
+    <value>编号列表</value>
   </data>
   <data name="Update_Title" xml:space="preserve">
     <value>可用更新</value>
