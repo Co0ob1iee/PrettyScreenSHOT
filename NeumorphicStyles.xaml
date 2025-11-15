@@ -15,26 +15,19 @@
     <SolidColorBrush x:Key="NeumorphicTextBrush" Color="{StaticResource NeumorphicText}"/>
     <SolidColorBrush x:Key="NeumorphicTextSecondaryBrush" Color="{StaticResource NeumorphicTextSecondary}"/>
 
+    <!-- Reusable shadow effects (swap whole Effect in triggers) -->
+    <DropShadowEffect x:Key="PanelEffect" Color="Black" Direction="135" ShadowDepth="5" BlurRadius="15" Opacity="0.12"/>
+    <DropShadowEffect x:Key="ButtonEffect_Default" Color="Black" Direction="135" ShadowDepth="4" BlurRadius="10" Opacity="0.15"/>
+    <DropShadowEffect x:Key="ButtonEffect_Hover" Color="Black" Direction="135" ShadowDepth="6" BlurRadius="12" Opacity="0.2"/>
+    <DropShadowEffect x:Key="ButtonEffect_Pressed" Color="Black" Direction="135" ShadowDepth="2" BlurRadius="6" Opacity="0.25"/>
+
     <!-- Neumorphic Raised Border (Wypukły) -->
     <Style x:Key="NeumorphicRaisedBorder" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="8"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="White" Direction="315" ShadowDepth="3" BlurRadius="8" Opacity="0.8"/>
-            </Setter.Value>
-        </Setter>
-        <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}" Direction="135" ShadowDepth="3" BlurRadius="8" Opacity="0.3"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </Style.Resources>
+        <Setter Property="Effect" Value="{StaticResource PanelEffect}"/>
     </Style>
 
     <!-- Neumorphic Depressed Border (Wklęsły) -->
@@ -67,15 +60,8 @@
                             Background="{TemplateBinding Background}"
                             CornerRadius="10"
                             BorderThickness="0"
-                            BorderBrush="{StaticResource NeumorphicBaseBrush}">
-                        <Border.Effect>
-                            <DropShadowEffect x:Name="shadowEffect"
-                                             Color="Black"
-                                             Direction="135"
-                                             ShadowDepth="4"
-                                             BlurRadius="10"
-                                             Opacity="0.15"/>
-                        </Border.Effect>
+                            BorderBrush="{StaticResource NeumorphicBaseBrush}"
+                            Effect="{StaticResource ButtonEffect_Default}">
                         <Border BorderBrush="#FFFFFF" 
                                 BorderThickness="1,1,0,0" 
                                 CornerRadius="10"
@@ -86,8 +72,8 @@
                                     Opacity="0.3">
                                 <Grid>
                                     <ContentPresenter HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Margin="{TemplateBinding Padding}"/>
+                                                      VerticalAlignment="Center"
+                                                      Margin="{TemplateBinding Padding}"/>
                                 </Grid>
                             </Border>
                         </Border>
@@ -99,7 +85,7 @@
                                     <SolidColorBrush Color="#EDEDED"/>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.2"/>
+                            <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="mainBorder" Property="Background">
@@ -107,9 +93,7 @@
                                     <SolidColorBrush Color="#DDDDDD"/>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="shadowEffect" Property="ShadowDepth" Value="2"/>
-                            <Setter TargetName="shadowEffect" Property="BlurRadius" Value="6"/>
-                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.25"/>
+                            <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Pressed}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -125,18 +109,12 @@
                     <Border x:Name="border"
                             Background="{TemplateBinding Background}"
                             CornerRadius="10"
-                            BorderThickness="0">
-                        <Border.Effect>
-                            <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}"
-                                             Direction="315"
-                                             ShadowDepth="2"
-                                             BlurRadius="6"
-                                             Opacity="0.5"/>
-                        </Border.Effect>
+                            BorderThickness="0"
+                            Effect="{StaticResource ButtonEffect_Pressed}">
                         <Grid>
                             <ContentPresenter HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Margin="{TemplateBinding Padding}"/>
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -146,6 +124,7 @@
                                     <SolidColorBrush Color="#E0E0E0"/>
                                 </Setter.Value>
                             </Setter>
+                            <Setter TargetName="border" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -169,15 +148,8 @@
                     <Border x:Name="mainBorder"
                             Background="{TemplateBinding Background}"
                             CornerRadius="25"
-                            BorderThickness="0">
-                        <Border.Effect>
-                            <DropShadowEffect x:Name="shadowEffect"
-                                             Color="Black"
-                                             Direction="135"
-                                             ShadowDepth="4"
-                                             BlurRadius="10"
-                                             Opacity="0.15"/>
-                        </Border.Effect>
+                            BorderThickness="0"
+                            Effect="{StaticResource ButtonEffect_Default}">
                         <Border BorderBrush="#FFFFFF" 
                                 BorderThickness="1,1,0,0" 
                                 CornerRadius="25"
@@ -188,7 +160,7 @@
                                     Opacity="0.3">
                                 <Grid>
                                     <ContentPresenter HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"/>
+                                                      VerticalAlignment="Center"/>
                                 </Grid>
                             </Border>
                         </Border>
@@ -200,7 +172,7 @@
                                     <SolidColorBrush Color="#EDEDED"/>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.2"/>
+                            <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Hover}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="mainBorder" Property="Background">
@@ -208,9 +180,7 @@
                                     <SolidColorBrush Color="#DDDDDD"/>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="shadowEffect" Property="ShadowDepth" Value="2"/>
-                            <Setter TargetName="shadowEffect" Property="BlurRadius" Value="6"/>
-                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.25"/>
+                            <Setter TargetName="mainBorder" Property="Effect" Value="{StaticResource ButtonEffect_Pressed}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -218,41 +188,14 @@
         </Setter>
     </Style>
 
-    <!-- Neumorphic Panel -->
+    <!-- Neumorphic Panel (simplified - Border does not support ControlTemplate) -->
     <Style x:Key="NeumorphicPanel" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="12"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Border">
-                    <Border Background="{TemplateBinding Background}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black"
-                                             Direction="135"
-                                             ShadowDepth="5"
-                                             BlurRadius="15"
-                                             Opacity="0.12"/>
-                        </Border.Effect>
-                        <Border BorderBrush="#FFFFFF" 
-                                BorderThickness="1,1,0,0" 
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                Opacity="0.7">
-                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}" 
-                                    BorderThickness="0,0,1,1" 
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    Opacity="0.4">
-                                <ContentPresenter/>
-                            </Border>
-                        </Border>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Effect" Value="{StaticResource PanelEffect}"/>
+        <Setter Property="BorderBrush" Value="#FFFFFF"/>
     </Style>
 
     <!-- Neumorphic TextBox -->
