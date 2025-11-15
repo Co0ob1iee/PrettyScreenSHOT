@@ -7,10 +7,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Win32;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class VideoCaptureWindow : Window
+    public partial class VideoCaptureWindow : FluentWindow
     {
         private VideoCaptureManager? videoManager;
         private Rectangle captureArea;
@@ -185,19 +186,6 @@ namespace PrettyScreenSHOT
             videoManager?.Dispose();
             recordingTimer?.Stop();
             base.OnClosed(e);
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            CancelButton_Click(sender, e);
         }
     }
 }
