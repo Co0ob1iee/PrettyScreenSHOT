@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Screenshot Editor" Height="800" Width="1200" WindowStartupLocation="CenterScreen"
         Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
-        WindowStyle="None" AllowsTransparency="True">
+        WindowStyle="None" AllowsTransparency="True"
+        KeyDown="Window_KeyDown" Focusable="True">
     
     <!-- Resources MUSZA BYC NA POCZATKU -->
     <Window.Resources>
@@ -28,13 +29,13 @@
                     <TextBlock Text="Modern" FontSize="18" FontWeight="Bold" Foreground="{StaticResource NeumorphicTextBrush}" VerticalAlignment="Center" DockPanel.Dock="Left"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
-                        <Button Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Copy">
+                        <Button x:Name="CopyButton" Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Copy">
                             <TextBlock Text="📋" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Duplicate">
+                        <Button x:Name="DuplicateButton" Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Duplicate">
                             <TextBlock Text="📄" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Button>
-                        <Button Click="OnCancelClick" Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Close">
+                        <Button x:Name="CloseButton" Click="OnCancelClick" Style="{StaticResource NeumorphicCircularButton}" Width="36" Height="36" Margin="6" ToolTip="Close">
                             <TextBlock Text="⤴" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Button>
                     </StackPanel>
@@ -59,19 +60,19 @@
                         Margin="10" Padding="8" Width="70">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <!-- Ikony systemowe -->
-                        <Button Style="{StaticResource NeumorphicCircularButton}" ToolTip="WiFi" Margin="0,5">
+                        <Button x:Name="WiFiButton" Style="{StaticResource NeumorphicCircularButton}" ToolTip="WiFi" Margin="0,5">
                             <TextBlock Text="📶" FontSize="20"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicCircularButton}" ToolTip="Bateria" Margin="0,5">
+                        <Button x:Name="BatteryButton" Style="{StaticResource NeumorphicCircularButton}" ToolTip="Bateria" Margin="0,5">
                             <TextBlock Text="🔋" FontSize="20"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicCircularButton}" ToolTip="Telefon" Margin="0,5">
+                        <Button x:Name="PhoneButton" Style="{StaticResource NeumorphicCircularButton}" ToolTip="Telefon" Margin="0,5">
                             <TextBlock Text="📞" FontSize="20"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicCircularButton}" ToolTip="Udostępnij" Margin="0,5">
+                        <Button x:Name="ShareButton" Style="{StaticResource NeumorphicCircularButton}" ToolTip="Udostępnij" Margin="0,5">
                             <TextBlock Text="📤" FontSize="20"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicCircularButton}" ToolTip="Głośność" Margin="0,5">
+                        <Button x:Name="VolumeButton" Style="{StaticResource NeumorphicCircularButton}" ToolTip="Głośność" Margin="0,5">
                             <TextBlock Text="🔊" FontSize="20"/>
                         </Button>
                     </StackPanel>
@@ -80,10 +81,14 @@
                 <!-- Główny obszar edycji -->
                 <Grid Grid.Column="1" Grid.Row="0" Margin="5,10,5,5">
                     <!-- Canvas do edycji screenshot -->
-                    <Canvas x:Name="EditorCanvas" Background="White" 
-                            MouseDown="OnEditorCanvasMouseDown" 
-                            MouseMove="OnEditorCanvasMouseMove" 
-                            MouseUp="OnEditorCanvasMouseUp">
+                    <Canvas x:Name="EditorCanvas" Background="White"
+                            MouseDown="OnEditorCanvasMouseDown"
+                            MouseMove="OnEditorCanvasMouseMove"
+                            MouseUp="OnEditorCanvasMouseUp"
+                            AllowDrop="True"
+                            DragEnter="Canvas_DragEnter"
+                            DragOver="Canvas_DragOver"
+                            Drop="Canvas_Drop">
                     </Canvas>
                     
                     <!-- Górny pasek z akcjami -->
@@ -114,30 +119,30 @@
                                       Margin="15,0" Background="{StaticResource NeumorphicDarkShadowBrush}" Opacity="0.3"/>
                             
                             <!-- Action Buttons -->
-                            <Button Click="OnClearClick" Style="{StaticResource NeumorphicRaisedButton}" 
+                            <Button x:Name="ClearButton" Click="OnClearClick" Style="{StaticResource NeumorphicRaisedButton}"
                                     ToolTip="Wyczyść wszystko" Margin="5">
                                 <TextBlock Text="WYCZYŚĆ" Style="{StaticResource NeumorphicTextBlock}"/>
                             </Button>
 
-                            <Button Click="OnUndoClick" Style="{StaticResource NeumorphicRaisedButton}" 
+                            <Button x:Name="UndoButton" Click="OnUndoClick" Style="{StaticResource NeumorphicRaisedButton}"
                                     ToolTip="Cofnij ostatnią akcję" Margin="5">
                                 <TextBlock Text="COFNIJ" Style="{StaticResource NeumorphicTextBlock}"/>
                             </Button>
-                            
+
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
                                       Margin="15,0" Background="{StaticResource NeumorphicDarkShadowBrush}" Opacity="0.3"/>
-                            
-                            <Button Click="OnUploadClick" Style="{StaticResource NeumorphicRaisedButton}" 
+
+                            <Button x:Name="UploadButton" Click="OnUploadClick" Style="{StaticResource NeumorphicRaisedButton}"
                                     ToolTip="Prześlij do chmury" Margin="5">
                                 <TextBlock Text="CHMURA" Style="{StaticResource NeumorphicTextBlock}"/>
                             </Button>
 
-                            <Button Click="OnSaveClick" Style="{StaticResource NeumorphicRaisedButton}" 
+                            <Button x:Name="SaveButton" Click="OnSaveClick" Style="{StaticResource NeumorphicRaisedButton}"
                                     ToolTip="Zapisz screenshot" Margin="5">
                                 <TextBlock Text="ZAPISZ" Style="{StaticResource NeumorphicTextBlock}"/>
                             </Button>
 
-                            <Button Click="OnCancelClick" Style="{StaticResource NeumorphicRaisedButton}" 
+                            <Button x:Name="CancelButton" Click="OnCancelClick" Style="{StaticResource NeumorphicRaisedButton}"
                                     ToolTip="Anuluj bez zapisu" Margin="5">
                                 <TextBlock Text="ANULUJ" Style="{StaticResource NeumorphicTextBlock}"/>
                             </Button>
@@ -154,32 +159,32 @@
                                    FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                         
                         <!-- Drawing Tools -->
-                        <Button Tag="marker" Click="OnToolButtonClick" 
-                                Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="MarkerButton" Tag="marker" Click="OnToolButtonClick"
+                                Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Marker - Rysuj" Width="50" Height="50" Margin="0,5">
                             <Image Source="/Assets/Icons/Tools/marker.png" Stretch="Uniform" Width="24" Height="24"/>
                         </Button>
 
-                        <Button Tag="rectangle" Click="OnToolButtonClick" 
-                                Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="RectangleButton" Tag="rectangle" Click="OnToolButtonClick"
+                                Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Prostokąt" Width="50" Height="50" Margin="0,5">
                             <Image Source="/Assets/Icons/Tools/zaznaczenie_prostokat.png" Stretch="Uniform" Width="24" Height="24"/>
                         </Button>
 
-                        <Button Tag="arrow" Click="OnToolButtonClick" 
-                                Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="ArrowButton" Tag="arrow" Click="OnToolButtonClick"
+                                Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Strzałka" Width="50" Height="50" Margin="0,5">
                             <Image Source="/Assets/Icons/Tools/icon_arrow.png" Stretch="Uniform" Width="24" Height="24"/>
                         </Button>
 
-                        <Button Tag="blur" Click="OnToolButtonClick" 
-                                Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="BlurButton" Tag="blur" Click="OnToolButtonClick"
+                                Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Blur - Zamazywanie" Width="50" Height="50" Margin="0,5">
                             <Image Source="/Assets/Icons/Tools/icon_blur.png" Stretch="Uniform" Width="24" Height="24"/>
                         </Button>
 
-                        <Button Tag="text" Click="OnToolButtonClick" 
-                                Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="TextToolButton" Tag="text" Click="OnToolButtonClick"
+                                Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Tekst" Width="50" Height="50" Margin="0,5">
                             <Image Source="/Assets/Icons/Tools/icon_text.png" Stretch="Uniform" Width="24" Height="24"/>
                         </Button>
@@ -195,19 +200,19 @@
                                    FontWeight="Bold" Margin="0,0,15,0" VerticalAlignment="Center"/>
                         
                         <!-- Style tekstu -->
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="BoldButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Pogrubiony" Width="35" Height="35" Margin="3">
                             <TextBlock Text="B" FontWeight="Bold" Style="{StaticResource NeumorphicTextBlock}"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="ItalicButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Kursywa" Width="35" Height="35" Margin="3">
                             <TextBlock Text="I" FontStyle="Italic" Style="{StaticResource NeumorphicTextBlock}"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="UnderlineButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Podkreślenie" Width="35" Height="35" Margin="3">
                             <TextBlock Text="U" TextDecorations="Underline" Style="{StaticResource NeumorphicTextBlock}"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="StrikethroughButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Przekreślenie" Width="35" Height="35" Margin="3">
                             <TextBlock Text="S" TextDecorations="Strikethrough" Style="{StaticResource NeumorphicTextBlock}"/>
                         </Button>
@@ -216,19 +221,19 @@
                                   Margin="10,0" Background="#D0D0D0" Opacity="0.5"/>
                         
                         <!-- Wyrównanie tekstu -->
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="AlignLeftButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Wyrównaj do lewej" Width="35" Height="35" Margin="3">
                             <TextBlock Text="◀" Style="{StaticResource NeumorphicTextBlock}" FontSize="16"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="AlignCenterButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Wyśrodkuj" Width="35" Height="35" Margin="3">
                             <TextBlock Text="⬤" Style="{StaticResource NeumorphicTextBlock}" FontSize="12"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="AlignRightButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Wyrównaj do prawej" Width="35" Height="35" Margin="3">
                             <TextBlock Text="▶" Style="{StaticResource NeumorphicTextBlock}" FontSize="16"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="JustifyButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Wyjustuj" Width="35" Height="35" Margin="3">
                             <TextBlock Text="⬌" Style="{StaticResource NeumorphicTextBlock}" FontSize="14"/>
                         </Button>
@@ -237,11 +242,11 @@
                                   Margin="10,0" Background="#D0D0D0" Opacity="0.5"/>
                         
                         <!-- Listy -->
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="BulletListButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Lista punktowana" Width="35" Height="35" Margin="3">
                             <TextBlock Text="•" Style="{StaticResource NeumorphicTextBlock}" FontSize="20"/>
                         </Button>
-                        <Button Style="{StaticResource NeumorphicRaisedButton}" 
+                        <Button x:Name="NumberedListButton" Style="{StaticResource NeumorphicRaisedButton}"
                                 ToolTip="Lista numerowana" Width="35" Height="35" Margin="3">
                             <TextBlock Text="1." Style="{StaticResource NeumorphicTextBlock}"/>
                         </Button>

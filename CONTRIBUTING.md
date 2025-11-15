@@ -6,7 +6,7 @@ Dziękujemy za zainteresowanie współpracą przy projekcie PrettyScreenSHOT! �
 
 ### 🐛 Zgłaszanie błędów
 Jeśli znalazłeś błąd:
-1. Sprawdź czy błąd nie został już zgłoszony w [Issues](https://github.com/yourusername/PrettyScreenSHOT/issues)
+1. Sprawdź czy błąd nie został już zgłoszony w [Issues](https://github.com/Co0ob1iee/PrettyScreenSHOT/issues)
 2. Utwórz nowe issue z opisem:
    - Krok po kroku jak odtworzyć błąd
    - Oczekiwane zachowanie
@@ -75,7 +75,7 @@ Jeśli dodajesz nową funkcję:
 - Zaktualizuj `ROADMAP.md` jeśli funkcja była w planach
 
 ## Pytania?
-Jeśli masz pytania, otwórz issue z etykietą "question" lub użyj [Discussions](https://github.com/yourusername/PrettyScreenSHOT/discussions).
+Jeśli masz pytania, otwórz issue z etykietą "question" lub użyj [Discussions](https://github.com/Co0ob1iee/PrettyScreenSHOT/discussions).
 
 ## Licencja
 Przez wysłanie PR zgadzasz się, że Twój kod będzie licencjonowany na licencji GNU GPL v3.
