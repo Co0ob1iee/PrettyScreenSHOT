@@ -15,7 +15,7 @@ Przewodnik instalacji dla użytkowników końcowych.
 
 ### Krok 1: Pobierz instalator
 
-1. Przejdź do [GitHub Releases](https://github.com/yourusername/PrettyScreenSHOT/releases)
+1. Przejdź do [GitHub Releases](https://github.com/Co0ob1iee/PrettyScreenSHOT/releases)
 2. Znajdź najnowszą wersję
 3. Pobierz plik `PrettyScreenSHOT-Setup-vX.X.X.exe`
 
@@ -58,7 +58,7 @@ Przewodnik instalacji dla użytkowników końcowych.
 
 ### Krok 1: Pobierz pakiet MSIX
 
-1. Przejdź do [GitHub Releases](https://github.com/yourusername/PrettyScreenSHOT/releases)
+1. Przejdź do [GitHub Releases](https://github.com/Co0ob1iee/PrettyScreenSHOT/releases)
 2. Znajdź najnowszą wersję
 3. Pobierz plik `PrettyScreenSHOT_X.X.X.X_x64.msix`
 
