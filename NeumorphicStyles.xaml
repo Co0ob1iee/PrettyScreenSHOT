@@ -596,5 +596,48 @@
         <Setter Property="Padding" Value="0"/>
     </Style>
 
+    <!-- Neumorphic RadioButton -->
+    <Style x:Key="NeumorphicRadioButton" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="8,6"/>
+        <Setter Property="Margin" Value="0,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="RadioBorder"
+                            Background="{StaticResource NeumorphicBaseBrush}"
+                            CornerRadius="10"
+                            Padding="{TemplateBinding Padding}"
+                            BorderThickness="0">
+                        <!-- Raised effect for unchecked -->
+                        <Border x:Name="OuterBorder"
+                                BorderBrush="#FFFFFF"
+                                BorderThickness="1.5,1.5,0,0"
+                                CornerRadius="10">
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}"
+                                    BorderThickness="0,0,1.5,1.5"
+                                    CornerRadius="10">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <!-- Depressed effect for checked -->
+                            <Setter TargetName="RadioBorder" Property="Background" Value="{StaticResource NeumorphicPressedBrush}"/>
+                            <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{StaticResource NeumorphicDarkShadowBrush}"/>
+                            <Setter TargetName="OuterBorder" Property="BorderThickness" Value="1.5,1.5,0,0"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RadioBorder" Property="Background" Value="{StaticResource NeumorphicAccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
 
