@@ -86,15 +86,17 @@ Zaawansowana aplikacja do przechwytywania i edycji screenshotów dla Windows, na
 - Windows 10/11
 - .NET 10.0 Runtime
 
-### Kompilacja
-```bash
-git clone https://github.com/yourusername/PrettyScreenSHOT.git
-cd PrettyScreenSHOT/PrettyScreenSHOT
-dotnet build
-```
+### Dla użytkowników końcowych
 
-### Uruchomienie
+Zobacz szczegółową instrukcję w [docs/installation/INSTALLATION.md](docs/installation/INSTALLATION.md)
+
+### Dla programistów
+
 ```bash
+git clone https://github.com/Co0ob1iee/PrettyScreenSHOT.git
+cd PrettyScreenSHOT
+dotnet restore
+dotnet build
 dotnet run
 ```
 
@@ -125,27 +127,20 @@ Lub uruchom skompilowany plik `PrettyScreenSHOT.exe` z folderu `bin/Debug/net10.
 
 ## 📁 Struktura Projektu
 
-```
-PrettyScreenSHOT/
-├── App.xaml/.cs              # Główna aplikacja
-├── TrayIconManager.cs        # Zarządzanie tray icon
-├── ScreenshotHelper.cs       # Przechwytywanie screenshotów
-├── ScreenshotManager.cs      # Zarządzanie historią
-├── ScreenshotOverlay.xaml/.cs # Overlay wyboru obszaru
-├── ScreenshotEditorWindow.xaml/.cs # Edytor
-├── ScreenshotHistoryWindow.xaml/.cs # Historia
-├── SettingsWindow.xaml/.cs   # Ustawienia
-├── SettingsManager.cs        # Zarządzanie ustawieniami
-├── LocalizationHelper.cs     # Lokalizacja
-├── CloudUploadManager.cs     # Cloud upload
-├── VideoCaptureManager.cs    # Video capture (GIF/MP4)
-├── VideoCaptureWindow.xaml/.cs # UI video capture
-├── ScrollCaptureHelper.cs    # Scroll capture
-├── SecurityManager.cs        # Szyfrowanie i watermarking
-├── PerformanceOptimizer.cs   # Optymalizacja wydajności
-└── Properties/
-    └── Resources.*.resx      # Pliki lokalizacji
-```
+Szczegółowy opis struktury i architektury projektu znajduje się w [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md).
+
+### Główne komponenty:
+- **App.xaml/.cs** - Punkt wejścia aplikacji
+- **TrayIconManager.cs** - Zarządzanie ikoną w tray
+- **ScreenshotHelper.cs** - Przechwytywanie screenshotów
+- **ScreenshotManager.cs** - Zarządzanie historią
+- **ScreenshotEditorWindow.xaml/.cs** - Edytor obrazów
+- **ScreenshotHistoryWindow.xaml/.cs** - Historia screenshotów
+- **SettingsWindow.xaml/.cs** - Okno ustawień
+- **CloudUploadManager.cs** - Upload do chmury
+- **VideoCaptureManager.cs** - Nagrywanie GIF/MP4
+- **SecurityManager.cs** - Szyfrowanie i watermarking
+- **Properties/Resources.*.resx** - Pliki lokalizacji
 
 ## 🗺️ Roadmap
 
@@ -182,8 +177,8 @@ Ten projekt jest licencjonowany na licencji GNU GPL v3 - zobacz plik [LICENSE](L
 
 ## 📧 Kontakt
 
-- Issues: [GitHub Issues](https://github.com/yourusername/PrettyScreenSHOT/issues)
-- Discussions: [GitHub Discussions](https://github.com/yourusername/PrettyScreenSHOT/discussions)
+- Issues: [GitHub Issues](https://github.com/Co0ob1iee/PrettyScreenSHOT/issues)
+- Discussions: [GitHub Discussions](https://github.com/Co0ob1iee/PrettyScreenSHOT/discussions)
 
 ---
 
