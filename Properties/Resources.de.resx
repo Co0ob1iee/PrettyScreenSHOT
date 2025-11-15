@@ -202,5 +202,146 @@
   <data name="Settings_ResetConfirm" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie alle Einstellungen auf die Standardwerte zurücksetzen möchten?</value>
   </data>
+  <data name="Editor_CloudNotConfigured" xml:space="preserve">
+    <value>Cloud-Anbieter ist nicht konfiguriert. Gehen Sie zu den Einstellungen und wählen Sie einen Anbieter (z.B. Imgur) und geben Sie den API-Schlüssel ein.</value>
+  </data>
+  <data name="Editor_CloudNotConfiguredTitle" xml:space="preserve">
+    <value>Keine Konfiguration</value>
+  </data>
+  <data name="Editor_Uploading" xml:space="preserve">
+    <value>HOCHLADEN...</value>
+  </data>
+  <data name="Editor_Upload" xml:space="preserve">
+    <value>HOCHLADEN</value>
+  </data>
+  <data name="Editor_UploadSuccess" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="Editor_UploadSuccessMessage" xml:space="preserve">
+    <value>Upload erfolgreich abgeschlossen!{0}{0}URL: {1}{0}{0}URL wurde in die Zwischenablage kopiert.</value>
+  </data>
+  <data name="Editor_UploadError" xml:space="preserve">
+    <value>Upload-Fehler</value>
+  </data>
+  <data name="Editor_UploadErrorMessage" xml:space="preserve">
+    <value>Upload-Fehler:{0}{0}{1}</value>
+  </data>
+  <data name="Editor_ErrorWithMessage" xml:space="preserve">
+    <value>Fehler: {0}</value>
+  </data>
+  <data name="Editor_SizeLabel" xml:space="preserve">
+    <value>{0}px</value>
+  </data>
+  <data name="Editor_Tooltip_Marker" xml:space="preserve">
+    <value>Marker - Zeichnen</value>
+  </data>
+  <data name="Editor_Tooltip_Rectangle" xml:space="preserve">
+    <value>Rechteck</value>
+  </data>
+  <data name="Editor_Tooltip_Arrow" xml:space="preserve">
+    <value>Pfeil</value>
+  </data>
+  <data name="Editor_Tooltip_Blur" xml:space="preserve">
+    <value>Unschärfe - Verwischen</value>
+  </data>
+  <data name="Editor_Tooltip_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Editor_Tooltip_Color" xml:space="preserve">
+    <value>Farbe ändern</value>
+  </data>
+  <data name="Editor_Tooltip_Clear" xml:space="preserve">
+    <value>Alles löschen</value>
+  </data>
+  <data name="Editor_Tooltip_Undo" xml:space="preserve">
+    <value>Letzte Aktion rückgängig machen</value>
+  </data>
+  <data name="Editor_Tooltip_Upload" xml:space="preserve">
+    <value>In die Cloud hochladen</value>
+  </data>
+  <data name="Editor_Tooltip_Save" xml:space="preserve">
+    <value>Screenshot speichern</value>
+  </data>
+  <data name="Editor_Tooltip_Cancel" xml:space="preserve">
+    <value>Abbrechen ohne zu speichern</value>
+  </data>
+  <data name="History_Uploading" xml:space="preserve">
+    <value>Hochladen...</value>
+  </data>
+  <data name="History_Upload" xml:space="preserve">
+    <value>Hochladen</value>
+  </data>
+  <data name="History_UploadSuccess" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="History_UploadSuccessMessage" xml:space="preserve">
+    <value>Upload erfolgreich!{0}{0}URL: {1}{0}{0}URL in die Zwischenablage kopiert.</value>
+  </data>
+  <data name="History_UploadError" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="History_UploadErrorMessage" xml:space="preserve">
+    <value>Upload fehlgeschlagen:{0}{0}{1}</value>
+  </data>
+  <data name="History_ErrorWithMessage" xml:space="preserve">
+    <value>Fehler: {0}</value>
+  </data>
+  <data name="History_UrlCopied" xml:space="preserve">
+    <value>URL in die Zwischenablage kopiert:{0}{0}{1}</value>
+  </data>
+  <data name="History_CloudUrlTitle" xml:space="preserve">
+    <value>Cloud-URL</value>
+  </data>
+  <data name="History_SearchPlaceholder" xml:space="preserve">
+    <value>Screenshots durchsuchen...</value>
+  </data>
+  <data name="History_ClearFilters" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Settings_Subtitle" xml:space="preserve">
+    <value>Anwendungseinstellungen konfigurieren</value>
+  </data>
+  <data name="Settings_AutoUpload" xml:space="preserve">
+    <value>Automatischer Upload</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Thema:</value>
+  </data>
+  <data name="Settings_InvalidPath" xml:space="preserve">
+    <value>Ungültiger Speicherpfad!</value>
+  </data>
+  <data name="Settings_SaveSuccess" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="Settings_SaveSuccessMessage" xml:space="preserve">
+    <value>Einstellungen erfolgreich gespeichert!</value>
+  </data>
+  <data name="Settings_SaveError" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Settings_ErrorWithMessage" xml:space="preserve">
+    <value>Fehler beim Speichern der Einstellungen: {0}</value>
+  </data>
+  <data name="SaveDialog_Title" xml:space="preserve">
+    <value>Screenshot speichern</value>
+  </data>
+  <data name="SaveDialog_Category" xml:space="preserve">
+    <value>Kategorie:</value>
+  </data>
+  <data name="SaveDialog_Tags" xml:space="preserve">
+    <value>Tags (durch Kommas getrennt):</value>
+  </data>
+  <data name="SaveDialog_TagsPlaceholder" xml:space="preserve">
+    <value>z.B. Arbeit, wichtig, Fehler</value>
+  </data>
+  <data name="SaveDialog_Notes" xml:space="preserve">
+    <value>Notizen:</value>
+  </data>
+  <data name="SaveDialog_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SaveDialog_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
 </root>
 

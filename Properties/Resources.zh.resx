@@ -202,5 +202,146 @@
   <data name="Settings_ResetConfirm" xml:space="preserve">
     <value>您确定要将所有设置重置为默认值吗？</value>
   </data>
+  <data name="Editor_CloudNotConfigured" xml:space="preserve">
+    <value>云服务提供商未配置。请转到设置并选择一个提供商（例如 Imgur）并输入 API 密钥。</value>
+  </data>
+  <data name="Editor_CloudNotConfiguredTitle" xml:space="preserve">
+    <value>未配置</value>
+  </data>
+  <data name="Editor_Uploading" xml:space="preserve">
+    <value>上传中...</value>
+  </data>
+  <data name="Editor_Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="Editor_UploadSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Editor_UploadSuccessMessage" xml:space="preserve">
+    <value>上传成功！{0}{0}URL：{1}{0}{0}URL 已复制到剪贴板。</value>
+  </data>
+  <data name="Editor_UploadError" xml:space="preserve">
+    <value>上传错误</value>
+  </data>
+  <data name="Editor_UploadErrorMessage" xml:space="preserve">
+    <value>上传错误：{0}{0}{1}</value>
+  </data>
+  <data name="Editor_ErrorWithMessage" xml:space="preserve">
+    <value>错误：{0}</value>
+  </data>
+  <data name="Editor_SizeLabel" xml:space="preserve">
+    <value>{0}px</value>
+  </data>
+  <data name="Editor_Tooltip_Marker" xml:space="preserve">
+    <value>标记 - 绘制</value>
+  </data>
+  <data name="Editor_Tooltip_Rectangle" xml:space="preserve">
+    <value>矩形</value>
+  </data>
+  <data name="Editor_Tooltip_Arrow" xml:space="preserve">
+    <value>箭头</value>
+  </data>
+  <data name="Editor_Tooltip_Blur" xml:space="preserve">
+    <value>模糊 - 模糊化</value>
+  </data>
+  <data name="Editor_Tooltip_Text" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="Editor_Tooltip_Color" xml:space="preserve">
+    <value>更改颜色</value>
+  </data>
+  <data name="Editor_Tooltip_Clear" xml:space="preserve">
+    <value>清除全部</value>
+  </data>
+  <data name="Editor_Tooltip_Undo" xml:space="preserve">
+    <value>撤销上一步操作</value>
+  </data>
+  <data name="Editor_Tooltip_Upload" xml:space="preserve">
+    <value>上传到云端</value>
+  </data>
+  <data name="Editor_Tooltip_Save" xml:space="preserve">
+    <value>保存截图</value>
+  </data>
+  <data name="Editor_Tooltip_Cancel" xml:space="preserve">
+    <value>取消不保存</value>
+  </data>
+  <data name="History_Uploading" xml:space="preserve">
+    <value>上传中...</value>
+  </data>
+  <data name="History_Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="History_UploadSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="History_UploadSuccessMessage" xml:space="preserve">
+    <value>上传成功！{0}{0}URL：{1}{0}{0}URL 已复制到剪贴板。</value>
+  </data>
+  <data name="History_UploadError" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="History_UploadErrorMessage" xml:space="preserve">
+    <value>上传失败：{0}{0}{1}</value>
+  </data>
+  <data name="History_ErrorWithMessage" xml:space="preserve">
+    <value>错误：{0}</value>
+  </data>
+  <data name="History_UrlCopied" xml:space="preserve">
+    <value>URL 已复制到剪贴板：{0}{0}{1}</value>
+  </data>
+  <data name="History_CloudUrlTitle" xml:space="preserve">
+    <value>云端 URL</value>
+  </data>
+  <data name="History_SearchPlaceholder" xml:space="preserve">
+    <value>搜索截图...</value>
+  </data>
+  <data name="History_ClearFilters" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Settings_Subtitle" xml:space="preserve">
+    <value>配置应用程序设置</value>
+  </data>
+  <data name="Settings_AutoUpload" xml:space="preserve">
+    <value>自动上传</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>主题：</value>
+  </data>
+  <data name="Settings_InvalidPath" xml:space="preserve">
+    <value>保存路径无效！</value>
+  </data>
+  <data name="Settings_SaveSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Settings_SaveSuccessMessage" xml:space="preserve">
+    <value>设置保存成功！</value>
+  </data>
+  <data name="Settings_SaveError" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Settings_ErrorWithMessage" xml:space="preserve">
+    <value>保存设置错误：{0}</value>
+  </data>
+  <data name="SaveDialog_Title" xml:space="preserve">
+    <value>保存截图</value>
+  </data>
+  <data name="SaveDialog_Category" xml:space="preserve">
+    <value>类别：</value>
+  </data>
+  <data name="SaveDialog_Tags" xml:space="preserve">
+    <value>标签（用逗号分隔）：</value>
+  </data>
+  <data name="SaveDialog_TagsPlaceholder" xml:space="preserve">
+    <value>例如：工作、重要、错误</value>
+  </data>
+  <data name="SaveDialog_Notes" xml:space="preserve">
+    <value>备注：</value>
+  </data>
+  <data name="SaveDialog_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="SaveDialog_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
 </root>
 
