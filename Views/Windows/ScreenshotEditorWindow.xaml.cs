@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Wpf.Ui.Controls;
 using Point = System.Windows.Point;
 using Color = System.Windows.Media.Color;
 using Pen = System.Windows.Media.Pen;
@@ -11,15 +12,10 @@ using Forms = System.Windows.Forms; // alias to avoid ambiguity with System.Wind
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 using WindowsFontFamily = System.Windows.Media.FontFamily;
-using PrettyScreenSHOT.Helpers;
-using PrettyScreenSHOT.Services.Cloud;
-using PrettyScreenSHOT.Services.Screenshot;
-using PrettyScreenSHOT.Services.Settings;
-using PrettyScreenSHOT.Services.Theme;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
-    public partial class ScreenshotEditorWindow : Window, IDisposable
+    public partial class ScreenshotEditorWindow : FluentWindow, IDisposable
     {
         private BitmapSource? originalBitmap;
         private DrawingVisual? drawingVisual;
@@ -89,80 +85,6 @@ namespace PrettyScreenSHOT.Views.Windows
         private void LoadLocalizedStrings()
         {
             Title = LocalizationHelper.GetString("Editor_Title");
-
-            // Title bar buttons
-            if (CopyButton != null)
-                CopyButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Copy");
-            if (DuplicateButton != null)
-                DuplicateButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Duplicate");
-            if (CloseButton != null)
-                CloseButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Close");
-
-            // System icons
-            if (WiFiButton != null)
-                WiFiButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_WiFi");
-            if (BatteryButton != null)
-                BatteryButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Battery");
-            if (PhoneButton != null)
-                PhoneButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Phone");
-            if (ShareButton != null)
-                ShareButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Share");
-            if (VolumeButton != null)
-                VolumeButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Volume");
-
-            // Color button
-            if (ColorButton != null)
-                ColorButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Color");
-
-            // Action buttons
-            if (ClearButton != null)
-                ClearButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Clear");
-            if (UndoButton != null)
-                UndoButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Undo");
-            if (UploadButton != null)
-                UploadButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Upload");
-            if (SaveButton != null)
-                SaveButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Save");
-            if (CancelButton != null)
-                CancelButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Cancel");
-
-            // Drawing tools
-            if (MarkerButton != null)
-                MarkerButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Marker");
-            if (RectangleButton != null)
-                RectangleButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Rectangle");
-            if (ArrowButton != null)
-                ArrowButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Arrow");
-            if (BlurButton != null)
-                BlurButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Blur");
-            if (TextToolButton != null)
-                TextToolButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Text");
-
-            // Text formatting
-            if (BoldButton != null)
-                BoldButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Bold");
-            if (ItalicButton != null)
-                ItalicButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Italic");
-            if (UnderlineButton != null)
-                UnderlineButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Underline");
-            if (StrikethroughButton != null)
-                StrikethroughButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Strikethrough");
-
-            // Text alignment
-            if (AlignLeftButton != null)
-                AlignLeftButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignLeft");
-            if (AlignCenterButton != null)
-                AlignCenterButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignCenter");
-            if (AlignRightButton != null)
-                AlignRightButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_AlignRight");
-            if (JustifyButton != null)
-                JustifyButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_Justify");
-
-            // Lists
-            if (BulletListButton != null)
-                BulletListButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_BulletList");
-            if (NumberedListButton != null)
-                NumberedListButton.ToolTip = LocalizationHelper.GetString("Editor_Tooltip_NumberedList");
         }
 
         private void SetupEditor()
@@ -635,10 +557,7 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void OnClearClick(object sender, RoutedEventArgs e)
         {
-            if (System.Windows.MessageBox.Show(
-                LocalizationHelper.GetString("Editor_ClearConfirm"),
-                LocalizationHelper.GetString("Editor_Confirm"),
-                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (System.Windows.MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ClearAll();
             }
@@ -878,175 +797,6 @@ namespace PrettyScreenSHOT.Views.Windows
         {
             Dispose();
             base.OnClosed(e);
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        // === KEYBOARD SHORTCUTS ===
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Ctrl+Z - Undo
-            if (e.Key == Key.Z && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                Undo();
-                e.Handled = true;
-                return;
-            }
-
-            // Del - Clear
-            if (e.Key == Key.Delete)
-            {
-                ClearAll();
-                e.Handled = true;
-                return;
-            }
-
-            // Ctrl+S - Save
-            if (e.Key == Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                SaveScreenshot();
-                e.Handled = true;
-                return;
-            }
-
-            // Esc - Cancel
-            if (e.Key == Key.Escape)
-            {
-                OnCancelClick(this, new RoutedEventArgs());
-                e.Handled = true;
-                return;
-            }
-
-            // Ctrl+C - Copy to clipboard
-            if (e.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
-            {
-                // Skopiuj aktualny screenshot do schowka
-                CopyToClipboard();
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void CopyToClipboard()
-        {
-            try
-            {
-                var finalBitmap = RenderFinalImage();
-                if (finalBitmap != null)
-                {
-                    System.Windows.Clipboard.SetImage(finalBitmap);
-                    DebugHelper.LogDebug("Screenshot copied to clipboard via Ctrl+C");
-                }
-            }
-            catch (Exception ex)
-            {
-                DebugHelper.LogError("ScreenshotEditorWindow", "Failed to copy to clipboard", ex);
-            }
-        }
-
-        // === DRAG & DROP ===
-        private void Canvas_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effects = DragDropEffects.Copy;
-                // Visual feedback - zmień kursor na copy
-                EditorCanvas.Opacity = 0.8;
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
-            e.Handled = true;
-        }
-
-        private void Canvas_DragOver(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files != null && files.Length > 0)
-                {
-                    string ext = System.IO.Path.GetExtension(files[0]).ToLower();
-                    if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".bmp" || ext == ".gif")
-                    {
-                        e.Effects = DragDropEffects.Copy;
-                    }
-                    else
-                    {
-                        e.Effects = DragDropEffects.None;
-                    }
-                }
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
-            e.Handled = true;
-        }
-
-        private void Canvas_Drop(object sender, DragEventArgs e)
-        {
-            // Przywróć opacity
-            EditorCanvas.Opacity = 1.0;
-
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files != null && files.Length > 0)
-                {
-                    string filePath = files[0];
-                    string ext = System.IO.Path.GetExtension(filePath).ToLower();
-
-                    if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".bmp" || ext == ".gif")
-                    {
-                        try
-                        {
-                            // Załaduj nowy obraz
-                            var bitmap = new BitmapImage();
-                            bitmap.BeginInit();
-                            bitmap.UriSource = new Uri(filePath);
-                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmap.EndInit();
-                            bitmap.Freeze();
-
-                            // Zastąp obecny screenshot
-                            LoadScreenshot(bitmap);
-                            DebugHelper.LogDebug($"Image loaded from drag & drop: {filePath}");
-
-                            System.Windows.MessageBox.Show(
-                                $"Obraz załadowany pomyślnie!\n{System.IO.Path.GetFileName(filePath)}",
-                                "Drag & Drop",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            DebugHelper.LogError("ScreenshotEditorWindow", "Failed to load dropped image", ex);
-                            System.Windows.MessageBox.Show(
-                                $"Nie udało się załadować obrazu:\n{ex.Message}",
-                                "Błąd",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                        }
-                    }
-                    else
-                    {
-                        System.Windows.MessageBox.Show(
-                            "Nieobsługiwany format pliku!\nObsługiwane: PNG, JPG, BMP, GIF",
-                            "Błąd",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
-                    }
-                }
-            }
-            e.Handled = true;
         }
 
         public void Dispose()

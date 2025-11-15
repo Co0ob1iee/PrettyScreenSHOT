@@ -1,96 +1,89 @@
-<Window x:Class="PrettyScreenSHOT.Views.Dialogs.SaveScreenshotDialog"
+<ui:FluentWindow x:Class="PrettyScreenSHOT.Views.Dialogs.SaveScreenshotDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Save Screenshot" Height="450" Width="520" WindowStartupLocation="CenterOwner"
-        Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
-        ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="Save Screenshot"
+        Height="450"
+        Width="520"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Title bar -->
+            <RowDefinition Height="*"/>    <!-- Main content -->
+        </Grid.RowDefinitions>
 
-    <!-- Neumorphic window chrome -->
-    <Border Style="{StaticResource NeumorphicPanel}" CornerRadius="18" Margin="15" Padding="0">
-        <Grid>
+        <!-- Title Bar -->
+        <ui:TitleBar Grid.Row="0"
+                     Title="Save Screenshot"
+                     Icon="pack://application:,,,/app.ico"
+                     ShowMaximize="False"/>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="48"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Custom Title Bar -->
-            <Border Grid.Row="0" Background="Transparent" Padding="15,10" CornerRadius="18,18,0,0"
-                    MouseLeftButtonDown="OnTitleBarMouseDown">
-                <DockPanel>
-                    <TextBlock Text="Save Screenshot" FontSize="20"
-                               Style="{StaticResource NeumorphicHeading}"
-                               VerticalAlignment="Center" DockPanel.Dock="Left"/>
-
-                    <Button Click="OnCancelClick" Style="{StaticResource NeumorphicCircularButton}"
-                            Width="32" Height="32" DockPanel.Dock="Right"
-                            HorizontalAlignment="Right" ToolTip="Zamknij">
-                        <TextBlock Text="✕" FontSize="16"/>
-                    </Button>
-                </DockPanel>
-            </Border>
-
-            <!-- Main Content -->
-            <Grid Grid.Row="1" Margin="20,10,20,20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0">
+            <!-- Input Fields Card -->
+            <ui:Card Grid.Row="0">
+                <StackPanel Spacing="16">
                     <!-- Category -->
-                    <TextBlock x:Name="CategoryLabel" Text="Category:"
-                               Style="{StaticResource NeumorphicTextBlockSecondary}"
-                               FontWeight="Bold" Margin="0,0,0,5"/>
-                    <ComboBox x:Name="CategoryComboBox"
-                             Style="{StaticResource NeumorphicComboBox}"
-                             Padding="8" Margin="0,0,0,15" IsEditable="True">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" Style="{StaticResource NeumorphicTextBlock}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Name="CategoryLabel"
+                                   Text="Category:"
+                                   FontWeight="SemiBold"/>
+                        <ComboBox x:Name="CategoryComboBox"
+                                  IsEditable="True"/>
+                    </StackPanel>
 
                     <!-- Tags -->
-                    <TextBlock x:Name="TagsLabel" Text="Tags (comma separated):"
-                               Style="{StaticResource NeumorphicTextBlockSecondary}"
-                               FontWeight="Bold" Margin="0,0,0,5"/>
-                    <TextBox x:Name="TagsTextBox"
-                            Style="{StaticResource NeumorphicTextBox}"
-                            Padding="10,8" Margin="0,0,0,15" TextWrapping="Wrap"
-                            Tag="e.g., work, important, bug"/>
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Name="TagsLabel"
+                                   Text="Tags (comma separated):"
+                                   FontWeight="SemiBold"/>
+                        <ui:TextBox x:Name="TagsTextBox"
+                                    PlaceholderText="e.g., work, important, bug"
+                                    TextWrapping="Wrap"/>
+                    </StackPanel>
 
                     <!-- Notes -->
-                    <TextBlock x:Name="NotesLabel" Text="Notes:"
-                               Style="{StaticResource NeumorphicTextBlockSecondary}"
-                               FontWeight="Bold" Margin="0,0,0,5"/>
-                    <TextBox x:Name="NotesTextBox"
-                            Style="{StaticResource NeumorphicTextBox}"
-                            Padding="10,8" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Name="NotesLabel"
+                                   Text="Notes:"
+                                   FontWeight="SemiBold"/>
+                        <ui:TextBox x:Name="NotesTextBox"
+                                    Height="80"
+                                    TextWrapping="Wrap"
+                                    AcceptsReturn="True"/>
+                    </StackPanel>
                 </StackPanel>
+            </ui:Card>
 
-                <!-- Buttons -->
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                    <Button x:Name="CancelButton" Click="OnCancelClick"
-                            Style="{StaticResource NeumorphicRaisedButton}"
-                            Padding="20,10" Margin="5" Width="100">
-                        <TextBlock Text="Cancel" Style="{StaticResource NeumorphicTextBlock}"/>
-                    </Button>
-                    <Button x:Name="SaveButton" Click="OnSaveClick"
-                            Style="{StaticResource NeumorphicDepressedButton}"
-                            Padding="20,10" Margin="5" Width="100">
-                        <TextBlock Text="Save" Style="{StaticResource NeumorphicTextBlock}" FontWeight="Bold"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
+            <!-- Action Buttons -->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8"
+                        Margin="0,16,0,0">
+                <ui:Button x:Name="CancelButton"
+                           Content="Cancel"
+                           Click="OnCancelClick"
+                           Icon="Dismiss24"
+                           MinWidth="100"/>
+                <ui:Button x:Name="SaveButton"
+                           Content="Save"
+                           Click="OnSaveClick"
+                           Appearance="Primary"
+                           Icon="Save24"
+                           MinWidth="100"/>
+            </StackPanel>
         </Grid>
-    </Border>
-</Window>
+    </Grid>
+</ui:FluentWindow>
