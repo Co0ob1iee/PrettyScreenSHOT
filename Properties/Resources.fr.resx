@@ -202,5 +202,146 @@
   <data name="Settings_ResetConfirm" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir réinitialiser tous les paramètres par défaut ?</value>
   </data>
+  <data name="Editor_CloudNotConfigured" xml:space="preserve">
+    <value>Le fournisseur cloud n'est pas configuré. Allez dans les paramètres et sélectionnez un fournisseur (par ex. Imgur) et entrez la clé API.</value>
+  </data>
+  <data name="Editor_CloudNotConfiguredTitle" xml:space="preserve">
+    <value>Aucune configuration</value>
+  </data>
+  <data name="Editor_Uploading" xml:space="preserve">
+    <value>TÉLÉCHARGEMENT...</value>
+  </data>
+  <data name="Editor_Upload" xml:space="preserve">
+    <value>TÉLÉCHARGER</value>
+  </data>
+  <data name="Editor_UploadSuccess" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="Editor_UploadSuccessMessage" xml:space="preserve">
+    <value>Téléchargement terminé avec succès !{0}{0}URL : {1}{0}{0}L'URL a été copiée dans le presse-papiers.</value>
+  </data>
+  <data name="Editor_UploadError" xml:space="preserve">
+    <value>Erreur de téléchargement</value>
+  </data>
+  <data name="Editor_UploadErrorMessage" xml:space="preserve">
+    <value>Erreur de téléchargement :{0}{0}{1}</value>
+  </data>
+  <data name="Editor_ErrorWithMessage" xml:space="preserve">
+    <value>Erreur : {0}</value>
+  </data>
+  <data name="Editor_SizeLabel" xml:space="preserve">
+    <value>{0}px</value>
+  </data>
+  <data name="Editor_Tooltip_Marker" xml:space="preserve">
+    <value>Marqueur - Dessiner</value>
+  </data>
+  <data name="Editor_Tooltip_Rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="Editor_Tooltip_Arrow" xml:space="preserve">
+    <value>Flèche</value>
+  </data>
+  <data name="Editor_Tooltip_Blur" xml:space="preserve">
+    <value>Flou - Flouter</value>
+  </data>
+  <data name="Editor_Tooltip_Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="Editor_Tooltip_Color" xml:space="preserve">
+    <value>Changer la couleur</value>
+  </data>
+  <data name="Editor_Tooltip_Clear" xml:space="preserve">
+    <value>Tout effacer</value>
+  </data>
+  <data name="Editor_Tooltip_Undo" xml:space="preserve">
+    <value>Annuler la dernière action</value>
+  </data>
+  <data name="Editor_Tooltip_Upload" xml:space="preserve">
+    <value>Télécharger vers le cloud</value>
+  </data>
+  <data name="Editor_Tooltip_Save" xml:space="preserve">
+    <value>Enregistrer la capture</value>
+  </data>
+  <data name="Editor_Tooltip_Cancel" xml:space="preserve">
+    <value>Annuler sans enregistrer</value>
+  </data>
+  <data name="History_Uploading" xml:space="preserve">
+    <value>Téléchargement...</value>
+  </data>
+  <data name="History_Upload" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="History_UploadSuccess" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="History_UploadSuccessMessage" xml:space="preserve">
+    <value>Téléchargement réussi !{0}{0}URL : {1}{0}{0}URL copiée dans le presse-papiers.</value>
+  </data>
+  <data name="History_UploadError" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="History_UploadErrorMessage" xml:space="preserve">
+    <value>Échec du téléchargement :{0}{0}{1}</value>
+  </data>
+  <data name="History_ErrorWithMessage" xml:space="preserve">
+    <value>Erreur : {0}</value>
+  </data>
+  <data name="History_UrlCopied" xml:space="preserve">
+    <value>URL copiée dans le presse-papiers :{0}{0}{1}</value>
+  </data>
+  <data name="History_CloudUrlTitle" xml:space="preserve">
+    <value>URL du cloud</value>
+  </data>
+  <data name="History_SearchPlaceholder" xml:space="preserve">
+    <value>Rechercher des captures...</value>
+  </data>
+  <data name="History_ClearFilters" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="Settings_Subtitle" xml:space="preserve">
+    <value>Configurer les paramètres de l'application</value>
+  </data>
+  <data name="Settings_AutoUpload" xml:space="preserve">
+    <value>Téléchargement automatique</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Thème :</value>
+  </data>
+  <data name="Settings_InvalidPath" xml:space="preserve">
+    <value>Chemin d'enregistrement invalide !</value>
+  </data>
+  <data name="Settings_SaveSuccess" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="Settings_SaveSuccessMessage" xml:space="preserve">
+    <value>Paramètres enregistrés avec succès !</value>
+  </data>
+  <data name="Settings_SaveError" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="Settings_ErrorWithMessage" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement des paramètres : {0}</value>
+  </data>
+  <data name="SaveDialog_Title" xml:space="preserve">
+    <value>Enregistrer la capture</value>
+  </data>
+  <data name="SaveDialog_Category" xml:space="preserve">
+    <value>Catégorie :</value>
+  </data>
+  <data name="SaveDialog_Tags" xml:space="preserve">
+    <value>Tags (séparés par des virgules) :</value>
+  </data>
+  <data name="SaveDialog_TagsPlaceholder" xml:space="preserve">
+    <value>p. ex., travail, important, bogue</value>
+  </data>
+  <data name="SaveDialog_Notes" xml:space="preserve">
+    <value>Notes :</value>
+  </data>
+  <data name="SaveDialog_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="SaveDialog_Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
 </root>
 
