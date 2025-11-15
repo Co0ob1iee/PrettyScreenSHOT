@@ -1,11 +1,20 @@
 ﻿<Application x:Class="PrettyScreenSHOT.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:local="clr-namespace:PrettyScreenSHOT">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/PrettyScreenSHOT;component/Resources/Styles/NeumorphicStyles.xaml"/>
+                <!-- WPF UI Theme Resources -->
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+
+                <!-- Legacy Neumorphic Styles (will be removed after migration) -->
+                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
+
+                <!-- Custom WPF UI Styles -->
+                <ResourceDictionary Source="pack://application:,,,/Themes/WpfUiCustom.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

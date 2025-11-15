@@ -2,13 +2,13 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using PrettyScreenSHOT.Helpers;
-using PrettyScreenSHOT.Services.Settings;
-using PrettyScreenSHOT.Services.Theme;
+using PrettyScreenSHOT.Services;
+using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : FluentWindow
     {
         private readonly SettingsManager settingsManager;
 
@@ -16,8 +16,7 @@ namespace PrettyScreenSHOT.Views.Windows
         {
             InitializeComponent();
 
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
+            // WPF UI applies themes globally - no need to apply per-window
 
             // Subscribe to Loaded to attach event handlers after UI is ready
             this.Loaded += SettingsWindow_Loaded;
@@ -67,8 +66,10 @@ namespace PrettyScreenSHOT.Views.Windows
                 AutoUploadCheckBox.Content = LocalizationHelper.GetString("Settings_AutoUpload");
             if (ThemeLabel != null)
                 ThemeLabel.Text = LocalizationHelper.GetString("Settings_Theme");
+            if (SubtitleText != null)
+                SubtitleText.Text = LocalizationHelper.GetString("Settings_Subtitle");
             SaveButton.Content = LocalizationHelper.GetString("Settings_Save");
-            CancelButton2.Content = LocalizationHelper.GetString("Settings_Cancel");
+            CancelButton.Content = LocalizationHelper.GetString("Settings_Cancel");
             ResetButton.Content = LocalizationHelper.GetString("Settings_Reset");
         }
 
@@ -124,26 +125,6 @@ namespace PrettyScreenSHOT.Views.Windows
             ShowNotificationsCheckBox.IsChecked = settingsManager.ShowNotifications;
             if (AutoUploadCheckBox != null)
                 AutoUploadCheckBox.IsChecked = settingsManager.AutoUpload;
-
-            // Sprint 3: Advanced Capture Options
-            if (PrivacyModeCheckBox != null)
-                PrivacyModeCheckBox.IsChecked = settingsManager.PrivacyMode;
-            if (CaptureCursorCheckBox != null)
-                CaptureCursorCheckBox.IsChecked = settingsManager.CaptureCursor;
-            if (TimedCaptureComboBox != null)
-            {
-                int delay = settingsManager.TimedCaptureDelay;
-                foreach (System.Windows.Controls.ComboBoxItem item in TimedCaptureComboBox.Items)
-                {
-                    if (item.Tag != null && int.Parse(item.Tag.ToString()!) == delay)
-                    {
-                        TimedCaptureComboBox.SelectedItem = item;
-                        break;
-                    }
-                }
-                if (TimedCaptureComboBox.SelectedItem == null)
-                    TimedCaptureComboBox.SelectedIndex = 0; // Default to Disabled
-            }
 
             // Theme
             if (ThemeComboBox != null)
@@ -243,17 +224,6 @@ namespace PrettyScreenSHOT.Views.Windows
                     settingsManager.Theme = ThemeComboBox.SelectedItem.ToString() ?? "Dark";
                 }
 
-                // Sprint 3: Advanced Capture Options
-                if (PrivacyModeCheckBox != null)
-                    settingsManager.PrivacyMode = PrivacyModeCheckBox.IsChecked ?? false;
-                if (CaptureCursorCheckBox != null)
-                    settingsManager.CaptureCursor = CaptureCursorCheckBox.IsChecked ?? false;
-                if (TimedCaptureComboBox != null && TimedCaptureComboBox.SelectedItem is System.Windows.Controls.ComboBoxItem selectedItem)
-                {
-                    if (selectedItem.Tag != null)
-                        settingsManager.TimedCaptureDelay = int.Parse(selectedItem.Tag.ToString()!);
-                }
-
                 System.Windows.MessageBox.Show(
                     LocalizationHelper.GetString("Settings_SaveSuccessMessage"),
                     LocalizationHelper.GetString("Settings_SaveSuccess"),
@@ -307,18 +277,8 @@ namespace PrettyScreenSHOT.Views.Windows
             }
         }
 
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        // Removed OnTitleBarMouseDown - ui:TitleBar handles window dragging automatically
+        // Removed OnCloseClick - ui:TitleBar has built-in close button
     }
 }
 
