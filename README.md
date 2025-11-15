@@ -46,7 +46,7 @@ Advanced screenshot capture and editing application for Windows, built with C# W
 - **Auto Save** - automatic saving
 - **Copy to Clipboard** - clipboard copying
 - **Show Notifications** - notification display
-- **Theme** - color themes (Dark/Light)
+- **Theme** - modern Fluent Design themes (Dark/Light/System)
 
 ### 🎬 Video Capture
 - **GIF Recording** - animated GIF recording (Magick.NET)
@@ -117,13 +117,21 @@ Or run the compiled `PrettyScreenSHOT.exe` from `bin/Debug/net10.0-windows/` fol
 ## 🛠️ Technologies
 
 - **.NET 10.0** - framework
-- **WPF** - user interface
+- **WPF** - user interface framework
+- **WPF UI 4.0.3** - modern Fluent Design System components
 - **WinAPI** - screen capture and keyboard hooks
 - **System.Windows.Forms** - tray icon
 - **Magick.NET** - image processing and animated GIF
 - **FFmpeg** - MP4 export (optional)
 - **AES-256** - encryption
 - **PBKDF2** - key derivation
+
+### UI Framework
+PrettyScreenSHOT uses **[WPF UI](https://github.com/lepoco/wpfui)** (version 4.0.3) for a modern, native Windows 11 experience:
+- **Fluent Design System** - follows Microsoft's design language
+- **Mica Background** - translucent window backgrounds (Windows 11)
+- **System Theme Integration** - automatically matches Windows theme
+- **Modern Controls** - rounded corners, smooth animations, accent colors
 
 ## 📁 Project Structure
 
