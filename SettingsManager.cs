@@ -144,6 +144,38 @@ namespace PrettyScreenSHOT
             }
         }
 
+        // === SPRINT 3: ADVANCED CAPTURE SETTINGS ===
+
+        public bool PrivacyMode
+        {
+            get => settings.PrivacyMode;
+            set
+            {
+                settings.PrivacyMode = value;
+                SaveSettings();
+            }
+        }
+
+        public bool CaptureCursor
+        {
+            get => settings.CaptureCursor;
+            set
+            {
+                settings.CaptureCursor = value;
+                SaveSettings();
+            }
+        }
+
+        public int TimedCaptureDelay
+        {
+            get => settings.TimedCaptureDelay;
+            set
+            {
+                settings.TimedCaptureDelay = value;
+                SaveSettings();
+            }
+        }
+
         private SettingsManager()
         {
             var appDataPath = Path.Combine(
@@ -434,7 +466,12 @@ namespace PrettyScreenSHOT
             public DateTime LastUpdateCheck { get; set; } = DateTime.MinValue;
             public string SkippedVersion { get; set; } = "";
             public bool AutoInstallUpdates { get; set; } = false;
-            
+
+            // Sprint 3: Advanced Capture
+            public bool PrivacyMode { get; set; } = false;
+            public bool CaptureCursor { get; set; } = false;
+            public int TimedCaptureDelay { get; set; } = 0; // 0 = disabled, 3/5/10 = seconds
+
             // Legacy compatibility (properties, not fields)
             // AutoUpdateEnabled i AutoUpdateCheckOnStartup są już zdefiniowane jako properties powyżej
         }

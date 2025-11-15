@@ -121,6 +121,38 @@
                                       Style="{StaticResource NeumorphicCheckBox}" Margin="0,0,0,10"/>
                         </StackPanel>
 
+                        <!-- Sprint 3: Advanced Capture Options -->
+                        <TextBlock Text="Capture Options"
+                                   Style="{StaticResource NeumorphicHeadingMedium}"
+                                   Margin="0,15,0,10"/>
+                        <StackPanel Margin="0,10,0,15">
+                            <CheckBox x:Name="PrivacyModeCheckBox" Content="Privacy Mode (No History)"
+                                      Style="{StaticResource NeumorphicCheckBox}" Margin="0,0,0,10"
+                                      ToolTip="Screenshots won't be saved to history"/>
+                            <CheckBox x:Name="CaptureCursorCheckBox" Content="Capture Cursor"
+                                      Style="{StaticResource NeumorphicCheckBox}" Margin="0,0,0,10"
+                                      ToolTip="Include mouse cursor in screenshots"/>
+
+                            <!-- Timed Capture -->
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Timed Capture Delay:"
+                                           Style="{StaticResource NeumorphicTextBlockSecondary}"
+                                           VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <ComboBox Grid.Column="1" x:Name="TimedCaptureComboBox"
+                                          Style="{StaticResource NeumorphicComboBox}"
+                                          ToolTip="Delay before capturing">
+                                    <ComboBoxItem Content="Disabled" Tag="0" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                                    <ComboBoxItem Content="3 seconds" Tag="3" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                                    <ComboBoxItem Content="5 seconds" Tag="5" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                                    <ComboBoxItem Content="10 seconds" Tag="10" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                                </ComboBox>
+                            </Grid>
+                        </StackPanel>
+
                         <!-- Theme -->
                         <Grid Margin="0,0,0,15">
                             <Grid.ColumnDefinitions>
