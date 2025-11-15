@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Wpf.Ui.Appearance;
 
 namespace PrettyScreenSHOT
 {
@@ -24,12 +25,8 @@ namespace PrettyScreenSHOT
                 cloudManager.CurrentProvider = SettingsManager.Instance.CloudProvider;
             }
 
-            // Initialize theme manager
-            var themeName = SettingsManager.Instance.Theme;
-            if (System.Enum.TryParse<Theme>(themeName, true, out var theme))
-            {
-                ThemeManager.Instance.SetTheme(theme);
-            }
+            // Initialize WPF UI Theme Manager (replaces ThemeManager)
+            InitializeWpfUiTheme();
 
             // Initialize tray icon
             trayIconManager = new TrayIconManager();
@@ -39,6 +36,37 @@ namespace PrettyScreenSHOT
             InitializeAutoUpdate();
 
             DebugHelper.LogDebug("Application started - press PRTSCN for screenshot");
+        }
+
+        private void InitializeWpfUiTheme()
+        {
+            var themeName = SettingsManager.Instance.Theme;
+
+            // Map legacy theme names to WPF UI themes
+            ApplicationTheme appTheme = themeName?.ToLower() switch
+            {
+                "light" => ApplicationTheme.Light,
+                "dark" => ApplicationTheme.Dark,
+                "neumorphic" => ApplicationTheme.Light, // Map Neumorphic to Light
+                "system" => ApplicationTheme.Unknown,    // Auto-detect system theme
+                _ => ApplicationTheme.Dark
+            };
+
+            // Apply theme globally
+            if (appTheme == ApplicationTheme.Unknown)
+            {
+                ApplicationThemeManager.ApplySystemTheme();
+            }
+            else
+            {
+                ApplicationThemeManager.Apply(
+                    appTheme,
+                    WindowBackdropType.Mica,  // Windows 11 Mica effect
+                    true  // updateAccents
+                );
+            }
+
+            DebugHelper.LogInfo("App", $"WPF UI Theme initialized: {themeName} -> {appTheme}");
         }
 
         private void InitializeAutoUpdate()

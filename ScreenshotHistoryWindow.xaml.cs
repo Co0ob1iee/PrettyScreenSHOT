@@ -17,10 +17,9 @@ namespace PrettyScreenSHOT
         public ScreenshotHistoryWindow()
         {
             InitializeComponent();
-            
-            // Zastosuj theme
-            ThemeManager.Instance.ApplyTheme(this);
-            
+
+            // WPF UI applies themes globally - no need to apply per-window
+
             // Zarejestruj skróty klawiszowe
             KeyboardShortcutsManager.Instance.RegisterWindowShortcuts(this);
             this.Closed += (s, e) => KeyboardShortcutsManager.Instance.UnregisterWindowShortcuts(this);

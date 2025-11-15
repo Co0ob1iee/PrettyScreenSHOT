@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.Json;
+using PrettyScreenSHOT.Services;
 
 namespace PrettyScreenSHOT
 {
@@ -137,10 +138,8 @@ namespace PrettyScreenSHOT
             {
                 settings.Theme = value;
                 SaveSettings();
-                if (Enum.TryParse<Theme>(value, true, out var theme))
-                {
-                    ThemeManager.Instance.SetTheme(theme);
-                }
+                // Apply theme using new ThemeService
+                ThemeService.Instance.SetTheme(value);
             }
         }
 
