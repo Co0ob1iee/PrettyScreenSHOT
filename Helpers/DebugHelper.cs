@@ -1,4 +1,4 @@
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Helpers
 {
     public static class DebugHelper
     {

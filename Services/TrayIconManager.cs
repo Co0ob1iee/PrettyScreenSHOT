@@ -1,8 +1,14 @@
 using System.Windows;
 using System.Windows.Forms;
 using System.Drawing;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Update;
+using PrettyScreenSHOT.Services.Video;
+using PrettyScreenSHOT.Views.Windows;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services
 {
     public class TrayIconManager : IDisposable
     {

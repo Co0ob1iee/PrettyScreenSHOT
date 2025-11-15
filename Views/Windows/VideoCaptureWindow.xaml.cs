@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Win32;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class VideoCaptureWindow : Window
     {

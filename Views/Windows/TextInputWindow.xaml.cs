@@ -9,7 +9,7 @@ using WindowsFontWeight = System.Windows.FontWeight;
 using WindowsFontFamily = System.Windows.Media.FontFamily;
 using WindowsBrushes = System.Windows.Media.Brushes;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class TextInputWindow : Window
     {

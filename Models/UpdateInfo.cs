@@ -1,6 +1,6 @@
 using System;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Models
 {
     /// <summary>
     /// Informacje o dostępnej aktualizacji

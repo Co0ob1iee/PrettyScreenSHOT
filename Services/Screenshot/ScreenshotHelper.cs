@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 using System.Windows;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Screenshot
 {
     public static class ScreenshotHelper
     {

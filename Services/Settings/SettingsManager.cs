@@ -2,7 +2,7 @@ using System.IO;
 using System.Text.Json;
 using PrettyScreenSHOT.Services;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Settings
 {
     public class SettingsManager
     {

@@ -1,4 +1,4 @@
-<Window x:Class="PrettyScreenSHOT.SaveScreenshotDialog"
+<Window x:Class="PrettyScreenSHOT.Views.Dialogs.SaveScreenshotDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Save Screenshot" Height="450" Width="520" WindowStartupLocation="CenterOwner"

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services
 {
     public class SearchAndFilterManager
     {

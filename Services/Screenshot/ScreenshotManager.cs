@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Screenshot
 {
     public class ScreenshotManager
     {

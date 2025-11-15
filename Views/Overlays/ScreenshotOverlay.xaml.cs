@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Runtime.InteropServices;
 using Point = System.Windows.Point;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Overlays
 {
     public partial class ScreenshotOverlay : Window
     {

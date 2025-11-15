@@ -5,7 +5,7 @@ using System.Windows.Input;
 using PrettyScreenSHOT.Services;
 using Wpf.Ui.Appearance;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class SettingsWindow : Window
     {

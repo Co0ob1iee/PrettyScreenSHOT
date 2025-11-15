@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Update
 {
     /// <summary>
     /// Klasa do sprawdzania dostępności aktualizacji z GitHub Releases

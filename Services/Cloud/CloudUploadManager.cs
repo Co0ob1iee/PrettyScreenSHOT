@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Services.Cloud
 {
     /// <summary>
     /// Manager do zarządzania uploadami do chmury

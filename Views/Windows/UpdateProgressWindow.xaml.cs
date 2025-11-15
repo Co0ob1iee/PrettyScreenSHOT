@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace PrettyScreenSHOT
+namespace PrettyScreenSHOT.Views.Windows
 {
     public partial class UpdateProgressWindow : Window
     {
