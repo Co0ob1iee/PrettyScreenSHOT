@@ -30,25 +30,25 @@ Znaleziono **wiele hardcoded tekstów**, które nie są zlokalizowane. Poniżej 
 
 4. **Linia 393**: Sukces uploadu
    ```csharp
-   MessageBox.Show(message, "Sukces", ...)
+   System.Windows.MessageBox.Show(message, "Sukces", ...)
    ```
    **Klucz:** `Editor_UploadSuccess`, `Editor_UploadSuccessMessage`
 
 5. **Linia 400**: Błąd uploadu
    ```csharp
-   MessageBox.Show($"Błąd uploadu:\n\n{errorMsg}", "Błąd", ...)
+   System.Windows.MessageBox.Show($"Błąd uploadu:\n\n{errorMsg}", "Błąd", ...)
    ```
    **Klucz:** `Editor_UploadError`, `Editor_UploadErrorMessage`
 
 6. **Linia 407**: Ogólny błąd
    ```csharp
-   MessageBox.Show($"Błąd: {ex.Message}", "Błąd", ...)
+   System.Windows.MessageBox.Show($"Błąd: {ex.Message}", "Błąd", ...)
    ```
    **Klucz:** `Editor_Error` (już istnieje), `Editor_ErrorWithMessage`
 
 7. **Linia 460**: Potwierdzenie wyczyszczenia
    ```csharp
-   MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", ...)
+   System.Windows.MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", ...)
    ```
    **Klucz:** `Editor_ClearConfirm` (już istnieje), `Editor_Confirm` (już istnieje)
 
@@ -76,25 +76,25 @@ Znaleziono **wiele hardcoded tekstów**, które nie są zlokalizowane. Poniżej 
 
 3. **Linia 115**: Sukces uploadu
    ```csharp
-   MessageBox.Show($"Upload successful!\n\nURL: {result.Url}\n\nURL copied to clipboard.", "Success", ...)
+   System.Windows.MessageBox.Show($"Upload successful!\n\nURL: {result.Url}\n\nURL copied to clipboard.", "Success", ...)
    ```
    **Klucz:** `History_UploadSuccess`, `History_UploadSuccessMessage`, `History_Success`
 
 4. **Linia 120**: Błąd uploadu
    ```csharp
-   MessageBox.Show($"Upload failed:\n\n{result.ErrorMessage}", "Error", ...)
+   System.Windows.MessageBox.Show($"Upload failed:\n\n{result.ErrorMessage}", "Error", ...)
    ```
    **Klucz:** `History_UploadError`, `History_UploadErrorMessage`, `History_Error`
 
 5. **Linia 126**: Ogólny błąd
    ```csharp
-   MessageBox.Show($"Error: {ex.Message}", "Error", ...)
+   System.Windows.MessageBox.Show($"Error: {ex.Message}", "Error", ...)
    ```
    **Klucz:** `History_Error`, `History_ErrorWithMessage`
 
 6. **Linia 136**: URL skopiowany
    ```csharp
-   MessageBox.Show($"URL copied to clipboard:\n\n{item.CloudUrl}", "Cloud URL", ...)
+   System.Windows.MessageBox.Show($"URL copied to clipboard:\n\n{item.CloudUrl}", "Cloud URL", ...)
    ```
    **Klucz:** `History_UrlCopied`, `History_CloudUrlTitle`
 
@@ -104,19 +104,19 @@ Znaleziono **wiele hardcoded tekstów**, które nie są zlokalizowane. Poniżej 
 
 1. **Linia 155**: Nieprawidłowa ścieżka
    ```csharp
-   MessageBox.Show("Invalid save path!", "Error", ...)
+   System.Windows.MessageBox.Show("Invalid save path!", "Error", ...)
    ```
    **Klucz:** `Settings_InvalidPath`, `Settings_Error`
 
 2. **Linia 184**: Ustawienia zapisane
    ```csharp
-   MessageBox.Show("Settings saved successfully!", "Success", ...)
+   System.Windows.MessageBox.Show("Settings saved successfully!", "Success", ...)
    ```
    **Klucz:** `Settings_SaveSuccess`, `Settings_Success`
 
 3. **Linia 190**: Błąd zapisu
    ```csharp
-   MessageBox.Show($"Error saving settings: {ex.Message}", "Error", ...)
+   System.Windows.MessageBox.Show($"Error saving settings: {ex.Message}", "Error", ...)
    ```
    **Klucz:** `Settings_SaveError`, `Settings_ErrorWithMessage`
 

@@ -48,23 +48,23 @@
                 <TextBlock Text="NARZEDZIA:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="12" FontWeight="Bold" Foreground="#AAAAAA"/>
                 
                 <Button Tag="marker" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Marker - Rysuj">
-                    <TextBlock Text="MARKER" FontSize="10"/>
+                    <Image Source="/Assets/Icons/Tools/marker.png" Stretch="Uniform" Width="24" Height="24"/>
                 </Button>
-                
-                <Button Tag="rectangle" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Prostokat">
-                    <TextBlock Text="RECT" FontSize="10"/>
+
+                <Button Tag="rectangle" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Prostokąt">
+                    <Image Source="/Assets/Icons/Tools/zaznaczenie_prostokat.png" Stretch="Uniform" Width="24" Height="24"/>
                 </Button>
-                
-                <Button Tag="arrow" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Strzalka">
-                    <TextBlock Text="ARROW" FontSize="10"/>
+
+                <Button Tag="arrow" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Strzałka">
+                    <Image Source="/Assets/Icons/Tools/icon_arrow.png" Stretch="Uniform" Width="24" Height="24"/>
                 </Button>
-                
+
                 <Button Tag="blur" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Blur - Zamazywanie">
-                    <TextBlock Text="BLUR" FontSize="10"/>
+                    <Image Source="/Assets/Icons/Tools/icon_blur.png" Stretch="Uniform" Width="24" Height="24"/>
                 </Button>
-                
-                <Button Tag="text" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Text">
-                    <TextBlock Text="TEXT" FontSize="10"/>
+
+                <Button Tag="text" Click="OnToolButtonClick" Style="{StaticResource ToolButton}" ToolTip="Tekst">
+                    <Image Source="/Assets/Icons/Tools/icon_text.png" Stretch="Uniform" Width="24" Height="24"/>
                 </Button>
                 
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="10,0" Background="#404040"/>
@@ -85,24 +85,24 @@
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="10,0" Background="#404040"/>
                 
                 <!-- Action Buttons -->
-                <Button Click="OnClearClick" Background="#FF9800" Foreground="White" Padding="12,8" Margin="5" ToolTip="Wyczysc wszystko">
-                    <TextBlock Text="CLEAR" FontSize="11" FontWeight="Bold"/>
+                <Button Click="OnClearClick" Background="#FF9800" Foreground="White" Padding="12,8" Margin="5" ToolTip="Wyczyść wszystko">
+                    <TextBlock Text="WYCZYŚĆ" FontSize="11" FontWeight="Bold"/>
                 </Button>
-                
-                <Button Click="OnUndoClick" Background="#2196F3" Foreground="White" Padding="12,8" Margin="5" ToolTip="Cofnij ostatnia akcje">
-                    <TextBlock Text="UNDO" FontSize="11" FontWeight="Bold"/>
+
+                <Button Click="OnUndoClick" Background="#2196F3" Foreground="White" Padding="12,8" Margin="5" ToolTip="Cofnij ostatnią akcję">
+                    <TextBlock Text="COFNIJ" FontSize="11" FontWeight="Bold"/>
                 </Button>
                 
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="10,0" Background="#404040"/>
                 
-                <Button Click="OnUploadClick" Background="#9C27B0" Foreground="White" Padding="15,8" Margin="5" ToolTip="Upload do chmury">
-                    <TextBlock Text="UPLOAD" FontSize="12" FontWeight="Bold"/>
+                <Button Click="OnUploadClick" Background="#9C27B0" Foreground="White" Padding="15,8" Margin="5" ToolTip="Prześlij do chmury">
+                    <TextBlock Text="CHMURA" FontSize="12" FontWeight="Bold"/>
                 </Button>
-                
+
                 <Button Click="OnSaveClick" Background="#4CAF50" Foreground="White" Padding="15,8" Margin="5" ToolTip="Zapisz screenshot">
                     <TextBlock Text="ZAPISZ" FontSize="12" FontWeight="Bold"/>
                 </Button>
-                
+
                 <Button Click="OnCancelClick" Background="#F44336" Foreground="White" Padding="15,8" Margin="5" ToolTip="Anuluj bez zapisu">
                     <TextBlock Text="ANULUJ" FontSize="12" FontWeight="Bold"/>
                 </Button>

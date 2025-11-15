@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" x:Name="LanguageLabel" Text="Language:" FontWeight="Bold"/>
-                    <ComboBox Grid.Column="1" x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged"/>
+                    <ComboBox Grid.Column="1" x:Name="LanguageComboBox" />
                 </Grid>
                 
                 <!-- Save Path -->
@@ -97,7 +97,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" x:Name="ImageQualityLabel" Text="Image Quality:" FontWeight="Bold"/>
                     <Slider Grid.Column="1" x:Name="QualitySlider" Minimum="10" Maximum="100" Value="90" 
-                            Margin="0,0,10,0" VerticalAlignment="Center" ValueChanged="QualitySlider_ValueChanged"/>
+                            Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="2" x:Name="QualityLabel" Text="90%" MinWidth="50"/>
                 </Grid>
                 
@@ -116,7 +116,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" x:Name="ThemeLabel" Text="Theme:" FontWeight="Bold"/>
-                    <ComboBox Grid.Column="1" x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged"/>
+                    <ComboBox Grid.Column="1" x:Name="ThemeComboBox" />
                 </Grid>
             </StackPanel>
         </ScrollViewer>

@@ -1,5 +1,5 @@
 ﻿PrettyScreenSHOT
-1.0.0.0
+0.0.1
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 c:\Users\clobi\source\repos\PrettyScreenSHOT\PrettyScreenSHOT\App.xaml
-7-2097188042
+10-936925803
 
-31719660552
-207-571209878
-SaveScreenshotDialog.xaml;ScreenshotEditorWindow.xaml;ScreenshotHistoryWindow.xaml;ScreenshotOverlay.xaml;SettingsWindow.xaml;TextInputWindow.xaml;VideoCaptureWindow.xaml;
+391468491790
+2161450516949
+SaveScreenshotDialog.xaml;ScreenshotEditorWindow.xaml;ScreenshotHistoryWindow.xaml;ScreenshotOverlay.xaml;SettingsWindow.xaml;TextInputWindow.xaml;UpdateNotificationWindow.xaml;UpdateProgressWindow.xaml;UpdateWindow.xaml;VideoCaptureWindow.xaml;
 
 True
 

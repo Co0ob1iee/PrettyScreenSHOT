@@ -4,24 +4,30 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Point = System.Windows.Point;
+using Color = System.Windows.Media.Color;
+using Pen = System.Windows.Media.Pen;
+using Forms = System.Windows.Forms; // alias to avoid ambiguity with System.Windows
+using WindowsFontStyle = System.Windows.FontStyle;
+using WindowsFontWeight = System.Windows.FontWeight;
+using WindowsFontFamily = System.Windows.Media.FontFamily;
 
 namespace PrettyScreenSHOT
 {
     public partial class ScreenshotEditorWindow : Window, IDisposable
     {
-        private BitmapSource originalBitmap;
-        private DrawingVisual drawingVisual;
+        private BitmapSource? originalBitmap;
+        private DrawingVisual? drawingVisual;
         private EditTool currentTool = EditTool.None;
         private Point startPoint;
         private Point currentPoint;
         private bool isDrawing = false;
         private Color currentColor = Colors.Red;
         private List<DrawingAction> drawingHistory = new();
-        private string textInput = "";
-        private int textFontSize = 24;
         private RenderTargetBitmap? currentCanvasBitmap;
         private ImageBrush? currentCanvasBrush;
         private bool disposed = false;
+        private System.Windows.Controls.Button? activeToolButton = null;
 
         public enum EditTool
         {
@@ -41,6 +47,11 @@ namespace PrettyScreenSHOT
             public Color Color { get; set; }
             public double Size { get; set; }
             public string? TextContent { get; set; }
+
+            // Dodatkowe właściwości formatowania tekstu
+            public WindowsFontWeight FontWeight { get; set; } = FontWeights.Normal;
+            public WindowsFontStyle FontStyle { get; set; } = FontStyles.Normal;
+            public TextDecorationCollection TextDecorations { get; set; } = new TextDecorationCollection();
         }
 
         public ScreenshotEditorWindow(BitmapSource bitmap)
@@ -79,6 +90,7 @@ namespace PrettyScreenSHOT
         private void SetupEditor()
         {
             DebugHelper.LogInfo("Editor", "Setting up canvas");
+            if (originalBitmap == null) return;
             EditorCanvas.Width = originalBitmap.PixelWidth;
             EditorCanvas.Height = originalBitmap.PixelHeight;
             RedrawCanvas();
@@ -86,11 +98,12 @@ namespace PrettyScreenSHOT
 
         private void RedrawCanvas()
         {
+            if (drawingVisual == null || originalBitmap == null) return;
             var drawingContext = drawingVisual.RenderOpen();
             var brush = new ImageBrush(originalBitmap);
             drawingContext.DrawRectangle(brush, null, new Rect(0, 0, originalBitmap.PixelWidth, originalBitmap.PixelHeight));
             
-            // Narysuj wszystkie wcze�niejsze akcje
+            // Narysuj wszystkie wcześniejsze akcje
             foreach (var action in drawingHistory)
             {
                 DrawAction(drawingContext, action);
@@ -98,6 +111,7 @@ namespace PrettyScreenSHOT
             
             drawingContext.Close();
 
+            if (originalBitmap == null || drawingVisual == null) return;
             var renderTargetBitmap = new RenderTargetBitmap(
                 originalBitmap.PixelWidth,
                 originalBitmap.PixelHeight,
@@ -127,13 +141,22 @@ namespace PrettyScreenSHOT
                     drawingContext.DrawRectangle(null, pen, rect);
                     break;
                 case EditTool.Blur:
-                    DrawBlur(drawingContext, rect, action.Size);
+                    if (rect.Width > 0 && rect.Height > 0)
+                    {
+                        DrawBlur(drawingContext, rect, action.Size);
+                    }
+                    else
+                    {
+                        // Dla bardzo małych obszarów, narysuj prostokąt
+                        drawingContext.DrawRectangle(null, pen, rect);
+                    }
                     break;
                 case EditTool.Arrow:
                     DrawArrow(drawingContext, action.Start, action.End, pen);
                     break;
                 case EditTool.Text:
-                    DrawText(drawingContext, action.Start, action.TextContent ?? "", action.Color, action.Size);
+                    DrawTextInRect(drawingContext, new Rect(action.Start, action.End), action.TextContent ?? "",
+                                 action.Color, action.Size, action.FontWeight, action.FontStyle, action.TextDecorations);
                     break;
             }
         }
@@ -141,10 +164,17 @@ namespace PrettyScreenSHOT
         private void DrawBlur(DrawingContext drawingContext, Rect rect, double blurStrength)
         {
             // Prawdziwy blur - rozmycie rzeczywistych pikseli ze screenshotu
-            // Dzi�ki temu ukrywamy dane ale pozostaje widoczna og�lna struktura
-            
+            // Dzięki temu ukrywamy dane ale pozostaje widoczna ogólna struktura
+
+            // Sprawdź czy prostokąt ma prawidłowe wymiary
+            if (rect.Width <= 0 || rect.Height <= 0)
+            {
+                DebugHelper.LogInfo("DrawBlur", $"Invalid rect dimensions: Width={rect.Width}, Height={rect.Height}");
+                return;
+            }
+
             int blurRadius = (int)Math.Max(2, blurStrength);
-            
+
             // Renderuj oryginalny obraz w czasowy bitmap
             var tempBitmap = new RenderTargetBitmap(
                 (int)rect.Width,
@@ -208,8 +238,9 @@ namespace PrettyScreenSHOT
                             int sy = Math.Clamp(y + ky, 0, height - 1);
                             
                             int pixelIndex = (sy * width + sx) * 4;
-                            double kernelValue = kernel[Math.Abs(kx) * kernel.Length / (radius + 1)] *
-                                               kernel[Math.Abs(ky) * kernel.Length / (radius + 1)];
+                            double kernelValueX = kernel[kx + radius];
+                            double kernelValueY = kernel[ky + radius];
+                            double kernelValue = kernelValueX * kernelValueY;
 							
                             b += pixels[pixelIndex] * kernelValue;
                             g += pixels[pixelIndex + 1] * kernelValue;
@@ -264,13 +295,60 @@ namespace PrettyScreenSHOT
             var formattedText = new FormattedText(
                 text,
                 System.Globalization.CultureInfo.CurrentCulture,
-                FlowDirection.LeftToRight,
+                System.Windows.FlowDirection.LeftToRight,
                 typeface,
                 fontSize,
                 new SolidColorBrush(color),
                 1.0);
 
             drawingContext.DrawText(formattedText, position);
+        }
+
+        private void DrawTextInRect(DrawingContext drawingContext, Rect textRect, string text, Color color, double fontSize,
+                                   WindowsFontWeight fontWeight = default, WindowsFontStyle fontStyle = default,
+                                   TextDecorationCollection textDecorations = null)
+        {
+            if (string.IsNullOrEmpty(text) || textRect.Width <= 0 || textRect.Height <= 0) return;
+
+            // Użyj domyślnych wartości jeśli nie zostały przekazane
+            fontWeight = fontWeight == FontWeights.Normal ? FontWeights.Normal : fontWeight;
+            fontStyle = fontStyle == FontStyles.Normal ? FontStyles.Normal : fontStyle;
+            textDecorations = textDecorations ?? new TextDecorationCollection();
+
+            var typeface = new Typeface(new WindowsFontFamily("Arial"), fontStyle, fontWeight, FontStretches.Normal);
+
+            // Dostosuj rozmiar czcionki do prostokąta jeśli jest za duża
+            var adjustedFontSize = Math.Min(fontSize, textRect.Height * 0.9);
+
+            var formattedText = new FormattedText(
+                text,
+                System.Globalization.CultureInfo.CurrentCulture,
+                System.Windows.FlowDirection.LeftToRight,
+                typeface,
+                adjustedFontSize,
+                new SolidColorBrush(color),
+                1.0);
+
+            // Dodaj dekoracje tekstu
+            formattedText.SetTextDecorations(textDecorations);
+
+            // Wyśrodkuj tekst w prostokącie
+            var textWidth = formattedText.Width;
+            var textHeight = formattedText.Height;
+
+            // Jeśli tekst jest za szeroki, zmniejsz czcionkę proporcjonalnie
+            if (textWidth > textRect.Width)
+            {
+                adjustedFontSize = adjustedFontSize * (textRect.Width / textWidth);
+                formattedText.SetFontSize(adjustedFontSize);
+                textWidth = formattedText.Width;
+                textHeight = formattedText.Height;
+            }
+
+            var textX = textRect.X + (textRect.Width - textWidth) / 2;
+            var textY = textRect.Y + (textRect.Height - textHeight) / 2;
+
+            drawingContext.DrawText(formattedText, new Point(textX, textY));
         }
 
         private void DrawArrow(DrawingContext drawingContext, Point start, Point end, Pen pen)
@@ -295,7 +373,7 @@ namespace PrettyScreenSHOT
 
         private void OnToolButtonClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn)
+            if (sender is System.Windows.Controls.Button btn)
             {
                 var newTool = btn.Tag switch
                 {
@@ -307,41 +385,51 @@ namespace PrettyScreenSHOT
                     _ => EditTool.None
                 };
 
-                // Je�li to TEXT, otw�rz dialog
+                // Jeśli to TEXT, przygotuj do zaznaczania obszaru
                 if (newTool == EditTool.Text)
                 {
-                    var inputWindow = new TextInputWindow();
-                    if (inputWindow.ShowDialog() == true)
-                    {
-                        textInput = inputWindow.InputText;
-                        textFontSize = inputWindow.FontSize;
-                        currentTool = newTool;
-                        DebugHelper.LogDebug($"Tekst: {textInput}, Rozmiar: {textFontSize}");
-                    }
+                    DebugHelper.LogDebug("Narzędzie Text wybrane - zaznacz obszar na screenshot");
+                    currentTool = newTool;
+                    UpdateActiveToolButton(btn);
+                    DebugHelper.LogDebug("Zaznacz prostokąt dla tekstu na screenshot");
                 }
                 else
                 {
                     currentTool = newTool;
-                    DebugHelper.LogDebug($"Narzedzie: {currentTool}");
+                    UpdateActiveToolButton(btn);
+                    DebugHelper.LogDebug($"Narzędzie: {currentTool}");
                 }
-                
-                // Highlight active button
-                if (sender is Button button)
-                {
-                    button.BorderThickness = new Thickness(2);
-                    button.BorderBrush = new SolidColorBrush(Colors.Yellow);
-                }
+            }
+        }
+
+        private void UpdateActiveToolButton(System.Windows.Controls.Button? newActiveButton)
+        {
+            // Resetuj poprzedni aktywny przycisk
+            if (activeToolButton != null)
+            {
+                activeToolButton.BorderThickness = new Thickness(0);
+                activeToolButton.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                activeToolButton.Background = new SolidColorBrush(Color.FromRgb(0x3F, 0x3F, 0x3F));
+            }
+
+            // Ustaw nowy aktywny przycisk
+            activeToolButton = newActiveButton;
+            if (activeToolButton != null)
+            {
+                activeToolButton.BorderThickness = new Thickness(2);
+                activeToolButton.BorderBrush = new SolidColorBrush(Colors.Yellow);
+                activeToolButton.Background = new SolidColorBrush(Color.FromRgb(0x5F, 0x5F, 0x5F));
             }
         }
 
         private void OnColorPickerClick(object sender, RoutedEventArgs e)
         {
-            var colorDialog = new System.Windows.Forms.ColorDialog();
+            var colorDialog = new Forms.ColorDialog();
             colorDialog.Color = System.Drawing.Color.FromArgb(currentColor.R, currentColor.G, currentColor.B);
-            
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+            if (colorDialog.ShowDialog() == Forms.DialogResult.OK)
             {
-                currentColor = Color.FromArgb(colorDialog.Color.A, colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
+                currentColor = System.Windows.Media.Color.FromArgb(colorDialog.Color.A, colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
                 ColorButton.Background = new SolidColorBrush(currentColor);
                 DebugHelper.LogDebug($"Kolor zmieniony: RGB({currentColor.R},{currentColor.G},{currentColor.B})");
             }
@@ -357,7 +445,7 @@ namespace PrettyScreenSHOT
                 var provider = SettingsManager.Instance.CloudProvider;
                 if (string.IsNullOrWhiteSpace(provider))
                 {
-                    MessageBox.Show(
+                    System.Windows.MessageBox.Show(
                         LocalizationHelper.GetString("Editor_CloudNotConfigured"),
                         LocalizationHelper.GetString("Editor_CloudNotConfiguredTitle"),
                         MessageBoxButton.OK,
@@ -366,6 +454,7 @@ namespace PrettyScreenSHOT
                 }
 
                 // Renderuj obraz z edycjami
+                if (originalBitmap == null || drawingVisual == null) return;
                 var renderTargetBitmap = new RenderTargetBitmap(
                     originalBitmap.PixelWidth,
                     originalBitmap.PixelHeight,
@@ -376,7 +465,7 @@ namespace PrettyScreenSHOT
                 DebugHelper.LogInfo("Editor", $"Screenshot rendered for upload: {renderTargetBitmap.PixelWidth}x{renderTargetBitmap.PixelHeight}px");
 
                 // Wyłącz przycisk podczas uploadu
-                if (sender is Button btn)
+                if (sender is System.Windows.Controls.Button btn)
                 {
                     btn.IsEnabled = false;
                     btn.Content = new TextBlock { Text = LocalizationHelper.GetString("Editor_Uploading"), FontSize = 12, FontWeight = FontWeights.Bold };
@@ -386,7 +475,7 @@ namespace PrettyScreenSHOT
                 var result = await CloudUploadManager.Instance.UploadScreenshotAsync(renderTargetBitmap, filename);
 
                 // Przywróć przycisk
-                if (sender is Button button)
+                if (sender is System.Windows.Controls.Button button)
                 {
                     button.IsEnabled = true;
                     button.Content = new TextBlock { Text = LocalizationHelper.GetString("Editor_Upload"), FontSize = 12, FontWeight = FontWeights.Bold };
@@ -395,10 +484,10 @@ namespace PrettyScreenSHOT
                 if (result.Success && !string.IsNullOrEmpty(result.Url))
                 {
                     // Skopiuj URL do schowka
-                    Clipboard.SetText(result.Url);
+                    System.Windows.Clipboard.SetText(result.Url);
                     
                     var message = string.Format(LocalizationHelper.GetString("Editor_UploadSuccessMessage"), "\n", result.Url);
-                    MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadSuccess"), MessageBoxButton.OK, MessageBoxImage.Information);
+                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadSuccess"), MessageBoxButton.OK, MessageBoxImage.Information);
                     
                     DebugHelper.LogInfo("Editor", $"Upload successful: {result.Url}");
                 }
@@ -406,7 +495,7 @@ namespace PrettyScreenSHOT
                 {
                     var errorMsg = result.ErrorMessage ?? LocalizationHelper.GetString("Editor_Error");
                     var message = string.Format(LocalizationHelper.GetString("Editor_UploadErrorMessage"), "\n", errorMsg);
-                    MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     DebugHelper.LogError("Editor", $"Upload failed: {errorMsg}");
                 }
             }
@@ -414,7 +503,7 @@ namespace PrettyScreenSHOT
             {
                 DebugHelper.LogError("Editor", "Error during upload", ex);
                 var message = string.Format(LocalizationHelper.GetString("Editor_ErrorWithMessage"), ex.Message);
-                MessageBox.Show(message, LocalizationHelper.GetString("Editor_Error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_Error"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -423,6 +512,7 @@ namespace PrettyScreenSHOT
             DebugHelper.LogInfo("Editor", "Save button clicked");
             try
             {
+                if (originalBitmap == null || drawingVisual == null) return;
                 var renderTargetBitmap = new RenderTargetBitmap(
                     originalBitmap.PixelWidth,
                     originalBitmap.PixelHeight,
@@ -456,7 +546,7 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("Editor", "Error saving screenshot", ex);
-                DebugHelper.ShowMessage("B��d", $"B��d: {ex.Message}");
+                DebugHelper.ShowMessage("Błąd", $"Błąd: {ex.Message}");
             }
         }
 
@@ -467,7 +557,7 @@ namespace PrettyScreenSHOT
 
         private void OnClearClick(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Czy na pewno chcesz wyczy�ci� wszystkie zmiany?", "Potwierdzenie", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (System.Windows.MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ClearAll();
             }
@@ -487,11 +577,99 @@ namespace PrettyScreenSHOT
             EditorCanvas.CaptureMouse();
         }
 
-        private void OnEditorCanvasMouseMove(object sender, MouseEventArgs e)
+        private void OnEditorCanvasMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (!isDrawing || currentTool == EditTool.None) return;
-            
+
             currentPoint = e.GetPosition(EditorCanvas);
+
+            // Dodaj wizualny feedback podczas rysowania
+            RedrawCanvasWithPreview();
+        }
+
+        private void RedrawCanvasWithPreview()
+        {
+            if (drawingVisual == null || originalBitmap == null) return;
+
+            var drawingContext = drawingVisual.RenderOpen();
+            var brush = new ImageBrush(originalBitmap);
+            drawingContext.DrawRectangle(brush, null, new Rect(0, 0, originalBitmap.PixelWidth, originalBitmap.PixelHeight));
+
+            // Narysuj wszystkie wcześniejsze akcje
+            foreach (var action in drawingHistory)
+            {
+                DrawAction(drawingContext, action);
+            }
+
+            // Narysuj podgląd aktualnej akcji
+            if (isDrawing && currentTool != EditTool.None && startPoint != currentPoint)
+            {
+                DrawPreviewAction(drawingContext);
+            }
+
+            drawingContext.Close();
+
+            var renderTargetBitmap = new RenderTargetBitmap(
+                originalBitmap.PixelWidth,
+                originalBitmap.PixelHeight,
+                96, 96,
+                PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(drawingVisual);
+
+            EditorCanvas.Background = new ImageBrush(renderTargetBitmap);
+        }
+
+        private void DrawPreviewAction(DrawingContext drawingContext)
+        {
+            var pen = new Pen(new SolidColorBrush(currentColor), SizeSlider.Value)
+            {
+                StartLineCap = PenLineCap.Round,
+                EndLineCap = PenLineCap.Round,
+                LineJoin = PenLineJoin.Round
+            };
+
+            var rect = new Rect(startPoint, currentPoint);
+
+            switch (currentTool)
+            {
+                case EditTool.Marker:
+                    drawingContext.DrawLine(pen, startPoint, currentPoint);
+                    break;
+                case EditTool.Rectangle:
+                    drawingContext.DrawRectangle(null, pen, rect);
+                    break;
+                case EditTool.Blur:
+                    // Sprawdź czy prostokąt ma prawidłowe wymiary przed wywołaniem DrawBlur
+                    if (rect.Width > 0 && rect.Height > 0)
+                    {
+                        DrawBlur(drawingContext, rect, SizeSlider.Value);
+                    }
+                    else
+                    {
+                        // Dla bardzo małych obszarów, narysuj prostokąt jako wskazówkę
+                        drawingContext.DrawRectangle(null, pen, rect);
+                    }
+                    break;
+                case EditTool.Arrow:
+                    DrawArrow(drawingContext, startPoint, currentPoint, pen);
+                    break;
+                case EditTool.Text:
+                    // Dla tekstu pokaż zaznaczony prostokąt
+                    drawingContext.DrawRectangle(new SolidColorBrush(Color.FromArgb(64, currentColor.R, currentColor.G, currentColor.B)), new Pen(new SolidColorBrush(currentColor), 1), rect);
+                    // Dodaj wskazówkę tekstową
+                    var centerX = (startPoint.X + currentPoint.X) / 2;
+                    var centerY = (startPoint.Y + currentPoint.Y) / 2;
+                    var hintText = new FormattedText(
+                        "TEXT",
+                        System.Globalization.CultureInfo.CurrentCulture,
+                        System.Windows.FlowDirection.LeftToRight,
+                        new Typeface("Arial"),
+                        12,
+                        new SolidColorBrush(currentColor),
+                        1.0);
+                    drawingContext.DrawText(hintText, new Point(centerX - 15, centerY - 8));
+                    break;
+            }
         }
 
         private void OnEditorCanvasMouseUp(object sender, MouseButtonEventArgs e)
@@ -504,18 +682,84 @@ namespace PrettyScreenSHOT
             
             if (currentTool != EditTool.None && (startPoint != endPoint || currentTool == EditTool.Text))
             {
+                // Dla narzędzi rysujących obszary (jak Blur), sprawdź czy obszar ma prawidłowe wymiary
+                if (currentTool == EditTool.Blur)
+                {
+                    var rect = new Rect(startPoint, endPoint);
+                    if (rect.Width <= 0 || rect.Height <= 0)
+                    {
+                        DebugHelper.LogInfo("Editor", "Blur action skipped - invalid dimensions");
+                        return;
+                    }
+                }
+
+                // Dla TEXT - najpierw zaznacz obszar, potem otwórz dialog
+                if (currentTool == EditTool.Text)
+                {
+                    var textRect = new Rect(startPoint, endPoint);
+                    if (textRect.Width > 10 && textRect.Height > 10) // Minimalny rozmiar dla tekstu
+                    {
+                        DebugHelper.LogDebug("Otwieram okno wprowadzania tekstu po zaznaczeniu obszaru");
+                        var inputWindow = new TextInputWindow();
+
+                        // Automatycznie dostosuj rozmiar czcionki do wielkości prostokąta
+                        var suggestedFontSize = Math.Max(12, Math.Min(72, (int)(textRect.Height * 0.8)));
+                        inputWindow.SetSuggestedFontSize(suggestedFontSize);
+
+                        var result = inputWindow.ShowDialog();
+                        DebugHelper.LogDebug($"TextInputWindow.ShowDialog() zwrócił: {result}");
+
+                        if (result == true)
+                        {
+                            var userText = inputWindow.InputText;
+                            var userFontSize = inputWindow.FontSize;
+                            DebugHelper.LogDebug($"Tekst wprowadzony: '{userText}', Rozmiar: {userFontSize}");
+
+                            // Teraz dodaj akcję do historii z wprowadzonym tekstem
+                            drawingHistory.Add(new DrawingAction
+                            {
+                                Tool = currentTool,
+                                Start = startPoint,
+                                End = endPoint,
+                                Color = inputWindow.TextColor,
+                                Size = userFontSize,
+                                TextContent = userText,
+                                FontWeight = inputWindow.FontWeight,
+                                FontStyle = inputWindow.FontStyle,
+                                TextDecorations = inputWindow.TextDecorations
+                            });
+
+                            RedrawCanvas();
+                        }
+
+                        // Reset narzędzia po zakończeniu
+                        currentTool = EditTool.None;
+                        UpdateActiveToolButton(null);
+                    }
+                    else
+                    {
+                        DebugHelper.LogDebug("Zaznaczony obszar dla tekstu jest za mały");
+                    }
+                    return;
+                }
+
                 drawingHistory.Add(new DrawingAction
                 {
                     Tool = currentTool,
                     Start = startPoint,
                     End = endPoint,
                     Color = currentColor,
-                    Size = currentTool == EditTool.Text ? textFontSize : SizeSlider.Value,
-                    TextContent = currentTool == EditTool.Text ? textInput : null
+                    Size = SizeSlider.Value,
+                    TextContent = null
                 });
-                
+
                 RedrawCanvas();
-                currentTool = EditTool.None; // Reset po tek�cie
+
+                // Reset tylko dla narzędzi jednorazowych
+                if (currentTool == EditTool.Text)
+                {
+                    currentTool = EditTool.None;
+                }
             }
         }
 
@@ -533,7 +777,7 @@ namespace PrettyScreenSHOT
             {
                 drawingHistory.RemoveAt(drawingHistory.Count - 1);
                 RedrawCanvas();
-                DebugHelper.LogDebug("Undo - ostatnia akcja usuni�ta");
+                DebugHelper.LogDebug("Undo - ostatnia akcja usunięta");
             }
         }
 
@@ -541,7 +785,7 @@ namespace PrettyScreenSHOT
         {
             drawingHistory.Clear();
             RedrawCanvas();
-            DebugHelper.LogDebug("Wszystkie zmiany usuni�te");
+                DebugHelper.LogDebug("Wszystkie zmiany usunięte");
         }
 
         public void SaveScreenshot()

@@ -77,7 +77,7 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("VideoCapture", "Error starting recording", ex);
-                MessageBox.Show($"Error starting recording: {ex.Message}", "Error", 
+                System.Windows.MessageBox.Show($"Error starting recording: {ex.Message}", "Error", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -129,7 +129,7 @@ namespace PrettyScreenSHOT
                     StatusText.Foreground = new System.Windows.Media.SolidColorBrush(
                         System.Windows.Media.Color.FromRgb(76, 175, 80)); // Green
 
-                    MessageBox.Show($"Video saved to:\n{outputPath}", "Success", 
+                    System.Windows.MessageBox.Show($"Video saved to:\n{outputPath}", "Success", 
                         MessageBoxButton.OK, MessageBoxImage.Information);
 
                     // Reset UI
@@ -148,7 +148,7 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("VideoCapture", "Error stopping recording", ex);
-                MessageBox.Show($"Error saving video: {ex.Message}", "Error", 
+                System.Windows.MessageBox.Show($"Error saving video: {ex.Message}", "Error", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -157,7 +157,7 @@ namespace PrettyScreenSHOT
         {
             if (videoManager != null && videoManager.IsRecording)
             {
-                var result = MessageBox.Show(
+                var result = System.Windows.MessageBox.Show(
                     "Recording is in progress. Do you want to stop and discard?", 
                     "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
 

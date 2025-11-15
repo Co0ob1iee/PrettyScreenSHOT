@@ -111,7 +111,7 @@ namespace PrettyScreenSHOT
 
         private async void OnUploadClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.DataContext is ScreenshotItem item)
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
             {
                 try
                 {
@@ -134,41 +134,41 @@ namespace PrettyScreenSHOT
                     {
                         item.CloudUrl = result.Url;
                         item.CloudProvider = result.ProviderName;
-                        Clipboard.SetText(result.Url);
+                        System.Windows.Clipboard.SetText(result.Url);
                         var message = string.Format(LocalizationHelper.GetString("History_UploadSuccessMessage"), "\n", result.Url);
-                        MessageBox.Show(message, 
+                        System.Windows.MessageBox.Show(message, 
                             LocalizationHelper.GetString("History_UploadSuccess"), MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
                         var errorMsg = result.ErrorMessage ?? LocalizationHelper.GetString("History_Error");
                         var message = string.Format(LocalizationHelper.GetString("History_UploadErrorMessage"), "\n", errorMsg);
-                        MessageBox.Show(message, 
+                        System.Windows.MessageBox.Show(message, 
                             LocalizationHelper.GetString("History_UploadError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 catch (Exception ex)
                 {
                     var message = string.Format(LocalizationHelper.GetString("History_ErrorWithMessage"), ex.Message);
-                    MessageBox.Show(message, LocalizationHelper.GetString("History_Error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("History_Error"), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
         private void OnCloudUrlClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.DataContext is ScreenshotItem item && !string.IsNullOrEmpty(item.CloudUrl))
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item && !string.IsNullOrEmpty(item.CloudUrl))
             {
-                Clipboard.SetText(item.CloudUrl);
+                System.Windows.Clipboard.SetText(item.CloudUrl);
                 var message = string.Format(LocalizationHelper.GetString("History_UrlCopied"), "\n", item.CloudUrl);
-                MessageBox.Show(message, 
+                System.Windows.MessageBox.Show(message, 
                     LocalizationHelper.GetString("History_CloudUrlTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void OnDeleteClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.DataContext is ScreenshotItem item)
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
             {
                 ScreenshotManager.Instance.DeleteScreenshot(item);
             }

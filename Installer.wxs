@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" 
+           Name="PrettyScreenSHOT" 
+           Language="1033" 
+           Version="1.0.0.0" 
+           Manufacturer="Your Company" 
+           UpgradeCode="PUT-GUID-HERE">
+    
+    <Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine" 
+             Description="Advanced screenshot capture and editing tool" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    
+    <MediaTemplate />
+
+    <!-- Icon -->
+    <Icon Id="AppIcon" SourceFile="Assets\Icons\app.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+
+    <!-- UI -->
+    <UIRef Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
+
+    <!-- Main Feature -->
+    <Feature Id="ProductFeature" Title="PrettyScreenSHOT" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="PublishedComponents" />
+    </Feature>
+
+    <!-- Directory Structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="PrettyScreenSHOT">
+          <Component Id="ApplicationFiles" Guid="PUT-GUID-HERE">
+            <File Id="PrettyScreenSHOT.exe" 
+                  Source="$(var.PrettyScreenSHOT.TargetPath)" 
+                  KeyPath="yes" />
+            <File Id="PrettyScreenSHOT.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)PrettyScreenSHOT.dll" />
+            <File Id="app.ico" 
+                  Source="Assets\Icons\app.ico" />
+            
+            <!-- DLLs -->
+            <File Id="Magick.NET-Q16-AnyCPU.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)Magick.NET-Q16-AnyCPU.dll" />
+            <File Id="Magick.NET.Core.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)Magick.NET.Core.dll" />
+            
+            <!-- Localization -->
+            <File Id="Resources.pl.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)pl\PrettyScreenSHOT.resources.dll" />
+            <File Id="Resources.de.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)de\PrettyScreenSHOT.resources.dll" />
+            <File Id="Resources.zh.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)zh\PrettyScreenSHOT.resources.dll" />
+            <File Id="Resources.fr.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)fr\PrettyScreenSHOT.resources.dll" />
+            
+            <!-- Native DLLs -->
+            <File Id="Magick.Native-Q16-x64.dll" 
+                  Source="$(var.PrettyScreenSHOT.TargetDir)runtimes\win-x64\native\Magick.Native-Q16-x64.dll" />
+          </Component>
+        </Directory>
+      </Directory>
+      
+      <!-- Start Menu -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="PrettyScreenSHOT">
+          <Component Id="ApplicationShortcut" Guid="PUT-GUID-HERE">
+            <Shortcut Id="ApplicationStartMenuShortcut"
+                      Name="PrettyScreenSHOT"
+                      Description="Advanced screenshot tool"
+                      Target="[INSTALLFOLDER]PrettyScreenSHOT.exe"
+                      WorkingDirectory="INSTALLFOLDER"
+                      Icon="AppIcon" />
+            <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+            <RegistryValue Root="HKCU" 
+                          Key="Software\PrettyScreenSHOT" 
+                          Name="Installed" 
+                          Type="integer" 
+                          Value="1" 
+                          KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+      
+      <!-- Desktop Shortcut -->
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="DesktopShortcut" Guid="PUT-GUID-HERE">
+          <Shortcut Id="DesktopShortcut"
+                    Name="PrettyScreenSHOT"
+                    Target="[INSTALLFOLDER]PrettyScreenSHOT.exe"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="AppIcon" />
+          <RemoveFolder Id="DesktopFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" 
+                       Key="Software\PrettyScreenSHOT" 
+                       Name="DesktopShortcut" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+        </Component>
+      </Directory>
+    </Directory>
+
+    <!-- Components -->
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- Add all your DLLs and files here -->
+    </ComponentGroup>
+
+    <ComponentGroup Id="PublishedComponents" Directory="INSTALLFOLDER">
+      <!-- Published files will be added here -->
+    </ComponentGroup>
+  </Product>
+</Wix>
+

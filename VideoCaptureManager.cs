@@ -208,7 +208,7 @@ namespace PrettyScreenSHOT
                                 ms.Position = 0;
 
                                 var magickImage = new MagickImage(ms);
-                                magickImage.AnimationDelay = delay;
+                                magickImage.AnimationDelay = (uint)delay;
                                 collection.Add(magickImage);
                             }
                         }

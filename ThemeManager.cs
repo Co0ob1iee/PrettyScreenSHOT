@@ -49,7 +49,7 @@ namespace PrettyScreenSHOT
 
         private void ApplyThemeToAllWindows()
         {
-            foreach (Window window in Application.Current.Windows)
+            foreach (Window window in System.Windows.Application.Current.Windows)
             {
                 ApplyTheme(window);
             }
@@ -83,25 +83,25 @@ namespace PrettyScreenSHOT
             // Zastosuj style do konkretnych typów kontrolek
             if (element is System.Windows.Controls.Border border)
             {
-                if (border.Background is SolidColorBrush bgBrush && bgBrush.Color == Color.FromRgb(0x1E, 0x1E, 0x1E))
+                if (border.Background is SolidColorBrush bgBrush && bgBrush.Color == System.Windows.Media.Color.FromRgb(0x1E, 0x1E, 0x1E))
                     border.Background = new SolidColorBrush(colors.PanelBackground);
-                if (border.BorderBrush is SolidColorBrush bbBrush && bbBrush.Color == Color.FromRgb(0x40, 0x40, 0x40))
+                if (border.BorderBrush is SolidColorBrush bbBrush && bbBrush.Color == System.Windows.Media.Color.FromRgb(0x40, 0x40, 0x40))
                     border.BorderBrush = new SolidColorBrush(colors.Border);
             }
             else if (element is System.Windows.Controls.TextBlock textBlock)
             {
-                if (textBlock.Foreground is SolidColorBrush fgBrush && fgBrush.Color == Colors.White)
+                if (textBlock.Foreground is SolidColorBrush fgBrush && fgBrush.Color == System.Windows.Media.Colors.White)
                     textBlock.Foreground = new SolidColorBrush(colors.TextPrimary);
-                else if (textBlock.Foreground is SolidColorBrush fgBrush2 && fgBrush2.Color == Color.FromRgb(0xAA, 0xAA, 0xAA))
+                else if (textBlock.Foreground is SolidColorBrush fgBrush2 && fgBrush2.Color == System.Windows.Media.Color.FromRgb(0xAA, 0xAA, 0xAA))
                     textBlock.Foreground = new SolidColorBrush(colors.TextSecondary);
             }
             else if (element is System.Windows.Controls.TextBox textBox)
             {
-                if (textBox.Background is SolidColorBrush bgBrush && bgBrush.Color == Color.FromRgb(0x2D, 0x2D, 0x2D))
+                if (textBox.Background is SolidColorBrush bgBrush && bgBrush.Color == System.Windows.Media.Color.FromRgb(0x2D, 0x2D, 0x2D))
                     textBox.Background = new SolidColorBrush(colors.InputBackground);
-                if (textBox.Foreground is SolidColorBrush fgBrush && fgBrush.Color == Colors.White)
+                if (textBox.Foreground is SolidColorBrush fgBrush && fgBrush.Color == System.Windows.Media.Colors.White)
                     textBox.Foreground = new SolidColorBrush(colors.TextPrimary);
-                if (textBox.BorderBrush is SolidColorBrush bbBrush && bbBrush.Color == Color.FromRgb(0x40, 0x40, 0x40))
+                if (textBox.BorderBrush is SolidColorBrush bbBrush && bbBrush.Color == System.Windows.Media.Color.FromRgb(0x40, 0x40, 0x40))
                     textBox.BorderBrush = new SolidColorBrush(colors.Border);
             }
             else if (element is System.Windows.Controls.Button button)
@@ -118,42 +118,42 @@ namespace PrettyScreenSHOT
 
         public static ThemeColors DarkColors => new()
         {
-            WindowBackground = Color.FromRgb(0x1E, 0x1E, 0x1E),
-            PanelBackground = Color.FromRgb(0x2D, 0x2D, 0x2D),
-            InputBackground = Color.FromRgb(0x2D, 0x2D, 0x2D),
-            TextPrimary = Colors.White,
-            TextSecondary = Color.FromRgb(0xAA, 0xAA, 0xAA),
-            Border = Color.FromRgb(0x40, 0x40, 0x40),
-            Accent = Color.FromRgb(0x60, 0xA5, 0xFA),
-            ButtonBackground = Color.FromRgb(0x3F, 0x3F, 0x3F),
-            ButtonHover = Color.FromRgb(0x4F, 0x4F, 0x4F)
+            WindowBackground = System.Windows.Media.Color.FromRgb(0x1E, 0x1E, 0x1E),
+            PanelBackground = System.Windows.Media.Color.FromRgb(0x2D, 0x2D, 0x2D),
+            InputBackground = System.Windows.Media.Color.FromRgb(0x2D, 0x2D, 0x2D),
+            TextPrimary = System.Windows.Media.Colors.White,
+            TextSecondary = System.Windows.Media.Color.FromRgb(0xAA, 0xAA, 0xAA),
+            Border = System.Windows.Media.Color.FromRgb(0x40, 0x40, 0x40),
+            Accent = System.Windows.Media.Color.FromRgb(0x60, 0xA5, 0xFA),
+            ButtonBackground = System.Windows.Media.Color.FromRgb(0x3F, 0x3F, 0x3F),
+            ButtonHover = System.Windows.Media.Color.FromRgb(0x4F, 0x4F, 0x4F)
         };
 
         public static ThemeColors LightColors => new()
         {
-            WindowBackground = Color.FromRgb(0xFA, 0xFA, 0xFA),
-            PanelBackground = Colors.White,
-            InputBackground = Colors.White,
-            TextPrimary = Color.FromRgb(0x21, 0x21, 0x21),
-            TextSecondary = Color.FromRgb(0x66, 0x66, 0x66),
-            Border = Color.FromRgb(0xE0, 0xE0, 0xE0),
-            Accent = Color.FromRgb(0x21, 0x96, 0xF3),
-            ButtonBackground = Color.FromRgb(0xF5, 0xF5, 0xF5),
-            ButtonHover = Color.FromRgb(0xE0, 0xE0, 0xE0)
+            WindowBackground = System.Windows.Media.Color.FromRgb(0xFA, 0xFA, 0xFA),
+            PanelBackground = System.Windows.Media.Colors.White,
+            InputBackground = System.Windows.Media.Colors.White,
+            TextPrimary = System.Windows.Media.Color.FromRgb(0x21, 0x21, 0x21),
+            TextSecondary = System.Windows.Media.Color.FromRgb(0x66, 0x66, 0x66),
+            Border = System.Windows.Media.Color.FromRgb(0xE0, 0xE0, 0xE0),
+            Accent = System.Windows.Media.Color.FromRgb(0x21, 0x96, 0xF3),
+            ButtonBackground = System.Windows.Media.Color.FromRgb(0xF5, 0xF5, 0xF5),
+            ButtonHover = System.Windows.Media.Color.FromRgb(0xE0, 0xE0, 0xE0)
         };
     }
 
     public class ThemeColors
     {
-        public Color WindowBackground { get; set; }
-        public Color PanelBackground { get; set; }
-        public Color InputBackground { get; set; }
-        public Color TextPrimary { get; set; }
-        public Color TextSecondary { get; set; }
-        public Color Border { get; set; }
-        public Color Accent { get; set; }
-        public Color ButtonBackground { get; set; }
-        public Color ButtonHover { get; set; }
+        public System.Windows.Media.Color WindowBackground { get; set; }
+        public System.Windows.Media.Color PanelBackground { get; set; }
+        public System.Windows.Media.Color InputBackground { get; set; }
+        public System.Windows.Media.Color TextPrimary { get; set; }
+        public System.Windows.Media.Color TextSecondary { get; set; }
+        public System.Windows.Media.Color Border { get; set; }
+        public System.Windows.Media.Color Accent { get; set; }
+        public System.Windows.Media.Color ButtonBackground { get; set; }
+        public System.Windows.Media.Color ButtonHover { get; set; }
     }
 }
 

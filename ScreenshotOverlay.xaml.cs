@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Runtime.InteropServices;
+using Point = System.Windows.Point;
 
 namespace PrettyScreenSHOT
 {
@@ -27,7 +28,7 @@ namespace PrettyScreenSHOT
             
             this.WindowStyle = WindowStyle.None;
             this.AllowsTransparency = true;
-            this.Background = Brushes.Transparent;
+            this.Background = System.Windows.Media.Brushes.Transparent;
             this.Topmost = true;
             this.ShowInTaskbar = false;
             this.ResizeMode = ResizeMode.NoResize;
@@ -48,7 +49,7 @@ namespace PrettyScreenSHOT
             isSelecting = true;
         }
 
-        protected override void OnMouseMove(MouseEventArgs e)
+        protected override void OnMouseMove(System.Windows.Input.MouseEventArgs e)
         {
             base.OnMouseMove(e);
             if (isSelecting)
@@ -71,14 +72,14 @@ namespace PrettyScreenSHOT
             base.OnRender(drawingContext);
 
             // Black mask over entire virtual screen
-            drawingContext.DrawRectangle(new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), null, 
+            drawingContext.DrawRectangle(new SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 0, 0, 0)), null, 
                 new Rect(0, 0, this.Width, this.Height));
 
             if (isSelecting)
             {
                 // Bright selection rectangle
                 var rect = new Rect(startPoint, endPoint);
-                drawingContext.DrawRectangle(null, new Pen(new SolidColorBrush(Colors.Cyan), 3), rect);
+                drawingContext.DrawRectangle(null, new System.Windows.Media.Pen(new SolidColorBrush(System.Windows.Media.Colors.Cyan), 3), rect);
             }
         }
 

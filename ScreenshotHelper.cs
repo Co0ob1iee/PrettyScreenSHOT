@@ -168,7 +168,7 @@ namespace PrettyScreenSHOT
             {
                 if (curModule != null)
                 {
-                    hookId = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardHook, GetModuleHandle(curModule.ModuleName), 0);
+                    hookId = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardHook, GetModuleHandle(curModule.ModuleName), (uint)0);
                 }
             }
         }

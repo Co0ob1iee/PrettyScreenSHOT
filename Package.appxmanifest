@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <Identity
+    Name="PrettyScreenSHOT"
+    Publisher="CN=YourName"
+    Version="1.0.0.0" />
+
+  <Properties>
+    <DisplayName>PrettyScreenSHOT</DisplayName>
+    <PublisherDisplayName>Your Name</PublisherDisplayName>
+    <Logo>Assets\Icons\app.ico</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19045.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="PrettyScreenSHOT.exe"
+      EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="PrettyScreenSHOT"
+        Description="Advanced screenshot capture and editing tool"
+        Square150x150Logo="Assets\Icons\app.ico"
+        Square44x44Logo="Assets\Icons\app.ico"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Icons\app.ico" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient" />
+    <Capability Name="picturesLibrary" />
+  </Capabilities>
+</Package>
+

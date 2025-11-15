@@ -15,9 +15,35 @@ namespace PrettyScreenSHOT
             // Zastosuj theme
             ThemeManager.Instance.ApplyTheme(this);
             
+            // Subscribe to Loaded to attach event handlers after UI is ready
+            this.Loaded += SettingsWindow_Loaded;
+
             settingsManager = SettingsManager.Instance;
             LoadSettings();
             LoadLocalizedStrings();
+        }
+
+        private void SettingsWindow_Loaded(object? sender, RoutedEventArgs e)
+        {
+            // Attach handlers here to avoid events firing during initialization
+            if (LanguageComboBox != null)
+            {
+                // Ensure not attached multiple times
+                LanguageComboBox.SelectionChanged -= LanguageComboBox_SelectionChanged;
+                LanguageComboBox.SelectionChanged += LanguageComboBox_SelectionChanged;
+            }
+
+            if (QualitySlider != null)
+            {
+                QualitySlider.ValueChanged -= QualitySlider_ValueChanged;
+                QualitySlider.ValueChanged += QualitySlider_ValueChanged;
+            }
+
+            if (ThemeComboBox != null)
+            {
+                ThemeComboBox.SelectionChanged -= ThemeComboBox_SelectionChanged;
+                ThemeComboBox.SelectionChanged += ThemeComboBox_SelectionChanged;
+            }
         }
 
         private void LoadLocalizedStrings()
@@ -140,6 +166,10 @@ namespace PrettyScreenSHOT
 
         private void QualitySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // Guard against cases where the slider event fires before UI elements are initialized
+            if (QualityLabel == null)
+                return;
+
             QualityLabel.Text = $"{(int)e.NewValue}%";
         }
 

@@ -28,6 +28,7 @@ namespace PrettyScreenSHOT
             var historyItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_History"), null, ShowHistory);
             var scrollCaptureItem = new ToolStripMenuItem("Scroll Capture", null, StartScrollCapture);
             var videoCaptureItem = new ToolStripMenuItem("Video Capture", null, StartVideoCapture);
+            var checkUpdateItem = new ToolStripMenuItem("Check for Updates", null, CheckForUpdates);
             var settingsItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Settings"), null, ShowSettings);
             var exitItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Exit"), null, ExitApplication);
             
@@ -36,6 +37,8 @@ namespace PrettyScreenSHOT
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(scrollCaptureItem);
             contextMenu.Items.Add(videoCaptureItem);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add(checkUpdateItem);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(settingsItem);
             contextMenu.Items.Add(new ToolStripSeparator());
@@ -207,6 +210,38 @@ namespace PrettyScreenSHOT
             catch (Exception ex)
             {
                 DebugHelper.LogError("TrayIcon", "Error starting video capture", ex);
+            }
+        }
+
+        private async void CheckForUpdates(object? sender, EventArgs? e)
+        {
+            try
+            {
+                var updateManager = new UpdateManager();
+                var updateInfo = await updateManager.CheckForUpdatesAsync(showNotification: false);
+                
+                if (updateInfo != null)
+                {
+                    var updateWindow = new UpdateWindow(updateInfo, updateManager);
+                    updateWindow.Show();
+                }
+                else
+                {
+                    notifyIcon?.ShowBalloonTip(
+                        3000,
+                        "No Updates",
+                        "You are using the latest version.",
+                        ToolTipIcon.Info);
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugHelper.LogError("TrayIcon", "Error checking for updates", ex);
+                notifyIcon?.ShowBalloonTip(
+                    3000,
+                    "Update Check Failed",
+                    "Could not check for updates. Please try again later.",
+                    ToolTipIcon.Error);
             }
         }
 

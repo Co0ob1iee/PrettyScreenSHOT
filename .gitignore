@@ -168,7 +168,7 @@ PublishScripts/
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
-# The packages folder can be ignored because of Package Restore
+# The packages folder can be ignored because of repair Package Restore
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
@@ -331,9 +331,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# Fody - auto-generated XML schema
-FodyWeavers.xsd
-
 # VS Code files for those working on multiple tools
 .vscode/*
 !.vscode/settings.json
@@ -349,12 +346,13 @@ FodyWeavers.xsd
 *.cab
 *.msi
 *.msix
-*.msm
-*.msp
-
-# JetBrains Rider
-.idea/
-*.sln.iml
+*.msixbundle
+*.exe
+!PrettyScreenSHOT.exe
+!apphost.exe
+*.wixobj
+*.wixpdb
+*.iss.bak
 
 # Application specific
 *.encrypted
@@ -363,3 +361,5 @@ settings.json
 !Assets/**/*.png
 fe649af2-9c4a-4854-ad8c-88cda57d2854.png
 
+# Installer output
+installer/

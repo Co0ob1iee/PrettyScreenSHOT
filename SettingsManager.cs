@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text.Json;
-using System.Windows.Forms;
 
 namespace PrettyScreenSHOT
 {
@@ -205,7 +204,7 @@ namespace PrettyScreenSHOT
             LocalizationHelper.SetLanguage(settings.Language);
         }
 
-        private void SaveSettings()
+        public void SaveSettings()
         {
             try
             {
@@ -314,6 +313,79 @@ namespace PrettyScreenSHOT
             set { settings.FFmpegPath = value; SaveSettings(); }
         }
 
+        // Auto-update settings
+        public bool EnableAutoUpdate
+        {
+            get => settings.EnableAutoUpdate;
+            set { settings.EnableAutoUpdate = value; SaveSettings(); }
+        }
+
+        public int UpdateCheckIntervalHours
+        {
+            get => settings.UpdateCheckIntervalHours;
+            set { settings.UpdateCheckIntervalHours = value; SaveSettings(); }
+        }
+
+        public bool CheckForUpdatesOnStartup
+        {
+            get => settings.CheckForUpdatesOnStartup;
+            set { settings.CheckForUpdatesOnStartup = value; SaveSettings(); }
+        }
+
+        public bool ShowUpdateNotifications
+        {
+            get => settings.ShowUpdateNotifications;
+            set { settings.ShowUpdateNotifications = value; SaveSettings(); }
+        }
+
+        public string UpdateChannel
+        {
+            get => settings.UpdateChannel;
+            set { settings.UpdateChannel = value; SaveSettings(); }
+        }
+
+        public DateTime LastUpdateCheck
+        {
+            get => settings.LastUpdateCheck;
+            set { settings.LastUpdateCheck = value; SaveSettings(); }
+        }
+
+        public string SkippedVersion
+        {
+            get => settings.SkippedVersion;
+            set { settings.SkippedVersion = value; SaveSettings(); }
+        }
+
+        // Legacy compatibility
+        public bool AutoUpdateEnabled
+        {
+            get => settings.EnableAutoUpdate;
+            set { settings.EnableAutoUpdate = value; SaveSettings(); }
+        }
+        
+        public bool AutoUpdateCheckOnStartup
+        {
+            get => settings.CheckForUpdatesOnStartup;
+            set { settings.CheckForUpdatesOnStartup = value; SaveSettings(); }
+        }
+
+        public bool AutoInstallUpdates
+        {
+            get => settings.AutoInstallUpdates;
+            set { settings.AutoInstallUpdates = value; SaveSettings(); }
+        }
+
+        public void SaveSkippedVersion(string version)
+        {
+            settings.SkippedVersion = version;
+            SaveSettings();
+        }
+
+        public bool IsVersionSkipped(string version)
+        {
+            return settings.SkippedVersion == version;
+        }
+
         private class AppSettings
         {
             public string Language { get; set; } = "en";
@@ -352,6 +424,19 @@ namespace PrettyScreenSHOT
             
             // FFmpeg
             public string FFmpegPath { get; set; } = "";
+            
+            // Auto-update
+            public bool EnableAutoUpdate { get; set; } = true;
+            public bool CheckForUpdatesOnStartup { get; set; } = true;
+            public int UpdateCheckIntervalHours { get; set; } = 24;
+            public bool ShowUpdateNotifications { get; set; } = true;
+            public string UpdateChannel { get; set; } = "stable"; // stable, beta, alpha
+            public DateTime LastUpdateCheck { get; set; } = DateTime.MinValue;
+            public string SkippedVersion { get; set; } = "";
+            public bool AutoInstallUpdates { get; set; } = false;
+            
+            // Legacy compatibility (properties, not fields)
+            // AutoUpdateEnabled i AutoUpdateCheckOnStartup są już zdefiniowane jako properties powyżej
         }
     }
 }

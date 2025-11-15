@@ -1,42 +1,91 @@
 <Window x:Class="PrettyScreenSHOT.TextInputWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Dodaj Tekst" Height="250" Width="400" WindowStartupLocation="CenterScreen"
+        Title="Dodaj Tekst" Height="500" Width="500" WindowStartupLocation="CenterScreen"
         Background="#1E1E1E" Foreground="White"
         ShowInTaskbar="False" WindowStyle="ToolWindow" ResizeMode="NoResize">
-    
-    <StackPanel Margin="20" VerticalAlignment="Stretch">
-        
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <!-- Text Input -->
-        <TextBlock x:Name="TextLabel" Text="Text:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
-        <TextBox x:Name="TextInputControl" Background="#2D2D2D" Foreground="White" 
-                 Padding="10" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
-                 FontSize="14" BorderBrush="#404040" BorderThickness="1"/>
-        
-        <!-- Font Size -->
-        <TextBlock x:Name="FontSizeTextLabel" Text="Font Size:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,15,0,5"/>
-        <StackPanel Orientation="Horizontal">
-            <Slider x:Name="FontSizeSlider" Width="250" Minimum="10" Maximum="72" Value="24" 
-                    Background="#3F3F3F" Foreground="#60A5FA" VerticalAlignment="Center"/>
-            <TextBlock x:Name="FontSizeValueLabel" Text="24" Foreground="#AAAAAA" Margin="10,0,0,0" 
-                       VerticalAlignment="Center" FontSize="12"/>
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock x:Name="TextLabel" Text="Text:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="TextInputControl" Background="#2D2D2D" Foreground="White"
+                     Padding="10" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                     FontSize="14" BorderBrush="#404040" BorderThickness="1"
+                     TextChanged="TextInputControl_TextChanged"/>
         </StackPanel>
-        
+
+        <!-- Font Size -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+            <TextBlock x:Name="FontSizeTextLabel" Text="Rozmiar czcionki:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <Slider x:Name="FontSizeSlider" Width="350" Minimum="8" Maximum="120" Value="24"
+                        Background="#3F3F3F" Foreground="#60A5FA" VerticalAlignment="Center"
+                        ValueChanged="FontSizeSlider_ValueChanged"/>
+                <TextBlock x:Name="FontSizeValueLabel" Text="24" Foreground="#AAAAAA" Margin="10,0,0,0"
+                           VerticalAlignment="Center" FontSize="12" Width="40"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Text Style Options -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,15">
+            <TextBlock Text="Styl tekstu:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,8"/>
+            <WrapPanel Orientation="Horizontal">
+                <CheckBox x:Name="BoldCheckBox" Content="Pogrubiony" Foreground="#AAAAAA" Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="ItalicCheckBox" Content="Kursywa" Foreground="#AAAAAA" Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="UnderlineCheckBox" Content="Podkreślenie" Foreground="#AAAAAA" Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="StrikethroughCheckBox" Content="Przekreślenie" Foreground="#AAAAAA" Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <!-- Color Selection -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock Text="Kolor tekstu:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,8"/>
+            <ComboBox x:Name="ColorComboBox" SelectedIndex="0" SelectionChanged="ColorComboBox_SelectionChanged">
+                <ComboBoxItem Content="Czerwony" Background="Red" Foreground="White"/>
+                <ComboBoxItem Content="Zielony" Background="Green" Foreground="White"/>
+                <ComboBoxItem Content="Niebieski" Background="Blue" Foreground="White"/>
+                <ComboBoxItem Content="Żółty" Background="Yellow" Foreground="Black"/>
+                <ComboBoxItem Content="Fioletowy" Background="Purple" Foreground="White"/>
+                <ComboBoxItem Content="Pomarańczowy" Background="Orange" Foreground="White"/>
+                <ComboBoxItem Content="Czarny" Background="Black" Foreground="White"/>
+                <ComboBoxItem Content="Biały" Background="White" Foreground="Black"/>
+            </ComboBox>
+        </StackPanel>
+
         <!-- Preview -->
-        <TextBlock x:Name="PreviewLabel" Text="Preview:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,15,0,5"/>
-        <TextBlock x:Name="PreviewText" Text="Sample Text" Foreground="#60A5FA" 
-                   Height="40" VerticalAlignment="Top" TextWrapping="Wrap"/>
-        
+        <StackPanel Grid.Row="4" Margin="0,0,0,15">
+            <TextBlock x:Name="PreviewLabel" Text="Podgląd:" Foreground="#AAAAAA" FontSize="12" FontWeight="Bold" Margin="0,0,0,5"/>
+            <Border Background="#2D2D2D" BorderBrush="#404040" BorderThickness="1" Height="60" CornerRadius="3">
+                <TextBlock x:Name="PreviewText" Text="Przykładowy tekst" Foreground="#60A5FA"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           TextWrapping="Wrap" FontSize="16"/>
+            </Border>
+        </StackPanel>
+
         <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button Click="OnOkClick" Background="#4CAF50" Foreground="White" 
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Click="OnOkClick" Background="#4CAF50" Foreground="White"
                     Padding="20,10" Margin="5" Width="100">
                 <TextBlock Text="OK" FontWeight="Bold"/>
             </Button>
-            <Button Click="OnCancelClick" Background="#F44336" Foreground="White" 
+            <Button Click="OnCancelClick" Background="#F44336" Foreground="White"
                     Padding="20,10" Margin="5" Width="100">
                 <TextBlock Text="Anuluj" FontWeight="Bold"/>
             </Button>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>

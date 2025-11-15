@@ -44,15 +44,15 @@ namespace PrettyScreenSHOT
             RegisterShortcut(new KeyGesture(Key.Escape), () =>
             {
                 // Zamknij aktywne okno
-                if (Application.Current.MainWindow != null && Application.Current.MainWindow.IsActive)
+                if (System.Windows.Application.Current.MainWindow != null && System.Windows.Application.Current.MainWindow.IsActive)
                 {
                     // Nie zamykaj głównego okna (aplikacja działa w tle)
                     return;
                 }
 
-                foreach (Window window in Application.Current.Windows)
+                foreach (Window window in System.Windows.Application.Current.Windows)
                 {
-                    if (window.IsActive && window != Application.Current.MainWindow)
+                    if (window.IsActive && window != System.Windows.Application.Current.MainWindow)
                     {
                         window.Close();
                         break;
@@ -115,7 +115,7 @@ namespace PrettyScreenSHOT
 
         private ScreenshotEditorWindow? GetActiveEditorWindow()
         {
-            foreach (Window window in Application.Current.Windows)
+            foreach (Window window in System.Windows.Application.Current.Windows)
             {
                 if (window is ScreenshotEditorWindow editor && window.IsActive)
                 {

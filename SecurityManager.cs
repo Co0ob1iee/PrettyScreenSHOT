@@ -187,21 +187,21 @@ namespace PrettyScreenSHOT
                     drawingContext.DrawImage(source, new Rect(0, 0, source.PixelWidth, source.PixelHeight));
 
                     // Dodaj znak wodny
-                    var watermarkBrush = new SolidColorBrush(Color.FromArgb(
+                    var watermarkBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(
                         (byte)(255 * opacity), 255, 255, 255));
 
                     var typeface = new Typeface("Arial");
                     var formattedText = new FormattedText(
                         watermarkText,
                         System.Globalization.CultureInfo.CurrentCulture,
-                        FlowDirection.LeftToRight,
+                        System.Windows.FlowDirection.LeftToRight,
                         typeface,
                         24,
                         watermarkBrush,
                         1.0);
 
                     // Oblicz pozycję
-                    Point watermarkPosition = CalculateWatermarkPosition(
+                    System.Windows.Point watermarkPosition = CalculateWatermarkPosition(
                         source.PixelWidth, source.PixelHeight, 
                         formattedText.Width, formattedText.Height, position);
 
@@ -242,7 +242,7 @@ namespace PrettyScreenSHOT
                     double watermarkHeight = watermarkImage.PixelHeight * (watermarkWidth / watermarkImage.PixelWidth);
 
                     // Oblicz pozycję
-                    Point watermarkPosition = CalculateWatermarkPosition(
+                    System.Windows.Point watermarkPosition = CalculateWatermarkPosition(
                         source.PixelWidth, source.PixelHeight,
                         watermarkWidth, watermarkHeight, position);
 
@@ -302,19 +302,19 @@ namespace PrettyScreenSHOT
             }
         }
 
-        private static Point CalculateWatermarkPosition(int imageWidth, int imageHeight,
+        private static System.Windows.Point CalculateWatermarkPosition(int imageWidth, int imageHeight,
             double watermarkWidth, double watermarkHeight, WatermarkPosition position)
         {
             const int margin = 10;
 
             return position switch
             {
-                WatermarkPosition.TopLeft => new Point(margin, margin),
-                WatermarkPosition.TopRight => new Point(imageWidth - watermarkWidth - margin, margin),
-                WatermarkPosition.BottomLeft => new Point(margin, imageHeight - watermarkHeight - margin),
-                WatermarkPosition.BottomRight => new Point(imageWidth - watermarkWidth - margin, imageHeight - watermarkHeight - margin),
-                WatermarkPosition.Center => new Point((imageWidth - watermarkWidth) / 2, (imageHeight - watermarkHeight) / 2),
-                _ => new Point(imageWidth - watermarkWidth - margin, imageHeight - watermarkHeight - margin)
+                WatermarkPosition.TopLeft => new System.Windows.Point(margin, margin),
+                WatermarkPosition.TopRight => new System.Windows.Point(imageWidth - watermarkWidth - margin, margin),
+                WatermarkPosition.BottomLeft => new System.Windows.Point(margin, imageHeight - watermarkHeight - margin),
+                WatermarkPosition.BottomRight => new System.Windows.Point(imageWidth - watermarkWidth - margin, imageHeight - watermarkHeight - margin),
+                WatermarkPosition.Center => new System.Windows.Point((imageWidth - watermarkWidth) / 2, (imageHeight - watermarkHeight) / 2),
+                _ => new System.Windows.Point(imageWidth - watermarkWidth - margin, imageHeight - watermarkHeight - margin)
             };
         }
 

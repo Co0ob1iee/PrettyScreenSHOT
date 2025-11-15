@@ -12,11 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrettyScreenSHOT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a137bc0248a1127100a6cea56c35ba3d94e2ee03")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+104656a16c2914086eef98e815e5057ff8787d7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrettyScreenSHOT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrettyScreenSHOT")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("0.0.1")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

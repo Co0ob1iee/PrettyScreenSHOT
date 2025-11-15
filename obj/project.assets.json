@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net10.0-windows7.0": {
-      "Magick.NET-Q16-AnyCPU/14.2.0": {
+      "Magick.NET-Q16-AnyCPU/14.9.1": {
         "type": "package",
         "dependencies": {
-          "Magick.NET.Core": "14.2.0"
+          "Magick.NET.Core": "14.9.1"
         },
         "compile": {
           "lib/net8.0/Magick.NET-Q16-AnyCPU.dll": {
@@ -55,7 +55,7 @@
           }
         }
       },
-      "Magick.NET.Core/14.2.0": {
+      "Magick.NET.Core/14.9.1": {
         "type": "package",
         "compile": {
           "lib/net8.0/Magick.NET.Core.dll": {
@@ -68,15 +68,15 @@
           }
         }
       },
-      "System.Drawing.Common/9.0.0": {
+      "System.Drawing.Common/10.0.0": {
         "type": "package",
         "compile": {
-          "lib/net9.0/_._": {
+          "lib/net10.0/_._": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net9.0/_._": {
+          "lib/net10.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -87,18 +87,15 @@
     }
   },
   "libraries": {
-    "Magick.NET-Q16-AnyCPU/14.2.0": {
-      "sha512": "dlC3F/jpJ7SoUYCPrNBny0NnBBqj6M0jstEDHmyh83zZHH9vSdOcRk3f/3E7Qdd4vRD4DAPfR+d6e6chNyRjiA==",
+    "Magick.NET-Q16-AnyCPU/14.9.1": {
+      "sha512": "cRsHiS/uIx8xyDzwN0UJ8zPcxQWzh1SPNgMu/cBZHJ4h6z5K6e1fjGkROGyny13QJ/vLVMP+hZGOjqzoxqpLRQ==",
       "type": "package",
-      "path": "magick.net-q16-anycpu/14.2.0",
+      "path": "magick.net-q16-anycpu/14.9.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Magick.NET.icon.png",
-        "Notice.linux-musl.txt",
-        "Notice.linux.txt",
-        "Notice.osx.txt",
-        "Notice.win.txt",
+        "Notice.txt",
         "build/netstandard20/Magick.NET-Q16-AnyCPU.targets",
         "buildTransitive/netstandard20/Magick.NET-Q16-AnyCPU.targets",
         "docs/Readme.md",
@@ -106,7 +103,7 @@
         "lib/net8.0/Magick.NET-Q16-AnyCPU.xml",
         "lib/netstandard20/Magick.NET-Q16-AnyCPU.dll",
         "lib/netstandard20/Magick.NET-Q16-AnyCPU.xml",
-        "magick.net-q16-anycpu.14.2.0.nupkg.sha512",
+        "magick.net-q16-anycpu.14.9.1.nupkg.sha512",
         "magick.net-q16-anycpu.nuspec",
         "runtimes/linux-arm64/native/Magick.Native-Q16-arm64.dll.so",
         "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so",
@@ -118,10 +115,10 @@
         "runtimes/win-x86/native/Magick.Native-Q16-x86.dll"
       ]
     },
-    "Magick.NET.Core/14.2.0": {
-      "sha512": "1F0vtPJwmoVg9tvi59VEy6KdmpUXbzKYJOH+TL37DT6kXfqj4iFtOMqD7CXC3G6z2zMgFeF5LX9SSApn8Jhhqg==",
+    "Magick.NET.Core/14.9.1": {
+      "sha512": "kj3zurCDo9GvcDLbps+enS9Mjm2zltsevicZWxPDcfw5y6LnbGiOG2UpAkB//938zDhiUsubMPs6ZhJd+bRCzQ==",
       "type": "package",
-      "path": "magick.net.core/14.2.0",
+      "path": "magick.net.core/14.9.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -132,14 +129,14 @@
         "lib/net8.0/Magick.NET.Core.xml",
         "lib/netstandard20/Magick.NET.Core.dll",
         "lib/netstandard20/Magick.NET.Core.xml",
-        "magick.net.core.14.2.0.nupkg.sha512",
+        "magick.net.core.14.9.1.nupkg.sha512",
         "magick.net.core.nuspec"
       ]
     },
-    "System.Drawing.Common/9.0.0": {
-      "sha512": "uoozjI3+dlgKh2onFJcz8aNLh6TRCPlLSh8Dbuljc8CdvqXrxHOVysJlrHvlsOCqceqGBR1wrMPxlnzzhynktw==",
+    "System.Drawing.Common/10.0.0": {
+      "sha512": "kohT9ZZlkB5R5ifihCBnPJLdIUQGiTj1ZI6z4LKatr+F4MmIJJu7qQpBkqt9280ivtnSvlTx9qZEY+CpJ0zMkA==",
       "type": "package",
-      "path": "system.drawing.common/9.0.0",
+      "path": "system.drawing.common/10.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -153,6 +150,13 @@
         "buildTransitive/netcoreapp2.0/System.Drawing.Common.targets",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
+        "lib/net10.0/System.Drawing.Common.dll",
+        "lib/net10.0/System.Drawing.Common.pdb",
+        "lib/net10.0/System.Drawing.Common.xml",
+        "lib/net10.0/System.Private.Windows.Core.dll",
+        "lib/net10.0/System.Private.Windows.Core.xml",
+        "lib/net10.0/System.Private.Windows.GdiPlus.dll",
+        "lib/net10.0/System.Private.Windows.GdiPlus.xml",
         "lib/net462/System.Drawing.Common.dll",
         "lib/net462/System.Drawing.Common.pdb",
         "lib/net462/System.Drawing.Common.xml",
@@ -161,11 +165,15 @@
         "lib/net8.0/System.Drawing.Common.xml",
         "lib/net8.0/System.Private.Windows.Core.dll",
         "lib/net8.0/System.Private.Windows.Core.xml",
+        "lib/net8.0/System.Private.Windows.GdiPlus.dll",
+        "lib/net8.0/System.Private.Windows.GdiPlus.xml",
         "lib/net9.0/System.Drawing.Common.dll",
         "lib/net9.0/System.Drawing.Common.pdb",
         "lib/net9.0/System.Drawing.Common.xml",
         "lib/net9.0/System.Private.Windows.Core.dll",
         "lib/net9.0/System.Private.Windows.Core.xml",
+        "lib/net9.0/System.Private.Windows.GdiPlus.dll",
+        "lib/net9.0/System.Private.Windows.GdiPlus.xml",
         "lib/netstandard2.0/System.Drawing.Common.dll",
         "lib/netstandard2.0/System.Drawing.Common.pdb",
         "lib/netstandard2.0/System.Drawing.Common.xml",
@@ -173,7 +181,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.drawing.common.9.0.0.nupkg.sha512",
+        "system.drawing.common.10.0.0.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -181,9 +189,9 @@
   },
   "projectFileDependencyGroups": {
     "net10.0-windows7.0": [
-      "Magick.NET-Q16-AnyCPU >= 14.2.0",
-      "System.Drawing.Common >= 9.0.0",
-      "System.Windows.Forms >= 10.0.0"
+      "Magick.NET-Q16-AnyCPU >= 14.9.1",
+      "Magick.NET.Core >= 14.9.1",
+      "System.Drawing.Common >= 10.0.0"
     ]
   },
   "packageFolders": {
@@ -239,13 +247,13 @@
         "dependencies": {
           "Magick.NET-Q16-AnyCPU": {
             "target": "Package",
-            "version": "[14.2.0, )"
+            "version": "[14.9.1, )"
+          },
+          "Magick.NET.Core": {
+            "target": "Package",
+            "version": "[14.9.1, )"
           },
           "System.Drawing.Common": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          },
-          "System.Windows.Forms": {
             "target": "Package",
             "version": "[10.0.0, )"
           }
@@ -265,7 +273,10 @@
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           },
-          "Microsoft.WindowsDesktop.App.WPF": {
+          "Microsoft.WindowsDesktop.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
             "privateAssets": "none"
           }
         },
@@ -570,125 +581,6 @@
       "warningLevel": 1,
       "message": "Element PackageReference System.Drawing.Common nie zostanie oczyszczony. Rozważ usunięcie tego pakietu z zależności, ponieważ prawdopodobnie nie jest on potrzebny.",
       "libraryId": "System.Drawing.Common",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1102",
-      "level": "Error",
-      "message": "Nie można znaleźć pakietu System.Windows.Forms w wersji (>= 10.0.0)\r\n  - Znalezione wersje w nuget.org: 1 [ Najbliższa wersja: 4.0.0 ]\r\n  - Znalezione wersje w Microsoft Visual Studio Offline Packages: 0\r\n  - Znalezione wersje w C:\\Program Files\\dotnet\\library-packs: 0",
-      "libraryId": "System.Windows.Forms",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-6hgw-6x87-578x",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-9ccg-6pjw-x645",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-9pp9-cfwx-54rm",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-cfh4-9f7v-fhrc",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-cjc8-g9w8-chfw",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-fh55-q5pj-pxgw",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-hm4x-r5hc-794f",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-mxvv-97wh-cfmm",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-qh3h-j545-h8c9",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-qp29-wxp5-wh82",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-vmhh-8rxq-fp9g",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
       "targetGraphs": [
         "net10.0-windows7.0"
       ]

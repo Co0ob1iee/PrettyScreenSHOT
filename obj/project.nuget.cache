@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Uz7ApfBFxzc=",
-  "success": false,
+  "dgSpecHash": "kwNoqR1hs8U=",
+  "success": true,
   "projectFilePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\clobi\\.nuget\\packages\\magick.net-q16-anycpu\\14.2.0\\magick.net-q16-anycpu.14.2.0.nupkg.sha512",
-    "C:\\Users\\clobi\\.nuget\\packages\\magick.net.core\\14.2.0\\magick.net.core.14.2.0.nupkg.sha512",
-    "C:\\Users\\clobi\\.nuget\\packages\\system.drawing.common\\9.0.0\\system.drawing.common.9.0.0.nupkg.sha512"
+    "C:\\Users\\clobi\\.nuget\\packages\\magick.net-q16-anycpu\\14.9.1\\magick.net-q16-anycpu.14.9.1.nupkg.sha512",
+    "C:\\Users\\clobi\\.nuget\\packages\\magick.net.core\\14.9.1\\magick.net.core.14.9.1.nupkg.sha512",
+    "C:\\Users\\clobi\\.nuget\\packages\\system.drawing.common\\10.0.0\\system.drawing.common.10.0.0.nupkg.sha512"
   ],
   "logs": [
     {
@@ -17,149 +17,6 @@
       "warningLevel": 1,
       "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
       "libraryId": "System.Drawing.Common",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1102",
-      "level": "Error",
-      "message": "Nie można znaleźć pakietu System.Windows.Forms w wersji (>= 10.0.0)\r\n  - Znalezione wersje w nuget.org: 1 [ Najbliższa wersja: 4.0.0 ]\r\n  - Znalezione wersje w Microsoft Visual Studio Offline Packages: 0\r\n  - Znalezione wersje w C:\\Program Files\\dotnet\\library-packs: 0",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "System.Windows.Forms",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-6hgw-6x87-578x",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-9ccg-6pjw-x645",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-9pp9-cfwx-54rm",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-cfh4-9f7v-fhrc",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-cjc8-g9w8-chfw",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-fh55-q5pj-pxgw",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane niska luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-hm4x-r5hc-794f",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-mxvv-97wh-cfmm",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-qh3h-j545-h8c9",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-qp29-wxp5-wh82",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "Pakiet „Magick.NET-Q16-AnyCPU” 14.2.0 ma znane wysoka luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-vmhh-8rxq-fp9g",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
-      "libraryId": "Magick.NET-Q16-AnyCPU",
       "targetGraphs": [
         "net10.0-windows7.0"
       ]
