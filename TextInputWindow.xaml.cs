@@ -3,13 +3,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Wpf.Ui.Controls;
 using WindowsColor = System.Windows.Media.Color;
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 
 namespace PrettyScreenSHOT
 {
-    public partial class TextInputWindow : Window
+    public partial class TextInputWindow : FluentWindow
     {
         public string InputText { get; private set; } = "";
         public new int FontSize { get; private set; } = 24;
@@ -342,14 +343,6 @@ namespace PrettyScreenSHOT
         {
             this.DialogResult = false;
             this.Close();
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
         }
     }
 }
