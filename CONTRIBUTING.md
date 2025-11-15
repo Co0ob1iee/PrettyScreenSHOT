@@ -1,86 +1,85 @@
 # Contributing to PrettyScreenSHOT
 
-Dziękujemy za zainteresowanie współpracą przy projekcie PrettyScreenSHOT! 🎉
+Thank you for your interest in contributing to PrettyScreenSHOT! 🎉
 
-## Jak możesz pomóc
+## How You Can Help
 
-### 🐛 Zgłaszanie błędów
-Jeśli znalazłeś błąd:
-1. Sprawdź czy błąd nie został już zgłoszony w [Issues](https://github.com/Co0ob1iee/PrettyScreenSHOT/issues)
-2. Utwórz nowe issue z opisem:
-   - Krok po kroku jak odtworzyć błąd
-   - Oczekiwane zachowanie
-   - Rzeczywiste zachowanie
-   - Wersja systemu operacyjnego
-   - Wersja aplikacji
+### 🐛 Reporting Bugs
+If you found a bug:
+1. Check if the bug hasn't been reported already in [Issues](https://github.com/Co0ob1iee/PrettyScreenSHOT/issues)
+2. Create a new issue describing:
+   - Step-by-step reproduction
+   - Expected behavior
+   - Actual behavior
+   - OS version
+   - Application version
 
-### 💡 Propozycje funkcji
-Masz pomysł na nową funkcję?
-1. Sprawdź [ROADMAP.md](ROADMAP.md) - może już jest w planach
-2. Utwórz issue z etykietą "enhancement"
-3. Opisz szczegółowo funkcję i jej użyteczność
+### 💡 Feature Proposals
+Have an idea for a new feature?
+1. Check [ROADMAP.md](ROADMAP.md) - it might already be planned
+2. Create an issue with "enhancement" label
+3. Describe the feature and its usefulness in detail
 
 ### 🔧 Pull Requests
 
-#### Proces
-1. **Fork** repozytorium
-2. **Utwórz branch** dla swojej funkcji (`git checkout -b feature/AmazingFeature`)
-3. **Commit** zmian (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** do brancha (`git push origin feature/AmazingFeature`)
-5. **Otwórz Pull Request**
+#### Process
+1. **Fork** the repository
+2. **Create a branch** for your feature (`git checkout -b feature/AmazingFeature`)
+3. **Commit** changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open a Pull Request**
 
-#### Wytyczne kodu
-- **Formatowanie**: Używaj domyślnego formatowania Visual Studio
-- **Nazewnictwo**: 
-  - Klasy: PascalCase (`ScreenshotManager`)
-  - Metody: PascalCase (`CaptureScreenshot`)
-  - Zmienne: camelCase (`captureArea`)
-  - Stałe: UPPER_CASE (`MAX_SCROLLS`)
-- **Komentarze**: Komentuj złożoną logikę po polsku lub angielsku
-- **Lokalizacja**: Wszystkie teksty UI muszą być w plikach `.resx`
-- **Testowanie**: Przetestuj swoją funkcję przed PR
+#### Code Guidelines
+- **Formatting**: Use default Visual Studio formatting or `.editorconfig` settings
+- **Naming**:
+  - Classes: PascalCase (`ScreenshotManager`)
+  - Methods: PascalCase (`CaptureScreenshot`)
+  - Variables: camelCase (`captureArea`)
+  - Constants: UPPER_CASE (`MAX_SCROLLS`)
+- **Comments**: Comment complex logic in English
+- **Localization**: All UI texts must be in `.resx` files
+- **Testing**: Test your feature before PR
 
-#### Struktura commitów
+#### Commit Structure
 ```
-feat: Dodano funkcję video capture
-fix: Naprawiono błąd w Scroll Capture
-docs: Zaktualizowano README
-refactor: Refaktoryzacja SecurityManager
-style: Formatowanie kodu
-perf: Optymalizacja wydajności cache
+feat: Add video capture feature
+fix: Fix Scroll Capture bug
+docs: Update README
+refactor: Refactor SecurityManager
+style: Code formatting
+perf: Optimize cache performance
 ```
 
-### 🌍 Lokalizacja
-Jeśli dodajesz nowe teksty UI:
-1. Dodaj klucz do wszystkich plików `.resx`:
-   - `Properties/Resources.resx` (angielski)
-   - `Properties/Resources.pl.resx` (polski)
-   - `Properties/Resources.de.resx` (niemiecki)
-   - `Properties/Resources.zh.resx` (chiński)
-   - `Properties/Resources.fr.resx` (francuski)
-2. Użyj `LocalizationHelper.GetString("Key")` w kodzie
+### 🌍 Localization
+If adding new UI texts:
+1. Add key to all `.resx` files:
+   - `Properties/Resources.resx` (English)
+   - `Properties/Resources.pl.resx` (Polish)
+   - `Properties/Resources.de.resx` (German)
+   - `Properties/Resources.zh.resx` (Chinese)
+   - `Properties/Resources.fr.resx` (French)
+2. Use `LocalizationHelper.GetString("Key")` in code
 
-### 🧪 Testowanie
-Przed wysłaniem PR:
-- [ ] Kod kompiluje się bez błędów
-- [ ] Funkcja działa poprawnie
-- [ ] Nie ma regresji w istniejących funkcjach
-- [ ] Kod jest zgodny z wytycznymi
-- [ ] Wszystkie teksty są zlokalizowane
+### 🧪 Testing
+Before submitting PR:
+- [ ] Code compiles without errors
+- [ ] Feature works correctly
+- [ ] No regression in existing features
+- [ ] Code follows guidelines
+- [ ] All texts are localized
 
-### 📝 Dokumentacja
-Jeśli dodajesz nową funkcję:
-- Zaktualizuj `README.md` jeśli potrzeba
-- Dodaj komentarze XML do publicznych metod
-- Zaktualizuj `ROADMAP.md` jeśli funkcja była w planach
+### 📝 Documentation
+If adding a new feature:
+- Update `README.md` if needed
+- Add XML comments to public methods
+- Update `ROADMAP.md` if feature was planned
 
-## Pytania?
-Jeśli masz pytania, otwórz issue z etykietą "question" lub użyj [Discussions](https://github.com/Co0ob1iee/PrettyScreenSHOT/discussions).
+## Questions?
+If you have questions, open an issue with "question" label or use [Discussions](https://github.com/Co0ob1iee/PrettyScreenSHOT/discussions).
 
-## Licencja
-Przez wysłanie PR zgadzasz się, że Twój kod będzie licencjonowany na licencji GNU GPL v3.
+## License
+By submitting a PR, you agree that your code will be licensed under GNU GPL v3.
 
 ---
 
-**Dziękujemy za wkład w rozwój PrettyScreenSHOT!** 🙏
-
+**Thank you for contributing to PrettyScreenSHOT!** 🙏

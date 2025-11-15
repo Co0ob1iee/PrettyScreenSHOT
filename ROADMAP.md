@@ -1,276 +1,275 @@
-# PrettyScreenSHOT - Plan Rozwoju (Roadmap)
+# PrettyScreenSHOT - Development Roadmap
 
-## 📊 Obecny Stan Aplikacji
+## 📊 Current State
 
-### ✅ Zaimplementowane Funkcje
-- ✅ Przechwytywanie screenshotów (region selection)
-- ✅ Edytor z narzędziami: Marker, Prostokąt, Strzałka, Blur, Tekst
-- ✅ Historia screenshotów z miniaturami
-- ✅ Wielojęzyczność: PL, ENG, GER, CN, FR
-- ✅ Ustawienia (ścieżki, hotkeye, formaty, jakość)
-- ✅ Obsługa wielu monitorów
-- ✅ Zarządzanie pamięcią (IDisposable)
+### ✅ Implemented Features
+- ✅ Screenshot capture (region selection)
+- ✅ Editor with tools: Marker, Rectangle, Arrow, Blur, Text
+- ✅ Screenshot history with thumbnails
+- ✅ Multi-language: EN, PL, DE, CN, FR
+- ✅ Settings (paths, hotkeys, formats, quality)
+- ✅ Multi-monitor support
+- ✅ Memory management (IDisposable)
 - ✅ Cloud Upload (Imgur, Cloudinary, S3, Custom Server)
 - ✅ Auto-upload
-- ✅ Kopiowanie do schowka
-- ✅ Eksport: PNG, JPG, BMP
+- ✅ Clipboard copying
+- ✅ Export: PNG, JPG, BMP
 
 ---
 
-## 🎯 Plan Rozwoju - Priorytety
+## 🎯 Development Plan - Priorities
 
-### 🔥 Faza 1: Ulepszenia Edytora (Wysoki Priorytet)
+### 🔥 Phase 1: Editor Improvements (High Priority)
 
-#### 1.1 Więcej Narzędzi Rysowania
-- [ ] **Elipsa/Koło** - rysowanie kształtów eliptycznych
-- [ ] **Linia prosta** - rysowanie linii z przytrzymaniem Shift
-- [ ] **Wielokąt** - rysowanie kształtów wielokątnych
-- [ ] **Wypełnienie (Fill)** - wypełnianie obszarów kolorem
-- [ ] **Maska** - maskowanie obszarów (czarne prostokąty)
-- [ ] **Wybór koloru z ekranu** (Color Picker/Eyedropper)
-- [ ] **Gumka** - usuwanie części obrazu
+#### 1.1 More Drawing Tools
+- [ ] **Ellipse/Circle** - draw elliptical shapes
+- [ ] **Straight Line** - line drawing with Shift
+- [ ] **Polygon** - polygon shapes
+- [ ] **Fill** - area filling
+- [ ] **Mask** - area masking (black rectangles)
+- [ ] **Color Picker** (Eyedropper)
+- [ ] **Eraser** - erase parts of image
 
-#### 1.2 Zaawansowane Narzędzia
-- [ ] **Crop** - przycinanie obrazu
-- [ ] **Resize** - zmiana rozmiaru obrazu
-- [ ] **Rotate** - obracanie obrazu (90°, 180°, 270°)
-- [ ] **Flip** - odbicie poziome/pionowe
-- [ ] **Brightness/Contrast** - regulacja jasności i kontrastu
-- [ ] **Saturation** - regulacja nasycenia kolorów
-- [ ] **Grayscale** - konwersja do skali szarości
-- [ ] **Invert Colors** - odwracanie kolorów
+#### 1.2 Advanced Tools
+- [ ] **Crop** - image cropping
+- [ ] **Resize** - resize image
+- [ ] **Rotate** - rotate (90°, 180°, 270°)
+- [ ] **Flip** - horizontal/vertical flip
+- [ ] **Brightness/Contrast** - adjust brightness and contrast
+- [ ] **Saturation** - color saturation adjustment
+- [ ] **Grayscale** - convert to grayscale
+- [ ] **Invert Colors** - invert colors
 
-#### 1.3 Ulepszenia Tekstu
-- [ ] **Wybór czcionki** - lista dostępnych czcionek
-- [ ] **Style tekstu** - Bold, Italic, Underline
-- [ ] **Wyrównanie tekstu** - Left, Center, Right
-- [ ] **Tło tekstu** - kolor tła dla tekstu
-- [ ] **Obramowanie tekstu** - stroke/outline
-- [ ] **Wielowierszowy tekst** - edycja długich tekstów
+#### 1.3 Text Improvements
+- [ ] **Font Selection** - list of available fonts
+- [ ] **Text Styles** - Bold, Italic, Underline
+- [ ] **Text Alignment** - Left, Center, Right
+- [ ] **Text Background** - background color for text
+- [ ] **Text Outline** - stroke/outline
+- [ ] **Multi-line Text** - edit long texts
 
-#### 1.4 Warstwy i Historia
-- [ ] **Wielowarstwowa edycja** - system warstw
-- [ ] **Historia edycji** - pełna historia z możliwością cofania/ponawiania (redo)
-- [ ] **Zapisywanie stanów** - snapshots podczas edycji
-- [ ] **Porównanie przed/po** - podgląd zmian
-
----
-
-### 🚀 Faza 2: Zaawansowane Funkcje (Średni Priorytet)
-
-#### 2.1 Anotacje i Adnotacje
-- [ ] **Numeracja** - automatyczna numeracja elementów
-- [ ] **Wskaźniki** - różne style wskaźników (1, 2, 3...)
-- [ ] **Chmurki** - chmurki z tekstem
-- [ ] **Stempel** - dodawanie stempli (Approved, Rejected, etc.)
-- [ ] **Znak wodny** - dodawanie znaków wodnych (tekst/obraz)
-- [ ] **Podpisy** - dodawanie podpisów
-
-#### 2.2 Filtry i Efekty
-- [ ] **Filtry** - Sepia, Vintage, Black & White
-- [ ] **Efekty** - Shadow, Glow, Emboss
-- [ ] **Rozmycie** - różne typy rozmycia (Gaussian, Motion, Radial)
-- [ ] **Wyostrzanie** - zwiększanie ostrości
-- [ ] **Szum** - dodawanie/usuwanie szumu
-
-#### 2.3 OCR i Rozpoznawanie
-- [ ] **OCR (Optical Character Recognition)** - rozpoznawanie tekstu na obrazie
-- [ ] **Wykrywanie twarzy** - automatyczne rozmywanie twarzy
-- [ ] **Wykrywanie tekstu** - automatyczne maskowanie danych wrażliwych
-- [ ] **QR Code detection** - wykrywanie i maskowanie kodów QR
-
-#### 2.4 Automatyzacja
-- [ ] **Szablony** - zapisywanie i ładowanie szablonów edycji
-- [ ] **Presety** - szybkie ustawienia dla często używanych narzędzi
-- [ ] **Makro** - nagrywanie sekwencji akcji
-- [ ] **Batch processing** - przetwarzanie wielu screenshotów naraz
+#### 1.4 Layers and History
+- [ ] **Multi-layer Editing** - layer system
+- [ ] **Edit History** - full history with undo/redo
+- [ ] **Save States** - snapshots during editing
+- [ ] **Before/After Comparison** - preview changes
 
 ---
 
-### 📱 Faza 3: Integracje i Cloud (Średni Priorytet)
+### 🚀 Phase 2: Advanced Features (Medium Priority)
 
-#### 3.1 Więcej Cloud Providers
-- [ ] **Google Drive** - bezpośredni upload
-- [ ] **Dropbox** - bezpośredni upload
-- [ ] **OneDrive** - bezpośredni upload
-- [ ] **GitHub Gist** - upload jako gist
-- [ ] **Pastebin** - upload jako paste
-- [ ] **FTP/SFTP** - upload do własnego serwera
+#### 2.1 Annotations
+- [ ] **Numbering** - automatic element numbering
+- [ ] **Indicators** - various indicator styles (1, 2, 3...)
+- [ ] **Callouts** - text callouts
+- [ ] **Stamps** - add stamps (Approved, Rejected, etc.)
+- [ ] **Watermark** - add watermarks (text/image)
+- [ ] **Signatures** - add signatures
 
-#### 3.2 Zaawansowane Cloud Features
-- [ ] **Synchronizacja** - synchronizacja historii między urządzeniami
-- [ ] **Backup automatyczny** - automatyczne kopie zapasowe
-- [ ] **Współdzielenie** - łatwe udostępnianie linków
-- [ ] **Statystyki uploadów** - historia i statystyki
-- [ ] **Reguły uploadu** - automatyczne uploady z warunkami
+#### 2.2 Filters and Effects
+- [ ] **Filters** - Sepia, Vintage, Black & White
+- [ ] **Effects** - Shadow, Glow, Emboss
+- [ ] **Blur** - various blur types (Gaussian, Motion, Radial)
+- [ ] **Sharpen** - increase sharpness
+- [ ] **Noise** - add/remove noise
 
-#### 3.3 Integracje
-- [ ] **Slack** - wysyłanie bezpośrednio do Slack
-- [ ] **Discord** - wysyłanie bezpośrednio do Discord
-- [ ] **Email** - wysyłanie mailem
-- [ ] **Jira/Trello** - integracja z narzędziami projektowymi
-- [ ] **API Webhook** - wywoływanie własnych webhooków
+#### 2.3 OCR and Recognition
+- [ ] **OCR (Optical Character Recognition)** - recognize text in image
+- [ ] **Face Detection** - automatic face blurring
+- [ ] **Text Detection** - automatic sensitive data masking
+- [ ] **QR Code Detection** - detect and mask QR codes
 
----
-
-### 🎨 Faza 4: UX/UI Improvements (Niski Priorytet)
-
-#### 4.1 Interfejs Użytkownika
-- [ ] **Dark/Light Theme** - przełączanie motywów
-- [ ] **Customizable Toolbar** - dostosowywanie paska narzędzi
-- [ ] **Skróty klawiszowe** - pełna obsługa skrótów w edytorze
-- [ ] **Tooltips** - pomoc kontekstowa
-- [ ] **Tutorial** - przewodnik dla nowych użytkowników
-- [ ] **Drag & Drop** - przeciąganie plików do edytora
-
-#### 4.2 Historia i Organizacja
-- [ ] **Tagi** - tagowanie screenshotów
-- [ ] **Kategorie** - organizacja w kategorie
-- [ ] **Wyszukiwanie** - wyszukiwanie w historii (tekst, data, tagi)
-- [ ] **Filtrowanie** - filtrowanie po dacie, formacie, tagach
-- [ ] **Sortowanie** - różne opcje sortowania
-- [ ] **Foldery wirtualne** - organizacja w foldery
-
-#### 4.3 Statystyki i Raporty
-- [ ] **Dashboard** - panel ze statystykami
-- [ ] **Wykresy** - wizualizacja użycia
-- [ ] **Raporty** - eksport raportów użycia
-- [ ] **Limity** - ustawianie limitów (rozmiar, liczba)
+#### 2.4 Automation
+- [ ] **Templates** - save and load editing templates
+- [ ] **Presets** - quick settings for frequently used tools
+- [ ] **Macros** - record action sequences
+- [ ] **Batch Processing** - process multiple screenshots at once
 
 ---
 
-### 🔧 Faza 5: Zaawansowane Funkcje Techniczne (Niski Priorytet)
+### 📱 Phase 3: Integrations and Cloud (Medium Priority)
 
-#### 5.1 Wydajność
-- [ ] **Optymalizacja pamięci** - dalsze ulepszenia zarządzania pamięcią
-- [ ] **Caching** - inteligentne cache'owanie
-- [ ] **Lazy loading** - ładowanie na żądanie
-- [ ] **Multithreading** - przetwarzanie wielowątkowe
-- [ ] **GPU acceleration** - wykorzystanie GPU do przetwarzania
+#### 3.1 More Cloud Providers
+- [ ] **Google Drive** - direct upload
+- [ ] **Dropbox** - direct upload
+- [ ] **OneDrive** - direct upload
+- [ ] **GitHub Gist** - upload as gist
+- [ ] **Pastebin** - upload as paste
+- [ ] **FTP/SFTP** - upload to custom server
 
-#### 5.2 Zaawansowane Capture
-- [ ] **Timed capture** - opóźnione przechwytywanie
-- [ ] **Video capture** - nagrywanie ekranu (GIF/MP4)
-- [ ] **Scroll capture** - przechwytywanie długich stron
-- [ ] **Window capture** - przechwytywanie konkretnych okien
-- [ ] **Cursor capture** - opcja pokazywania kursora
+#### 3.2 Advanced Cloud Features
+- [ ] **Synchronization** - history sync between devices
+- [ ] **Automatic Backup** - automatic backups
+- [ ] **Sharing** - easy link sharing
+- [ ] **Upload Statistics** - history and statistics
+- [ ] **Upload Rules** - automatic uploads with conditions
 
-#### 5.3 Bezpieczeństwo
-- [ ] **Szyfrowanie** - szyfrowanie lokalnych plików
-- [ ] **Watermarking** - automatyczne znaki wodne
-- [ ] **Metadata removal** - usuwanie metadanych EXIF
-- [ ] **Privacy mode** - tryb prywatności (brak historii)
+#### 3.3 Integrations
+- [ ] **Slack** - send directly to Slack
+- [ ] **Discord** - send directly to Discord
+- [ ] **Email** - send via email
+- [ ] **Jira/Trello** - integrate with project tools
+- [ ] **API Webhook** - call custom webhooks
 
 ---
 
-### 🌐 Faza 6: Rozszerzenia i Pluginy (Opcjonalne)
+### 🎨 Phase 4: UX/UI Improvements (Low Priority)
 
-#### 6.1 System Pluginów
-- [ ] **Plugin API** - API dla pluginów
-- [ ] **Plugin Manager** - zarządzanie pluginami
-- [ ] **Plugin Store** - repozytorium pluginów
-- [ ] **Przykładowe pluginy**:
+#### 4.1 User Interface
+- [ ] **Dark/Light Theme** - theme switching
+- [ ] **Customizable Toolbar** - customize toolbar
+- [ ] **Keyboard Shortcuts** - full shortcut support in editor
+- [ ] **Tooltips** - context help
+- [ ] **Tutorial** - guide for new users
+- [ ] **Drag & Drop** - drag files to editor
+
+#### 4.2 History and Organization
+- [ ] **Tags** - tag screenshots
+- [ ] **Categories** - organize in categories
+- [ ] **Search** - search in history (text, date, tags)
+- [ ] **Filtering** - filter by date, format, tags
+- [ ] **Sorting** - various sorting options
+- [ ] **Virtual Folders** - organize in folders
+
+#### 4.3 Statistics and Reports
+- [ ] **Dashboard** - statistics panel
+- [ ] **Charts** - usage visualization
+- [ ] **Reports** - export usage reports
+- [ ] **Limits** - set limits (size, count)
+
+---
+
+### 🔧 Phase 5: Advanced Technical Features (Low Priority)
+
+#### 5.1 Performance
+- [ ] **Memory Optimization** - further improvements
+- [ ] **Caching** - intelligent caching
+- [ ] **Lazy Loading** - load on demand
+- [ ] **Multithreading** - multi-threaded processing
+- [ ] **GPU Acceleration** - use GPU for processing
+
+#### 5.2 Advanced Capture
+- [ ] **Timed Capture** - delayed capture
+- [ ] **Video Capture** - screen recording (GIF/MP4)
+- [ ] **Scroll Capture** - capture long pages
+- [ ] **Window Capture** - capture specific windows
+- [ ] **Cursor Capture** - option to show cursor
+
+#### 5.3 Security
+- [ ] **Encryption** - encrypt local files
+- [ ] **Watermarking** - automatic watermarks
+- [ ] **Metadata Removal** - remove EXIF metadata
+- [ ] **Privacy Mode** - privacy mode (no history)
+
+---
+
+### 🌐 Phase 6: Extensions and Plugins (Optional)
+
+#### 6.1 Plugin System
+- [ ] **Plugin API** - API for plugins
+- [ ] **Plugin Manager** - manage plugins
+- [ ] **Plugin Store** - plugin repository
+- [ ] **Example Plugins**:
   - [ ] Reddit upload plugin
   - [ ] Twitter upload plugin
   - [ ] Custom filters plugin
   - [ ] AI enhancement plugin
 
-#### 6.2 Integracje Zewnętrzne
-- [ ] **Browser extension** - rozszerzenie przeglądarki
-- [ ] **Command line tool** - narzędzie CLI
-- [ ] **PowerShell module** - moduł PowerShell
-- [ ] **REST API** - API dla integracji zewnętrznych
+#### 6.2 External Integrations
+- [ ] **Browser Extension** - browser extension
+- [ ] **Command Line Tool** - CLI tool
+- [ ] **PowerShell Module** - PowerShell module
+- [ ] **REST API** - API for external integrations
 
 ---
 
-## 📋 Priorytety Implementacji
+## 📋 Implementation Priorities
 
-### Krótkoterminowe (1-2 miesiące)
-1. ✅ Obsługa wielu monitorów - **ZROBIONE**
-2. ✅ Zarządzanie pamięcią - **ZROBIONE**
-3. Więcej narzędzi rysowania (Elipsa, Linia, Fill)
-4. Ulepszenia tekstu (czcionki, style)
-5. Skróty klawiszowe w edytorze
+### Short-term (1-2 months)
+1. ✅ Multi-monitor support - **DONE**
+2. ✅ Memory management - **DONE**
+3. More drawing tools (Ellipse, Line, Fill)
+4. Text improvements (fonts, styles)
+5. Editor keyboard shortcuts
 
-### Średnioterminowe (3-6 miesięcy)
-1. Zaawansowane narzędzia (Crop, Resize, Rotate)
-2. Filtry i efekty
-3. Więcej cloud providers
-4. OCR i rozpoznawanie
-5. Szablony i presety
+### Medium-term (3-6 months)
+1. Advanced tools (Crop, Resize, Rotate)
+2. Filters and effects
+3. More cloud providers
+4. OCR and recognition
+5. Templates and presets
 
-### Długoterminowe (6+ miesięcy)
-1. System pluginów
+### Long-term (6+ months)
+1. Plugin system
 2. Video capture
-3. Integracje zewnętrzne
+3. External integrations
 4. Browser extension
 5. REST API
 
 ---
 
-## 🎯 Metryki Sukcesu
+## 🎯 Success Metrics
 
-### Techniczne
-- [ ] Czas uruchomienia < 2 sekundy
-- [ ] Zużycie pamięci < 100MB (bez screenshotów)
-- [ ] Obsługa screenshotów do 4K bez lagów
-- [ ] 99.9% uptime dla cloud uploads
+### Technical
+- [ ] Startup time < 2 seconds
+- [ ] Memory usage < 100MB (without screenshots)
+- [ ] Support 4K screenshots without lag
+- [ ] 99.9% uptime for cloud uploads
 
-### Użytkownicy
-- [ ] 1000+ aktywnych użytkowników
-- [ ] 4.5+ gwiazdek w ocenach
+### Users
+- [ ] 1000+ active users
+- [ ] 4.5+ star rating
 - [ ] < 5% crash rate
-- [ ] < 2 sekundy czas edycji screenshotu
+- [ ] < 2 seconds screenshot editing time
 
 ---
 
-## 🔄 Proces Rozwoju
+## 🔄 Development Process
 
-### Wersjonowanie
-- **v1.0** - Obecna wersja (podstawowe funkcje)
-- **v1.5** - Ulepszenia edytora (Faza 1)
-- **v2.0** - Zaawansowane funkcje (Faza 2)
-- **v2.5** - Integracje (Faza 3)
-- **v3.0** - Plugin system (Faza 6)
+### Versioning
+- **v1.0** - Current version (basic features)
+- **v1.5** - Editor improvements (Phase 1)
+- **v2.0** - Advanced features (Phase 2)
+- **v2.5** - Integrations (Phase 3)
+- **v3.0** - Plugin system (Phase 6)
 
 ### Release Cycle
-- **Major releases** - co 6 miesięcy
-- **Minor releases** - co 2 miesiące
-- **Patch releases** - w razie potrzeby
+- **Major releases** - every 6 months
+- **Minor releases** - every 2 months
+- **Patch releases** - as needed
 
 ---
 
-## 💡 Pomysły na Przyszłość
+## 💡 Future Ideas
 
 ### AI/ML Features
-- [ ] **Auto-crop** - automatyczne przycinanie
-- [ ] **Smart blur** - inteligentne rozmywanie wrażliwych danych
-- [ ] **Auto-annotate** - automatyczne adnotacje
-- [ ] **Style transfer** - przenoszenie stylu
-- [ ] **Upscaling** - zwiększanie rozdzielczości (AI)
+- [ ] **Auto-crop** - automatic cropping
+- [ ] **Smart Blur** - intelligent blurring of sensitive data
+- [ ] **Auto-annotate** - automatic annotations
+- [ ] **Style Transfer** - style transfer
+- [ ] **Upscaling** - AI resolution increase
 
 ### Social Features
-- [ ] **Sharing gallery** - publiczna galeria
-- [ ] **Comments** - komentarze pod screenshotami
-- [ ] **Likes/Favorites** - system polubień
-- [ ] **Collections** - kolekcje screenshotów
+- [ ] **Sharing Gallery** - public gallery
+- [ ] **Comments** - comments on screenshots
+- [ ] **Likes/Favorites** - like system
+- [ ] **Collections** - screenshot collections
 
 ### Enterprise Features
-- [ ] **Team collaboration** - współpraca zespołowa
-- [ ] **Admin panel** - panel administracyjny
-- [ ] **Usage analytics** - analityka użycia
-- [ ] **Compliance** - zgodność z regulacjami (GDPR, etc.)
+- [ ] **Team Collaboration** - team collaboration
+- [ ] **Admin Panel** - admin panel
+- [ ] **Usage Analytics** - usage analytics
+- [ ] **Compliance** - compliance with regulations (GDPR, etc.)
 
 ---
 
-## 📝 Notatki
+## 📝 Notes
 
-- Plan jest elastyczny i może być modyfikowany w zależności od potrzeb użytkowników
-- Priorytety mogą się zmieniać na podstawie feedbacku
-- Funkcje oznaczone jako "Opcjonalne" mogą być implementowane przez społeczność jako pluginy
+- Plan is flexible and may be modified based on user needs
+- Priorities may change based on feedback
+- Features marked as "Optional" may be implemented by community as plugins
 
 ---
 
-**Ostatnia aktualizacja:** 2025-01-14
-**Wersja roadmap:** 1.0
-
+**Last Update:** 2025-11-15
+**Roadmap Version:** 2.0

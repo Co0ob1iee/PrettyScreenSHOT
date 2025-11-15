@@ -1,0 +1,40 @@
+<Window x:Class="PrettyScreenSHOT.Views.Windows.UpdateProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Downloading Update" Height="250" Width="420" WindowStartupLocation="CenterScreen"
+        Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
+        ShowInTaskbar="True" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Neumorphic window chrome -->
+    <Border Style="{StaticResource NeumorphicPanel}" CornerRadius="18" Margin="15" Padding="20">
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Text="Downloading update..."
+                       Style="{StaticResource NeumorphicHeadingLarge}"
+                       Margin="0,0,0,20"/>
+
+            <StackPanel DockPanel.Dock="Top">
+                <Border Style="{StaticResource NeumorphicDepressedBorder}" Height="30" Padding="2" Margin="0,0,0,10">
+                    <Border x:Name="ProgressBar"
+                            Background="{StaticResource NeumorphicPressedBrush}"
+                            HorizontalAlignment="Left"
+                            Width="0"/>
+                </Border>
+                <TextBlock x:Name="ProgressText" Text="0%"
+                           Style="{StaticResource NeumorphicTextBlock}"
+                           HorizontalAlignment="Center" FontSize="14"/>
+            </StackPanel>
+
+            <Button DockPanel.Dock="Bottom" x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click"
+                   Style="{StaticResource NeumorphicRaisedButton}"
+                   Padding="10,5" Margin="0,20,0,0" HorizontalAlignment="Right"/>
+        </DockPanel>
+    </Border>
+</Window>

@@ -2,7 +2,14 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Wpf.Ui.Appearance;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Cloud;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Theme;
+using PrettyScreenSHOT.Services.Update;
+using PrettyScreenSHOT.Views.Windows;
 
 namespace PrettyScreenSHOT
 {
@@ -25,8 +32,8 @@ namespace PrettyScreenSHOT
                 cloudManager.CurrentProvider = SettingsManager.Instance.CloudProvider;
             }
 
-            // Initialize WPF UI Theme Manager (replaces ThemeManager)
-            InitializeWpfUiTheme();
+            // Initialize theme
+            ThemeManager.Instance.Initialize();
 
             // Initialize tray icon
             trayIconManager = new TrayIconManager();
@@ -36,37 +43,6 @@ namespace PrettyScreenSHOT
             InitializeAutoUpdate();
 
             DebugHelper.LogDebug("Application started - press PRTSCN for screenshot");
-        }
-
-        private void InitializeWpfUiTheme()
-        {
-            var themeName = SettingsManager.Instance.Theme;
-
-            // Map legacy theme names to WPF UI themes
-            ApplicationTheme appTheme = themeName?.ToLower() switch
-            {
-                "light" => ApplicationTheme.Light,
-                "dark" => ApplicationTheme.Dark,
-                "neumorphic" => ApplicationTheme.Light, // Map Neumorphic to Light
-                "system" => ApplicationTheme.Unknown,    // Auto-detect system theme
-                _ => ApplicationTheme.Dark
-            };
-
-            // Apply theme globally
-            if (appTheme == ApplicationTheme.Unknown)
-            {
-                ApplicationThemeManager.ApplySystemTheme();
-            }
-            else
-            {
-                ApplicationThemeManager.Apply(
-                    appTheme,
-                    WindowBackdropType.Mica,  // Windows 11 Mica effect
-                    true  // updateAccents
-                );
-            }
-
-            DebugHelper.LogInfo("App", $"WPF UI Theme initialized: {themeName} -> {appTheme}");
         }
 
         private void InitializeAutoUpdate()
