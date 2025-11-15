@@ -1,0 +1,329 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Neumorphic Colors -->
+    <Color x:Key="NeumorphicBase">#E5E5E5</Color>
+    <Color x:Key="NeumorphicLightShadow">#FFFFFF</Color>
+    <Color x:Key="NeumorphicDarkShadow">#B0B0B0</Color>
+    <Color x:Key="NeumorphicText">#212121</Color>
+    <Color x:Key="NeumorphicTextSecondary">#666666</Color>
+
+    <!-- Neumorphic Brushes -->
+    <SolidColorBrush x:Key="NeumorphicBaseBrush" Color="{StaticResource NeumorphicBase}"/>
+    <SolidColorBrush x:Key="NeumorphicLightShadowBrush" Color="{StaticResource NeumorphicLightShadow}"/>
+    <SolidColorBrush x:Key="NeumorphicDarkShadowBrush" Color="{StaticResource NeumorphicDarkShadow}"/>
+    <SolidColorBrush x:Key="NeumorphicTextBrush" Color="{StaticResource NeumorphicText}"/>
+    <SolidColorBrush x:Key="NeumorphicTextSecondaryBrush" Color="{StaticResource NeumorphicTextSecondary}"/>
+
+    <!-- Neumorphic Raised Border (Wypukły) -->
+    <Style x:Key="NeumorphicRaisedBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="White" Direction="315" ShadowDepth="3" BlurRadius="8" Opacity="0.8"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}" Direction="135" ShadowDepth="3" BlurRadius="8" Opacity="0.3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!-- Neumorphic Depressed Border (Wklęsły) -->
+    <Style x:Key="NeumorphicDepressedBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}" Direction="315" ShadowDepth="3" BlurRadius="6" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Raised Button (Wypukły przycisk) -->
+    <Style x:Key="NeumorphicRaisedButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="mainBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10"
+                            BorderThickness="0"
+                            BorderBrush="{StaticResource NeumorphicBaseBrush}">
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="shadowEffect"
+                                             Color="Black"
+                                             Direction="135"
+                                             ShadowDepth="4"
+                                             BlurRadius="10"
+                                             Opacity="0.15"/>
+                        </Border.Effect>
+                        <Border BorderBrush="#FFFFFF" 
+                                BorderThickness="1,1,0,0" 
+                                CornerRadius="10"
+                                Opacity="0.6">
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}" 
+                                    BorderThickness="0,0,1,1" 
+                                    CornerRadius="10"
+                                    Opacity="0.3">
+                                <Grid>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Margin="{TemplateBinding Padding}"/>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#EDEDED"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.2"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#DDDDDD"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="shadowEffect" Property="ShadowDepth" Value="2"/>
+                            <Setter TargetName="shadowEffect" Property="BlurRadius" Value="6"/>
+                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.25"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Depressed Button (Wklęsły przycisk - aktywny) -->
+    <Style x:Key="NeumorphicDepressedButton" TargetType="Button" BasedOn="{StaticResource NeumorphicRaisedButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10"
+                            BorderThickness="0">
+                        <Border.Effect>
+                            <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}"
+                                             Direction="315"
+                                             ShadowDepth="2"
+                                             BlurRadius="6"
+                                             Opacity="0.5"/>
+                        </Border.Effect>
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#E0E0E0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Circular Button (Okrągły przycisk) -->
+    <Style x:Key="NeumorphicCircularButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="mainBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="25"
+                            BorderThickness="0">
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="shadowEffect"
+                                             Color="Black"
+                                             Direction="135"
+                                             ShadowDepth="4"
+                                             BlurRadius="10"
+                                             Opacity="0.15"/>
+                        </Border.Effect>
+                        <Border BorderBrush="#FFFFFF" 
+                                BorderThickness="1,1,0,0" 
+                                CornerRadius="25"
+                                Opacity="0.6">
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}" 
+                                    BorderThickness="0,0,1,1" 
+                                    CornerRadius="25"
+                                    Opacity="0.3">
+                                <Grid>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#EDEDED"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.2"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#DDDDDD"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="shadowEffect" Property="ShadowDepth" Value="2"/>
+                            <Setter TargetName="shadowEffect" Property="BlurRadius" Value="6"/>
+                            <Setter TargetName="shadowEffect" Property="Opacity" Value="0.25"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Panel -->
+    <Style x:Key="NeumorphicPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Border">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black"
+                                             Direction="135"
+                                             ShadowDepth="5"
+                                             BlurRadius="15"
+                                             Opacity="0.12"/>
+                        </Border.Effect>
+                        <Border BorderBrush="#FFFFFF" 
+                                BorderThickness="1,1,0,0" 
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Opacity="0.7">
+                            <Border BorderBrush="{StaticResource NeumorphicDarkShadowBrush}" 
+                                    BorderThickness="0,0,1,1" 
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Opacity="0.4">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic TextBox -->
+    <Style x:Key="NeumorphicTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource NeumorphicBaseBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="outerBorder"
+                            Background="{StaticResource NeumorphicBaseBrush}"
+                            CornerRadius="10"
+                            BorderThickness="0">
+                        <Border.Effect>
+                            <DropShadowEffect Color="White"
+                                             Direction="315"
+                                             ShadowDepth="2"
+                                             BlurRadius="6"
+                                             Opacity="0.6"/>
+                        </Border.Effect>
+                        <Border x:Name="innerBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                BorderThickness="0"
+                                Margin="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="{StaticResource NeumorphicDarkShadow}"
+                                                 Direction="135"
+                                                 ShadowDepth="2"
+                                                 BlurRadius="6"
+                                                 Opacity="0.2"/>
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="innerBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#EDEDED"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Neumorphic Slider -->
+    <Style x:Key="NeumorphicSlider" TargetType="Slider">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#4CAF50"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="8,0"/>
+    </Style>
+
+    <!-- Neumorphic TextBlock -->
+    <Style x:Key="NeumorphicTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <!-- Neumorphic TextBlock Secondary -->
+    <Style x:Key="NeumorphicTextBlockSecondary" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NeumorphicTextSecondaryBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+</ResourceDictionary>
+

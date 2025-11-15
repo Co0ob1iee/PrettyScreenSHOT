@@ -7,7 +7,8 @@ namespace PrettyScreenSHOT
     public enum Theme
     {
         Dark,
-        Light
+        Light,
+        Neumorphic
     }
 
     public class ThemeManager
@@ -15,7 +16,7 @@ namespace PrettyScreenSHOT
         private static readonly ThemeManager instance = new();
         public static ThemeManager Instance => instance;
 
-        public Theme CurrentTheme { get; private set; } = Theme.Dark;
+        public Theme CurrentTheme { get; private set; } = Theme.Neumorphic;
 
         public event EventHandler<Theme>? ThemeChanged;
 
@@ -113,7 +114,13 @@ namespace PrettyScreenSHOT
 
         public ThemeColors GetThemeColors()
         {
-            return CurrentTheme == Theme.Dark ? DarkColors : LightColors;
+            return CurrentTheme switch
+            {
+                Theme.Dark => DarkColors,
+                Theme.Light => LightColors,
+                Theme.Neumorphic => NeumorphicColors,
+                _ => DarkColors
+            };
         }
 
         public static ThemeColors DarkColors => new()
@@ -140,6 +147,19 @@ namespace PrettyScreenSHOT
             Accent = System.Windows.Media.Color.FromRgb(0x21, 0x96, 0xF3),
             ButtonBackground = System.Windows.Media.Color.FromRgb(0xF5, 0xF5, 0xF5),
             ButtonHover = System.Windows.Media.Color.FromRgb(0xE0, 0xE0, 0xE0)
+        };
+
+        public static ThemeColors NeumorphicColors => new()
+        {
+            WindowBackground = System.Windows.Media.Color.FromRgb(0xE5, 0xE5, 0xE5), // #E5E5E5
+            PanelBackground = System.Windows.Media.Color.FromRgb(0xE5, 0xE5, 0xE5), // #E5E5E5
+            InputBackground = System.Windows.Media.Color.FromRgb(0xE5, 0xE5, 0xE5), // #E5E5E5
+            TextPrimary = System.Windows.Media.Color.FromRgb(0x21, 0x21, 0x21),      // #212121
+            TextSecondary = System.Windows.Media.Color.FromRgb(0x66, 0x66, 0x66),    // #666666
+            Border = System.Windows.Media.Color.FromRgb(0xD0, 0xD0, 0xD0),           // #D0D0D0
+            Accent = System.Windows.Media.Color.FromRgb(0x4C, 0xAF, 0x50),           // #4CAF50
+            ButtonBackground = System.Windows.Media.Color.FromRgb(0xE5, 0xE5, 0xE5), // #E5E5E5
+            ButtonHover = System.Windows.Media.Color.FromRgb(0xED, 0xED, 0xED)       // #EDEDED
         };
     }
 
