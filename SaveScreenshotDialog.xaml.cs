@@ -4,10 +4,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT
 {
-    public partial class SaveScreenshotDialog : Window
+    public partial class SaveScreenshotDialog : FluentWindow
     {
         public string Category { get; private set; } = "";
         public List<string> Tags { get; private set; } = new();
@@ -35,19 +36,8 @@ namespace PrettyScreenSHOT
                 TagsLabel.Text = LocalizationHelper.GetString("SaveDialog_Tags");
             if (TagsTextBox != null)
             {
-                TagsTextBox.Tag = LocalizationHelper.GetString("SaveDialog_TagsPlaceholder");
-                // Ustaw placeholder dla TagsTextBox
-                TagsTextBox.GotFocus += (s, e) =>
-                {
-                    if (TagsTextBox.Text == TagsTextBox.Tag?.ToString())
-                        TagsTextBox.Text = "";
-                };
-                TagsTextBox.LostFocus += (s, e) =>
-                {
-                    if (string.IsNullOrWhiteSpace(TagsTextBox.Text))
-                        TagsTextBox.Text = TagsTextBox.Tag?.ToString() ?? "";
-                };
-                TagsTextBox.Text = TagsTextBox.Tag?.ToString() ?? "";
+                // ui:TextBox has built-in PlaceholderText property
+                TagsTextBox.PlaceholderText = LocalizationHelper.GetString("SaveDialog_TagsPlaceholder");
             }
             if (NotesLabel != null)
                 NotesLabel.Text = LocalizationHelper.GetString("SaveDialog_Notes");
@@ -60,10 +50,10 @@ namespace PrettyScreenSHOT
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
             Category = CategoryComboBox.Text?.Trim() ?? "";
-            
+
             // Parsuj tagi z tekstu
             var tagsText = TagsTextBox.Text?.Trim() ?? "";
-            if (!string.IsNullOrEmpty(tagsText) && tagsText != TagsTextBox.Tag?.ToString())
+            if (!string.IsNullOrEmpty(tagsText))
             {
                 Tags = tagsText.Split(',')
                     .Select(t => t.Trim())
@@ -74,21 +64,21 @@ namespace PrettyScreenSHOT
             {
                 Tags = new List<string>();
             }
-            
+
             Notes = NotesTextBox.Text?.Trim() ?? "";
-            
+
             // Dodaj nową kategorię do listy jeśli nie istnieje
             if (!string.IsNullOrEmpty(Category) && !SearchAndFilterManager.Instance.AvailableCategories.Contains(Category))
             {
                 SearchAndFilterManager.Instance.AddCategory(Category);
             }
-            
+
             // Dodaj nowe tagi do listy
             foreach (var tag in Tags)
             {
                 SearchAndFilterManager.Instance.AddTag(tag);
             }
-            
+
             this.DialogResult = true;
             this.Close();
         }
@@ -97,14 +87,6 @@ namespace PrettyScreenSHOT
         {
             this.DialogResult = false;
             this.Close();
-        }
-
-        private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
         }
     }
 }
