@@ -4,93 +4,93 @@
 [![License](https://img.shields.io/badge/license-GPL%20v3-blue)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)](https://www.microsoft.com/windows)
 
-Zaawansowana aplikacja do przechwytywania i edycji screenshotów dla Windows, napisana w C# WPF.
+Advanced screenshot capture and editing application for Windows, built with C# WPF.
 
-## ✨ Funkcje
+## ✨ Features
 
-### 🎯 Przechwytywanie
-- **Region Selection** - wybór obszaru do przechwycenia
-- **Multi-Monitor Support** - obsługa wielu monitorów jednocześnie
-- **Global Hotkey** - skrót klawiszowy (domyślnie PRTSCN)
-- **Automatic Clipboard** - automatyczne kopiowanie do schowka
+### 🎯 Capture
+- **Region Selection** - select area to capture
+- **Multi-Monitor Support** - capture from multiple monitors
+- **Global Hotkey** - keyboard shortcut (default: PRTSCN)
+- **Automatic Clipboard** - auto-copy to clipboard
 
-### 🎨 Edytor
-- **Marker** - rysowanie markerem
-- **Prostokąt** - rysowanie prostokątów
-- **Strzałka** - rysowanie strzałek
-- **Blur** - rozmywanie obszarów (Gaussian blur)
-- **Tekst** - dodawanie tekstu z wyborem czcionki i rozmiaru
-- **Kolor** - wybór koloru z palety
-- **Grubość** - regulacja grubości linii
-- **Undo/Clear** - cofanie i czyszczenie zmian
+### 🎨 Editor
+- **Marker** - freehand drawing
+- **Rectangle** - draw rectangles
+- **Arrow** - draw arrows
+- **Blur** - Gaussian blur for privacy
+- **Text** - add text with font and size options
+- **Color** - color picker with palette
+- **Thickness** - adjustable line width
+- **Undo/Clear** - undo and clear changes
 
-### 📚 Historia
-- **Automatyczne zapisywanie** - wszystkie screenshoty są zapisywane
-- **Miniatury** - podgląd w historii
-- **Usuwanie** - łatwe usuwanie screenshotów
-- **Cloud Upload** - upload do chmury (Imgur, Cloudinary, S3, Custom)
+### 📚 History
+- **Automatic Saving** - all screenshots are saved
+- **Thumbnails** - preview in history window
+- **Delete** - easy screenshot deletion
+- **Cloud Upload** - upload to cloud (Imgur, Cloudinary, S3, Custom)
 
-### 🌍 Wielojęzyczność
-- 🇵🇱 Polski
+### 🌍 Internationalization
 - 🇬🇧 English
+- 🇵🇱 Polski
 - 🇩🇪 Deutsch
-- 🇨🇳 中文 (Mandaryński)
+- 🇨🇳 中文 (Mandarin)
 - 🇫🇷 Français
 
-### ⚙️ Ustawienia
-- **Język** - wybór języka interfejsu
-- **Ścieżka zapisu** - konfigurowalna lokalizacja plików
-- **Hotkey** - konfiguracja skrótu klawiszowego
-- **Format obrazu** - PNG, JPG, BMP
-- **Jakość** - regulacja jakości (10-100%)
-- **Auto Save** - automatyczne zapisywanie
-- **Copy to Clipboard** - kopiowanie do schowka
-- **Show Notifications** - wyświetlanie powiadomień
-- **Theme** - motywy kolorystyczne (Dark/Light)
+### ⚙️ Settings
+- **Language** - interface language selection
+- **Save Path** - configurable file location
+- **Hotkey** - keyboard shortcut configuration
+- **Image Format** - PNG, JPG, BMP
+- **Quality** - quality adjustment (10-100%)
+- **Auto Save** - automatic saving
+- **Copy to Clipboard** - clipboard copying
+- **Show Notifications** - notification display
+- **Theme** - color themes (Dark/Light)
 
 ### 🎬 Video Capture
-- **GIF Recording** - nagrywanie animowanych GIF (Magick.NET)
-- **MP4 Export** - eksport do MP4 (wymaga FFmpeg)
-- **Konfigurowalny FPS** - 1-30 klatek na sekundę
-- **UI Control Panel** - okno kontroli nagrywania
+- **GIF Recording** - animated GIF recording (Magick.NET)
+- **MP4 Export** - MP4 export (requires FFmpeg)
+- **Configurable FPS** - 1-30 frames per second
+- **UI Control Panel** - recording control window
 
 ### 📜 Scroll Capture
-- **Automatyczne przewijanie** - przechwytywanie długich stron
-- **Inteligentne wykrywanie końca** - zaawansowane porównanie screenshotów
-- **Pionowe i poziome** - obsługa obu kierunków
-- **Łączenie obrazów** - automatyczne łączenie wielu screenshotów
+- **Automatic Scrolling** - capture long pages
+- **Smart End Detection** - advanced screenshot comparison
+- **Vertical and Horizontal** - both directions supported
+- **Image Stitching** - automatic screenshot merging
 
-### 🔒 Bezpieczeństwo
-- **Szyfrowanie AES-256** - szyfrowanie screenshotów
-- **PBKDF2 Key Derivation** - bezpieczne generowanie kluczy z hasła
-- **Znak wodny tekstowy** - dodawanie tekstowego znaku wodnego
-- **Znak wodny obrazowy** - dodawanie obrazowego znaku wodnego
-- **Usuwanie metadanych** - usuwanie EXIF dla prywatności
+### 🔒 Security
+- **AES-256 Encryption** - screenshot encryption
+- **PBKDF2 Key Derivation** - secure key generation from password
+- **Text Watermark** - add text watermark
+- **Image Watermark** - add image watermark
+- **Metadata Removal** - remove EXIF for privacy
 
-### ⚡ Optymalizacja Wydajności
-- **Cache miniatur** - inteligentne cache'owanie
-- **Lazy loading** - asynchroniczne ładowanie
-- **Optymalizacja obrazów** - automatyczne zmniejszanie rozmiaru
-- **Zarządzanie pamięcią** - automatyczne czyszczenie cache
+### ⚡ Performance Optimization
+- **Thumbnail Cache** - intelligent caching
+- **Lazy Loading** - asynchronous loading
+- **Image Optimization** - automatic size reduction
+- **Memory Management** - automatic cache cleanup
 
 ### ☁️ Cloud Upload
-- **Imgur** - bezpośredni upload
-- **Cloudinary** - upload do Cloudinary
-- **AWS S3** - upload do S3
-- **Custom Server** - własny serwer
-- **Auto Upload** - automatyczny upload po zapisaniu
+- **Imgur** - direct upload
+- **Cloudinary** - Cloudinary upload
+- **AWS S3** - S3 upload
+- **Custom Server** - custom server support
+- **Auto Upload** - automatic upload after save
 
-## 🚀 Instalacja
+## 🚀 Installation
 
-### Wymagania
+### Requirements
 - Windows 10/11
 - .NET 10.0 Runtime
 
-### Dla użytkowników końcowych
+### For End Users
 
-Zobacz szczegółową instrukcję w [docs/installation/INSTALLATION.md](docs/installation/INSTALLATION.md)
+See detailed instructions in [docs/installation/INSTALLATION.md](docs/installation/INSTALLATION.md)
 
-### Dla programistów
+### For Developers
 
 ```bash
 git clone https://github.com/Co0ob1iee/PrettyScreenSHOT.git
@@ -100,82 +100,80 @@ dotnet build
 dotnet run
 ```
 
-Lub uruchom skompilowany plik `PrettyScreenSHOT.exe` z folderu `bin/Debug/net10.0-windows/`
+Or run the compiled `PrettyScreenSHOT.exe` from `bin/Debug/net10.0-windows/` folder
 
-## 📖 Użycie
+## 📖 Usage
 
-1. **Uruchom aplikację** - aplikacja uruchomi się w tle (ikona w system tray)
-2. **Naciśnij PRTSCN** - pojawi się overlay do wyboru obszaru
-3. **Zaznacz obszar** - przeciągnij myszką, aby zaznaczyć obszar
-4. **Edytuj** - kliknij prawym przyciskiem na tray icon → "Edit Last Screenshot"
-5. **Zapisz** - kliknij "SAVE" w edytorze
+1. **Launch Application** - runs in background (system tray icon)
+2. **Press PRTSCN** - overlay appears for area selection
+3. **Select Area** - drag mouse to select area
+4. **Edit** - right-click tray icon → "Edit Last Screenshot"
+5. **Save** - click "SAVE" in editor
 
-### Skróty Klawiszowe
-- **PRTSCN** - przechwytywanie screenshotu
-- **ESC** - anulowanie (w overlay)
+### Keyboard Shortcuts
+- **PRTSCN** - capture screenshot
+- **ESC** - cancel (in overlay)
 
-## 🛠️ Technologie
+## 🛠️ Technologies
 
 - **.NET 10.0** - framework
-- **WPF** - interfejs użytkownika
-- **WinAPI** - przechwytywanie ekranu i keyboard hooks
+- **WPF** - user interface
+- **WinAPI** - screen capture and keyboard hooks
 - **System.Windows.Forms** - tray icon
-- **Magick.NET** - przetwarzanie obrazów i animowane GIF
-- **FFmpeg** - eksport do MP4 (opcjonalnie)
-- **AES-256** - szyfrowanie
+- **Magick.NET** - image processing and animated GIF
+- **FFmpeg** - MP4 export (optional)
+- **AES-256** - encryption
 - **PBKDF2** - key derivation
 
-## 📁 Struktura Projektu
+## 📁 Project Structure
 
-Szczegółowy opis struktury i architektury projektu znajduje się w [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md).
+Detailed structure and architecture description at [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md).
 
-### Główne komponenty:
-- **App.xaml/.cs** - Punkt wejścia aplikacji
-- **TrayIconManager.cs** - Zarządzanie ikoną w tray
-- **ScreenshotHelper.cs** - Przechwytywanie screenshotów
-- **ScreenshotManager.cs** - Zarządzanie historią
-- **ScreenshotEditorWindow.xaml/.cs** - Edytor obrazów
-- **ScreenshotHistoryWindow.xaml/.cs** - Historia screenshotów
-- **SettingsWindow.xaml/.cs** - Okno ustawień
-- **CloudUploadManager.cs** - Upload do chmury
-- **VideoCaptureManager.cs** - Nagrywanie GIF/MP4
-- **SecurityManager.cs** - Szyfrowanie i watermarking
-- **Properties/Resources.*.resx** - Pliki lokalizacji
+### Main Components:
+- **App.xaml/.cs** - Application entry point
+- **Views/** - All Windows, Dialogs, and Overlays
+- **Services/** - Business logic and managers
+  - Screenshot, Cloud, Update, Theme, Video, Settings, Security
+- **Models/** - Data models
+- **Helpers/** - Utility classes
+- **Properties/Resources.*.resx** - Localization files
 
 ## 🗺️ Roadmap
 
-Zobacz [ROADMAP.md](ROADMAP.md) dla szczegółowego planu rozwoju.
+See [ROADMAP.md](ROADMAP.md) for detailed development plan.
 
-### Nadchodzące Funkcje
-- Więcej narzędzi rysowania (Elipsa, Linia, Fill)
-- Zaawansowane narzędzia (Crop, Resize, Rotate)
-- Filtry i efekty
-- OCR (rozpoznawanie tekstu)
-- Więcej cloud providers (Google Drive, Dropbox)
-- Skróty klawiszowe w edytorze
-- GPU acceleration dla przetwarzania obrazów
-- Zaawansowane algorytmy wykrywania zmian w Scroll Capture
+### Upcoming Features
+- More drawing tools (Ellipse, Line, Fill)
+- Advanced tools (Crop, Resize, Rotate)
+- Filters and effects
+- OCR (text recognition)
+- More cloud providers (Google Drive, Dropbox)
+- Editor keyboard shortcuts
+- GPU acceleration for image processing
+- Advanced scroll capture algorithms
 
-## 🤝 Współpraca
+## 🤝 Contributing
 
-Contributions są mile widziane! Proszę:
-1. Fork projektu
-2. Utwórz branch dla swojej funkcji (`git checkout -b feature/AmazingFeature`)
-3. Commit zmian (`git commit -m 'Add some AmazingFeature'`)
-4. Push do brancha (`git push origin feature/AmazingFeature`)
-5. Otwórz Pull Request
+Contributions are welcome! Please:
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Licencja
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
-Ten projekt jest licencjonowany na licencji GNU GPL v3 - zobacz plik [LICENSE](LICENSE) dla szczegółów.
+## 📝 License
 
-## 🙏 Podziękowania
+This project is licensed under the GNU GPL v3 License - see [LICENSE](LICENSE) for details.
 
-- Wszystkim contributorom
-- Społeczności open source
-- Użytkownikom za feedback
+## 🙏 Acknowledgments
 
-## 📧 Kontakt
+- All contributors
+- Open source community
+- Users for feedback
+
+## 📧 Contact
 
 - Issues: [GitHub Issues](https://github.com/Co0ob1iee/PrettyScreenSHOT/issues)
 - Discussions: [GitHub Discussions](https://github.com/Co0ob1iee/PrettyScreenSHOT/discussions)

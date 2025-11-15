@@ -1,0 +1,218 @@
+<Window x:Class="PrettyScreenSHOT.Views.Windows.TextInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dodaj Tekst" Height="720" Width="540" WindowStartupLocation="CenterScreen"
+        Background="Transparent" Foreground="{StaticResource NeumorphicTextBrush}"
+        ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PrettyScreenSHOT;component/NeumorphicStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Neumorphic window chrome -->
+    <Border Style="{StaticResource NeumorphicPanel}" CornerRadius="18" Margin="15" Padding="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/> <!-- Title bar -->
+                <RowDefinition Height="*"/>  <!-- Main content -->
+            </Grid.RowDefinitions>
+
+            <!-- Custom Title Bar -->
+            <Border Grid.Row="0" Background="Transparent" Padding="15,10" CornerRadius="18,18,0,0"
+                    MouseLeftButtonDown="OnTitleBarMouseDown">
+                <DockPanel>
+                    <TextBlock Text="Dodaj Tekst" FontSize="18" FontWeight="Regular"
+                               Foreground="{StaticResource NeumorphicTextBrush}"
+                               VerticalAlignment="Center" DockPanel.Dock="Left"/>
+
+                    <Button Click="OnCancelClick" Style="{StaticResource NeumorphicCircularButton}"
+                            Width="32" Height="32" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" ToolTip="Zamknij">
+                        <TextBlock Text="✕" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
+                </DockPanel>
+            </Border>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="1" Margin="20,10,20,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>  <!-- Text Input -->
+                    <RowDefinition Height="Auto"/>  <!-- Font Family -->
+                    <RowDefinition Height="Auto"/>  <!-- Font Size -->
+                    <RowDefinition Height="Auto"/>  <!-- Text Alignment -->
+                    <RowDefinition Height="Auto"/>  <!-- Text Style -->
+                    <RowDefinition Height="Auto"/>  <!-- Text Color -->
+                    <RowDefinition Height="Auto"/>  <!-- Background Color -->
+                    <RowDefinition Height="Auto"/>  <!-- Stroke -->
+                    <RowDefinition Height="Auto"/>  <!-- Preview -->
+                    <RowDefinition Height="*"/>     <!-- Buttons -->
+                </Grid.RowDefinitions>
+
+                <!-- Text Input -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock x:Name="TextLabel" Text="Text:" Style="{StaticResource NeumorphicTextBlockSecondary}" 
+                       FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="TextInputControl" Style="{StaticResource NeumorphicTextBox}"
+                     Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                     TextChanged="TextInputControl_TextChanged"/>
+        </StackPanel>
+
+        <!-- Font Family -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+            <TextBlock Text="Czcionka:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,5"/>
+            <ComboBox x:Name="FontFamilyComboBox" SelectionChanged="FontFamilyComboBox_SelectionChanged"
+                      Style="{StaticResource NeumorphicComboBox}"/>
+        </StackPanel>
+
+        <!-- Font Size -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,15">
+            <TextBlock x:Name="FontSizeTextLabel" Text="Rozmiar czcionki:" 
+                       Style="{StaticResource NeumorphicTextBlockSecondary}" 
+                       FontWeight="Bold" Margin="0,0,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <Slider x:Name="FontSizeSlider" Width="350" Minimum="8" Maximum="120" Value="24"
+                        Style="{StaticResource NeumorphicSlider}" VerticalAlignment="Center"
+                        ValueChanged="FontSizeSlider_ValueChanged"/>
+                <TextBlock x:Name="FontSizeValueLabel" Text="24" 
+                           Style="{StaticResource NeumorphicTextBlockSecondary}" 
+                           Margin="10,0,0,0" VerticalAlignment="Center" Width="40"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Text Alignment -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock Text="Wyrównanie:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,8"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <RadioButton x:Name="AlignLeftRadio" Content="◀ Lewo" GroupName="Alignment" IsChecked="True"
+                             Style="{StaticResource NeumorphicRadioButton}" Margin="0,0,10,0"
+                             Checked="TextAlignment_Changed"/>
+                <RadioButton x:Name="AlignCenterRadio" Content="▣ Środek" GroupName="Alignment"
+                             Style="{StaticResource NeumorphicRadioButton}" Margin="0,0,10,0"
+                             Checked="TextAlignment_Changed"/>
+                <RadioButton x:Name="AlignRightRadio" Content="▶ Prawo" GroupName="Alignment"
+                             Style="{StaticResource NeumorphicRadioButton}" Margin="0,0,10,0"
+                             Checked="TextAlignment_Changed"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Text Style Options -->
+        <StackPanel Grid.Row="4" Margin="0,0,0,15">
+            <TextBlock Text="Styl tekstu:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,8"/>
+            <WrapPanel Orientation="Horizontal">
+                <CheckBox x:Name="BoldCheckBox" Content="Pogrubiony"
+                          Style="{StaticResource NeumorphicCheckBox}"
+                          Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="ItalicCheckBox" Content="Kursywa"
+                          Style="{StaticResource NeumorphicCheckBox}"
+                          Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="UnderlineCheckBox" Content="Podkreślenie"
+                          Style="{StaticResource NeumorphicCheckBox}"
+                          Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+                <CheckBox x:Name="StrikethroughCheckBox" Content="Przekreślenie"
+                          Style="{StaticResource NeumorphicCheckBox}"
+                          Margin="0,0,15,5"
+                          Checked="StyleCheckBox_Checked" Unchecked="StyleCheckBox_Checked"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <!-- Color Selection -->
+        <StackPanel Grid.Row="5" Margin="0,0,0,15">
+            <TextBlock Text="Kolor tekstu:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,8"/>
+            <ComboBox x:Name="ColorComboBox" SelectedIndex="0" SelectionChanged="ColorComboBox_SelectionChanged"
+                      Style="{StaticResource NeumorphicComboBox}">
+                <ComboBoxItem Content="Czerwony" Background="Red" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Zielony" Background="Green" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Niebieski" Background="Blue" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Żółty" Background="Yellow" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Fioletowy" Background="Purple" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Pomarańczowy" Background="Orange" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Czarny" Background="Black" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Biały" Background="White" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Background Color -->
+        <StackPanel Grid.Row="6" Margin="0,0,0,15">
+            <TextBlock Text="Kolor tła (opcjonalnie):" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,8"/>
+            <ComboBox x:Name="BackgroundColorComboBox" SelectedIndex="0" SelectionChanged="BackgroundColorComboBox_SelectionChanged"
+                      Style="{StaticResource NeumorphicComboBox}">
+                <ComboBoxItem Content="Brak" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Biały" Background="White" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Czarny" Background="Black" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Żółty" Background="Yellow" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Niebieski" Background="LightBlue" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Zielony" Background="LightGreen" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                <ComboBoxItem Content="Różowy" Background="Pink" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Text Stroke -->
+        <StackPanel Grid.Row="7" Margin="0,0,0,15">
+            <TextBlock Text="Obramowanie:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                       FontWeight="Bold" Margin="0,0,0,8"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="StrokeColorComboBox" Grid.Column="0" Margin="0,0,10,0" SelectedIndex="0"
+                          SelectionChanged="StrokeColorComboBox_SelectionChanged"
+                          Style="{StaticResource NeumorphicComboBox}">
+                    <ComboBoxItem Content="Brak" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                    <ComboBoxItem Content="Czarny" Background="Black" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                    <ComboBoxItem Content="Biały" Background="White" Foreground="Black" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                    <ComboBoxItem Content="Szary" Background="Gray" Foreground="White" Style="{StaticResource NeumorphicComboBoxItem}"/>
+                </ComboBox>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="Grubość:" Style="{StaticResource NeumorphicTextBlockSecondary}"
+                               VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <Slider x:Name="StrokeThicknessSlider" Width="80" Minimum="0" Maximum="5" Value="0"
+                            Style="{StaticResource NeumorphicSlider}" VerticalAlignment="Center"
+                            ValueChanged="StrokeThicknessSlider_ValueChanged"/>
+                    <TextBlock x:Name="StrokeThicknessLabel" Text="0"
+                               Style="{StaticResource NeumorphicTextBlockSecondary}"
+                               Margin="5,0,0,0" VerticalAlignment="Center" Width="20"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <!-- Preview -->
+        <StackPanel Grid.Row="8" Margin="0,0,0,15">
+            <TextBlock x:Name="PreviewLabel" Text="Podgląd:" 
+                       Style="{StaticResource NeumorphicTextBlockSecondary}" 
+                       FontWeight="Bold" Margin="0,0,0,5"/>
+            <Border Style="{StaticResource NeumorphicPanel}" Height="60">
+                <TextBlock x:Name="PreviewText" Text="Przykładowy tekst" 
+                           Foreground="#4CAF50"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           TextWrapping="Wrap" FontSize="16" Style="{StaticResource NeumorphicTextBlock}"/>
+            </Border>
+        </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button Click="OnOkClick" Style="{StaticResource NeumorphicDepressedButton}"
+                            Padding="20,10" Margin="5" Width="100">
+                        <TextBlock Text="OK" FontWeight="Bold" Style="{StaticResource NeumorphicTextBlock}"/>
+                    </Button>
+                    <Button Click="OnCancelClick" Style="{StaticResource NeumorphicRaisedButton}"
+                            Padding="20,10" Margin="5" Width="100">
+                        <TextBlock Text="Anuluj" FontWeight="Bold" Style="{StaticResource NeumorphicTextBlock}"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
