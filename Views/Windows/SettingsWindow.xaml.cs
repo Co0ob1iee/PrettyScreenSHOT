@@ -2,6 +2,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Theme;
 
 namespace PrettyScreenSHOT.Views.Windows
 {

@@ -1,6 +1,8 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Services.Theme
 {

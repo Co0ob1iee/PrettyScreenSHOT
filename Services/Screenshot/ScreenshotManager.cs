@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Services.Screenshot
 {

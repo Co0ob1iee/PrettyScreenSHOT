@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
+using PrettyScreenSHOT.Helpers;
 
 namespace PrettyScreenSHOT.Services.Security
 {

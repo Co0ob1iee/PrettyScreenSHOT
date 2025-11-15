@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using ImageMagick;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Services.Video
 {
