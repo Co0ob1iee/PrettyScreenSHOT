@@ -296,7 +296,11 @@ namespace PrettyScreenSHOT
 
             if (string.IsNullOrWhiteSpace(InputText))
             {
-                System.Windows.MessageBox.Show("Wprowadź tekst do wyświetlenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show(
+                    LocalizationHelper.GetString("TextInput_EmptyText"),
+                    LocalizationHelper.GetString("TextInput_EmptyTextTitle"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 

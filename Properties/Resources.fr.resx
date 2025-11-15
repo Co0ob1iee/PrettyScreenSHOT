@@ -343,5 +343,152 @@
   <data name="SaveDialog_Save" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
+  <data name="TextInput_EmptyText" xml:space="preserve">
+    <value>Entrez du texte à afficher !</value>
+  </data>
+  <data name="TextInput_EmptyTextTitle" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="VideoCapture_Title" xml:space="preserve">
+    <value>Capture vidéo</value>
+  </data>
+  <data name="VideoCapture_ReadyToRecord" xml:space="preserve">
+    <value>Prêt à enregistrer</value>
+  </data>
+  <data name="VideoCapture_RecordingArea" xml:space="preserve">
+    <value>Zone d'enregistrement :</value>
+  </data>
+  <data name="VideoCapture_AreaNotSelected" xml:space="preserve">
+    <value>Non sélectionné</value>
+  </data>
+  <data name="VideoCapture_FrameRate" xml:space="preserve">
+    <value>Fréquence d'images :</value>
+  </data>
+  <data name="VideoCapture_FrameRateLabel" xml:space="preserve">
+    <value>{0} FPS</value>
+  </data>
+  <data name="VideoCapture_Format" xml:space="preserve">
+    <value>Format :</value>
+  </data>
+  <data name="VideoCapture_RecordingTime" xml:space="preserve">
+    <value>Durée d'enregistrement :</value>
+  </data>
+  <data name="VideoCapture_FramesCaptured" xml:space="preserve">
+    <value>Images capturées :</value>
+  </data>
+  <data name="VideoCapture_Saving" xml:space="preserve">
+    <value>Enregistrement...</value>
+  </data>
+  <data name="VideoCapture_RecordingSaved" xml:space="preserve">
+    <value>Enregistrement sauvegardé !</value>
+  </data>
+  <data name="VideoCapture_ErrorStarting" xml:space="preserve">
+    <value>Erreur lors du démarrage de l'enregistrement : {0}</value>
+  </data>
+  <data name="VideoCapture_ErrorSaving" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement de la vidéo : {0}</value>
+  </data>
+  <data name="VideoCapture_VideoSavedMessage" xml:space="preserve">
+    <value>Vidéo enregistrée dans :{0}{1}</value>
+  </data>
+  <data name="VideoCapture_Recording" xml:space="preserve">
+    <value>Enregistrement...</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmMessage" xml:space="preserve">
+    <value>L'enregistrement est en cours. Voulez-vous arrêter et abandonner ?</value>
+  </data>
+  <data name="VideoCapture_CancelConfirmTitle" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="Editor_Tooltip_Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="Editor_Tooltip_Duplicate" xml:space="preserve">
+    <value>Dupliquer</value>
+  </data>
+  <data name="Editor_Tooltip_Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Editor_Tooltip_WiFi" xml:space="preserve">
+    <value>WiFi</value>
+  </data>
+  <data name="Editor_Tooltip_Battery" xml:space="preserve">
+    <value>Batterie</value>
+  </data>
+  <data name="Editor_Tooltip_Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="Editor_Tooltip_Share" xml:space="preserve">
+    <value>Partager</value>
+  </data>
+  <data name="Editor_Tooltip_Volume" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="Editor_Tooltip_Bold" xml:space="preserve">
+    <value>Gras</value>
+  </data>
+  <data name="Editor_Tooltip_Italic" xml:space="preserve">
+    <value>Italique</value>
+  </data>
+  <data name="Editor_Tooltip_Underline" xml:space="preserve">
+    <value>Souligné</value>
+  </data>
+  <data name="Editor_Tooltip_Strikethrough" xml:space="preserve">
+    <value>Barré</value>
+  </data>
+  <data name="Editor_Tooltip_AlignLeft" xml:space="preserve">
+    <value>Aligner à gauche</value>
+  </data>
+  <data name="Editor_Tooltip_AlignCenter" xml:space="preserve">
+    <value>Centrer</value>
+  </data>
+  <data name="Editor_Tooltip_AlignRight" xml:space="preserve">
+    <value>Aligner à droite</value>
+  </data>
+  <data name="Update_Title" xml:space="preserve">
+    <value>Mise à jour disponible</value>
+  </data>
+  <data name="Update_Subtitle" xml:space="preserve">
+    <value>Une nouvelle version est disponible !</value>
+  </data>
+  <data name="Update_CurrentVersion" xml:space="preserve">
+    <value>Version actuelle :</value>
+  </data>
+  <data name="Update_NewVersion" xml:space="preserve">
+    <value>Nouvelle version :</value>
+  </data>
+  <data name="Update_ReleaseDate" xml:space="preserve">
+    <value>Date de publication :</value>
+  </data>
+  <data name="Update_FileSize" xml:space="preserve">
+    <value>Taille du fichier :</value>
+  </data>
+  <data name="Update_ReleaseNotes" xml:space="preserve">
+    <value>Notes de version :</value>
+  </data>
+  <data name="Update_LoadingNotes" xml:space="preserve">
+    <value>Chargement des notes de version...</value>
+  </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>Téléchargement de la mise à jour...</value>
+  </data>
+  <data name="Update_Progress" xml:space="preserve">
+    <value>{0}%</value>
+  </data>
+  <data name="UpdateNotif_Title" xml:space="preserve">
+    <value>Mise à jour disponible !</value>
+  </data>
+  <data name="UpdateNotif_VersionText" xml:space="preserve">
+    <value>La version {0} est maintenant disponible</value>
+  </data>
+  <data name="UpdateNotif_WhatsNew" xml:space="preserve">
+    <value>Quoi de neuf :</value>
+  </data>
+  <data name="UpdateNotif_Published" xml:space="preserve">
+    <value>Publié :</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
 </root>
 
