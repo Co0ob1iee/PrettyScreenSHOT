@@ -29,6 +29,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- WPF UI Library -->
+    <PackageReference Include="WPF-UI" Version="4.0.3" />
+
+    <!-- Existing packages -->
     <PackageReference Include="Magick.NET.Core" Version="14.9.1" />
     <PackageReference Include="System.Drawing.Common" Version="10.0.0" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.9.1" />
@@ -36,6 +40,13 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Themes\WpfUiCustom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
