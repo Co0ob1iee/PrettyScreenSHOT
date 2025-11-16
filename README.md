@@ -170,6 +170,12 @@ This project uses a custom versioning scheme for clear build tracking:
 
 For detailed information, see [VERSIONING.md](VERSIONING.md).
 
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes, new features, and bug fixes in each release.
+
+**Current Version**: v0.1.0 (First Beta Release)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
