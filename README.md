@@ -88,7 +88,7 @@ Advanced screenshot capture and editing application for Windows, built with C# W
 
 ### For End Users
 
-See detailed instructions in [docs/installation/INSTALLATION.md](docs/installation/INSTALLATION.md)
+Download the latest release from the [Releases](https://github.com/Co0ob1iee/PrettyScreenSHOT/releases) page.
 
 ### For Developers
 
@@ -135,7 +135,7 @@ PrettyScreenSHOT uses **[WPF UI](https://github.com/lepoco/wpfui)** (version 4.0
 
 ## 📁 Project Structure
 
-Detailed structure and architecture description at [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md).
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed architecture and design patterns.
 
 ### Main Components:
 - **App.xaml/.cs** - Application entry point
@@ -148,7 +148,7 @@ Detailed structure and architecture description at [docs/PROJECT_STRUCTURE.md](d
 
 ## 🗺️ Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for detailed development plan.
+See [docs/ROADMAP.md](docs/ROADMAP.md) for detailed development plan.
 
 ### Upcoming Features
 - More drawing tools (Ellipse, Line, Fill)
@@ -168,13 +168,23 @@ This project uses a custom versioning scheme for clear build tracking:
 - **0.X.0** - Pre-release/Beta versions (X = release number)
 - **X.0.0** - Full production releases (X = major version)
 
-For detailed information, see [VERSIONING.md](VERSIONING.md).
+For detailed information, see [docs/VERSIONING.md](docs/VERSIONING.md).
 
 ## 📝 Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes, new features, and bug fixes in each release.
 
 **Current Version**: v0.1.0 (First Beta Release)
+
+## 📚 Documentation
+
+- **[docs/README.md](docs/README.md)** - Documentation index
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Project architecture and design patterns
+- **[docs/LOGGING.md](docs/LOGGING.md)** - Logging system documentation
+- **[docs/ROADMAP.md](docs/ROADMAP.md)** - Development roadmap
+- **[docs/VERSIONING.md](docs/VERSIONING.md)** - Versioning system
+- **[docs/STATUS_REPORT.md](docs/STATUS_REPORT.md)** - Project status and metrics
+- **[Tests/README.md](Tests/README.md)** - Testing guidelines
 
 ## 🤝 Contributing
 
