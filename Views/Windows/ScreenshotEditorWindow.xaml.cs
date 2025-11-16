@@ -15,13 +15,9 @@ using Wpf.Ui.Controls;
 using Point = System.Windows.Point;
 using Color = System.Windows.Media.Color;
 using Pen = System.Windows.Media.Pen;
-using Forms = System.Windows.Forms; // alias to avoid ambiguity with System.Windows
 using WindowsFontStyle = System.Windows.FontStyle;
 using WindowsFontWeight = System.Windows.FontWeight;
 using WindowsFontFamily = System.Windows.Media.FontFamily;
-using WpfMessageBoxButton = Wpf.Ui.Controls.MessageBoxButton;
-using WpfMessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
-using WpfTextBlock = Wpf.Ui.Controls.TextBlock;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -434,12 +430,14 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void OnColorPickerClick(object sender, RoutedEventArgs e)
         {
-            var colorDialog = new Forms.ColorDialog();
-            colorDialog.Color = System.Drawing.Color.FromArgb(currentColor.R, currentColor.G, currentColor.B);
-
-            if (colorDialog.ShowDialog() == Forms.DialogResult.OK)
+            var colorDialog = new ColorPickerDialog(currentColor)
             {
-                currentColor = System.Windows.Media.Color.FromArgb(colorDialog.Color.A, colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B);
+                Owner = this
+            };
+
+            if (colorDialog.ShowDialog() == true)
+            {
+                currentColor = colorDialog.SelectedColor;
                 ColorButton.Background = new SolidColorBrush(currentColor);
                 DebugHelper.LogDebug($"Kolor zmieniony: RGB({currentColor.R},{currentColor.G},{currentColor.B})");
             }
@@ -455,11 +453,10 @@ namespace PrettyScreenSHOT.Views.Windows
                 var provider = SettingsManager.Instance.CloudProvider;
                 if (string.IsNullOrWhiteSpace(provider))
                 {
-                    System.Windows.MessageBox.Show(
+                    MessageBoxHelper.Show(
                         LocalizationHelper.GetString("Editor_CloudNotConfigured"),
                         LocalizationHelper.GetString("Editor_CloudNotConfiguredTitle"),
-                        System.Windows.MessageBoxButton.OK,
-                        System.Windows.MessageBoxImage.Information);
+                        System.Windows.MessageBoxButton.OK);
                     return;
                 }
 
@@ -495,17 +492,17 @@ namespace PrettyScreenSHOT.Views.Windows
                 {
                     // Skopiuj URL do schowka
                     System.Windows.Clipboard.SetText(result.Url);
-                    
+
                     var message = string.Format(LocalizationHelper.GetString("Editor_UploadSuccessMessage"), "\n", result.Url);
-                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadSuccess"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
-                    
+                    MessageBoxHelper.Show(message, LocalizationHelper.GetString("Editor_UploadSuccess"), System.Windows.MessageBoxButton.OK);
+
                     DebugHelper.LogInfo("Editor", $"Upload successful: {result.Url}");
                 }
                 else
                 {
                     var errorMsg = result.ErrorMessage ?? LocalizationHelper.GetString("Editor_Error");
                     var message = string.Format(LocalizationHelper.GetString("Editor_UploadErrorMessage"), "\n", errorMsg);
-                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_UploadError"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    MessageBoxHelper.Show(message, LocalizationHelper.GetString("Editor_UploadError"), System.Windows.MessageBoxButton.OK);
                     DebugHelper.LogError("Editor", $"Upload failed: {errorMsg}");
                 }
             }
@@ -513,7 +510,7 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 DebugHelper.LogError("Editor", "Error during upload", ex);
                 var message = string.Format(LocalizationHelper.GetString("Editor_ErrorWithMessage"), ex.Message);
-                System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("Editor_Error"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                MessageBoxHelper.Show(message, LocalizationHelper.GetString("Editor_Error"), System.Windows.MessageBoxButton.OK);
             }
         }
 
@@ -567,7 +564,7 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void OnClearClick(object sender, RoutedEventArgs e)
         {
-            if (System.Windows.MessageBox.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            if (MessageBoxHelper.Show("Czy na pewno chcesz wyczyścić wszystkie zmiany?", "Potwierdzenie", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
                 ClearAll();
             }

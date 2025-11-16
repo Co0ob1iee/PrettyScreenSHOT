@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+    Spacing Definitions for PrettyScreenSHOT
+
+    Defines consistent spacing values across the application.
+    Use these values for margins, padding, and spacing between elements.
+    -->
+
+    <!-- Spacing Values (System) -->
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingXSmall">4</System:Double>
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingSmall">8</System:Double>
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingMedium">12</System:Double>
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingLarge">16</System:Double>
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingXLarge">20</System:Double>
+    <System:Double xmlns:System="clr-namespace:System;assembly=mscorlib" x:Key="SpacingXXLarge">24</System:Double>
+
+    <!-- Thickness Values -->
+    <Thickness x:Key="PaddingSmall">8</Thickness>
+    <Thickness x:Key="PaddingMedium">12</Thickness>
+    <Thickness x:Key="PaddingLarge">16</Thickness>
+    <Thickness x:Key="PaddingXLarge">20</Thickness>
+
+    <Thickness x:Key="MarginSmall">0,0,0,8</Thickness>
+    <Thickness x:Key="MarginMedium">0,0,0,12</Thickness>
+    <Thickness x:Key="MarginLarge">0,0,0,16</Thickness>
+    <Thickness x:Key="MarginXLarge">0,0,0,20</Thickness>
+
+    <!-- Border Thickness -->
+    <Thickness x:Key="BorderThin">1</Thickness>
+    <Thickness x:Key="BorderMedium">2</Thickness>
+    <Thickness x:Key="BorderThick">3</Thickness>
+
+    <!-- Corner Radius -->
+    <CornerRadius x:Key="CornerRadiusSmall">4</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusMedium">8</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusLarge">12</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusCircle">999</CornerRadius>
+
+</ResourceDictionary>

@@ -4,6 +4,7 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:PrettyScreenSHOT.Views.Windows"
         xmlns:helpers="clr-namespace:PrettyScreenSHOT.Helpers"
+        xmlns:converters="clr-namespace:PrettyScreenSHOT.Converters"
         Title="Screenshot History"
         Height="650"
         Width="720"
@@ -11,13 +12,6 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round">
-
-    <ui:FluentWindow.Resources>
-        <ResourceDictionary>
-            <!-- Converter dla Visibility -->
-            <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
-        </ResourceDictionary>
-    </ui:FluentWindow.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
