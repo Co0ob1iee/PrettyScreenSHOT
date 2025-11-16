@@ -10,8 +10,6 @@ using PrettyScreenSHOT.Services.Cloud;
 using PrettyScreenSHOT.Services.Input;
 using PrettyScreenSHOT.Services.Screenshot;
 using Wpf.Ui.Controls;
-using WpfMessageBoxButton = Wpf.Ui.Controls.MessageBoxButton;
-using WpfTextBlock = Wpf.Ui.Controls.TextBlock;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -130,21 +128,21 @@ namespace PrettyScreenSHOT.Views.Windows
                         item.CloudProvider = result.ProviderName;
                         System.Windows.Clipboard.SetText(result.Url);
                         var message = string.Format(LocalizationHelper.GetString("History_UploadSuccessMessage"), "\n", result.Url);
-                        System.Windows.MessageBox.Show(message, 
-                            LocalizationHelper.GetString("History_UploadSuccess"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                        MessageBoxHelper.Show(message,
+                            LocalizationHelper.GetString("History_UploadSuccess"), System.Windows.MessageBoxButton.OK);
                     }
                     else
                     {
                         var errorMsg = result.ErrorMessage ?? LocalizationHelper.GetString("History_Error");
                         var message = string.Format(LocalizationHelper.GetString("History_UploadErrorMessage"), "\n", errorMsg);
-                        System.Windows.MessageBox.Show(message, 
-                            LocalizationHelper.GetString("History_UploadError"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        MessageBoxHelper.Show(message,
+                            LocalizationHelper.GetString("History_UploadError"), System.Windows.MessageBoxButton.OK);
                     }
                 }
                 catch (Exception ex)
                 {
                     var message = string.Format(LocalizationHelper.GetString("History_ErrorWithMessage"), ex.Message);
-                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("History_Error"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    MessageBoxHelper.Show(message, LocalizationHelper.GetString("History_Error"), System.Windows.MessageBoxButton.OK);
                 }
             }
         }
@@ -155,8 +153,8 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 System.Windows.Clipboard.SetText(item.CloudUrl);
                 var message = string.Format(LocalizationHelper.GetString("History_UrlCopied"), "\n", item.CloudUrl);
-                System.Windows.MessageBox.Show(message, 
-                    LocalizationHelper.GetString("History_CloudUrlTitle"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                MessageBoxHelper.Show(message,
+                    LocalizationHelper.GetString("History_CloudUrlTitle"), System.Windows.MessageBoxButton.OK);
             }
         }
 
@@ -297,26 +295,6 @@ namespace PrettyScreenSHOT.Views.Windows
                 EmptyStatePanel.Visibility = isEmpty ? Visibility.Visible : Visibility.Collapsed;
                 HistoryItemsControl.Visibility = isEmpty ? Visibility.Collapsed : Visibility.Visible;
             }
-        }
-    }
-
-    // Converter dla Visibility
-    public class NullToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            bool isInverse = parameter?.ToString() == "Inverse";
-            bool isNull = value == null || (value is string str && string.IsNullOrEmpty(str));
-            
-            if (isInverse)
-                return isNull ? Visibility.Visible : Visibility.Collapsed;
-            else
-                return !isNull ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
 }

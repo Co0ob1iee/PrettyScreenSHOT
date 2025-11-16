@@ -1,0 +1,34 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+    Color Definitions for PrettyScreenSHOT
+
+    These colors complement WPF UI's theme system and provide brand-specific colors.
+    WPF UI provides automatic Light/Dark theme support through DynamicResource.
+    -->
+
+    <!-- Brand Colors -->
+    <SolidColorBrush x:Key="BrandPrimaryBrush" Color="#007ACC"/>
+    <SolidColorBrush x:Key="BrandSecondaryBrush" Color="#005A9E"/>
+
+    <!-- Status Colors -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#FF9800"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="#F44336"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="#2196F3"/>
+
+    <!-- Semantic Colors -->
+    <SolidColorBrush x:Key="RecordingIndicatorBrush" Color="#F44336"/>
+    <SolidColorBrush x:Key="SavedIndicatorBrush" Color="#4CAF50"/>
+
+    <!--
+    Note: For theme-aware colors (that change with Light/Dark theme),
+    use WPF UI's built-in DynamicResources like:
+    - TextFillColorPrimaryBrush
+    - TextFillColorSecondaryBrush
+    - ControlFillColorDefaultBrush
+    - etc.
+    -->
+
+</ResourceDictionary>

@@ -1,14 +1,12 @@
 using System.IO;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
+using Microsoft.Win32;
 using PrettyScreenSHOT.Helpers;
 using PrettyScreenSHOT.Services;
 using PrettyScreenSHOT.Services.Settings;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
-using WpfMessageBoxButton = Wpf.Ui.Controls.MessageBoxButton;
-using WpfMessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -163,15 +161,15 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            var dialog = new OpenFolderDialog
             {
-                dialog.Description = LocalizationHelper.GetString("Settings_SavePath");
-                dialog.SelectedPath = SavePathTextBox.Text;
-                
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    SavePathTextBox.Text = dialog.SelectedPath;
-                }
+                Title = LocalizationHelper.GetString("Settings_SavePath"),
+                InitialDirectory = SavePathTextBox.Text
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                SavePathTextBox.Text = dialog.FolderName;
             }
         }
 
@@ -199,11 +197,10 @@ namespace PrettyScreenSHOT.Views.Windows
                         }
                         catch
                         {
-                            System.Windows.MessageBox.Show(
+                            MessageBoxHelper.Show(
                                 LocalizationHelper.GetString("Settings_InvalidPath"),
                                 LocalizationHelper.GetString("Settings_SaveError"),
-                                System.Windows.MessageBoxButton.OK,
-                                System.Windows.MessageBoxImage.Error);
+                                System.Windows.MessageBoxButton.OK);
                             return;
                         }
                     }
@@ -232,22 +229,20 @@ namespace PrettyScreenSHOT.Views.Windows
                     settingsManager.Theme = ThemeComboBox.SelectedItem.ToString() ?? "Dark";
                 }
 
-                System.Windows.MessageBox.Show(
+                MessageBoxHelper.Show(
                     LocalizationHelper.GetString("Settings_SaveSuccessMessage"),
                     LocalizationHelper.GetString("Settings_SaveSuccess"),
-                    System.Windows.MessageBoxButton.OK,
-                    System.Windows.MessageBoxImage.Information);
+                    System.Windows.MessageBoxButton.OK);
                 this.Close();
             }
             catch (Exception ex)
             {
                 DebugHelper.LogError("Settings", "Failed to save settings", ex);
                 var message = string.Format(LocalizationHelper.GetString("Settings_ErrorWithMessage"), ex.Message);
-                System.Windows.MessageBox.Show(
+                MessageBoxHelper.Show(
                     message,
                     LocalizationHelper.GetString("Settings_SaveError"),
-                    System.Windows.MessageBoxButton.OK,
-                    System.Windows.MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK);
             }
         }
 
@@ -271,11 +266,10 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            var result = System.Windows.MessageBox.Show(
+            var result = MessageBoxHelper.Show(
                 LocalizationHelper.GetString("Settings_ResetConfirm"),
                 LocalizationHelper.GetString("Editor_Confirm"),
-                System.Windows.MessageBoxButton.YesNo,
-                System.Windows.MessageBoxImage.Question);
+                System.Windows.MessageBoxButton.YesNo);
 
             if (result == System.Windows.MessageBoxResult.Yes)
             {

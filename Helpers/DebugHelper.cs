@@ -13,7 +13,7 @@ namespace PrettyScreenSHOT.Helpers
         [System.Diagnostics.Conditional("DEBUG")]
         public static void ShowMessage(string title, string message)
         {
-            System.Windows.MessageBox.Show(message, title);
+            MessageBoxHelper.Show(message, title);
         }
 
         /// <summary>
