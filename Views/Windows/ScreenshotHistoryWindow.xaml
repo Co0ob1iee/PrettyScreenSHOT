@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:PrettyScreenSHOT"
+        xmlns:helpers="clr-namespace:PrettyScreenSHOT.Helpers"
         Title="Screenshot History"
         Height="650"
         Width="720"
@@ -98,7 +99,7 @@
                                     <!-- Info -->
                                     <StackPanel Grid.Column="1"
                                                 VerticalAlignment="Center"
-                                                Spacing="4">
+                                                helpers:StackPanelHelper.Spacing="4">
                                         <TextBlock Text="{Binding Filename}"
                                                    FontWeight="Medium"
                                                    FontSize="14"/>
@@ -135,7 +136,7 @@
                                     <StackPanel Grid.Column="2"
                                                 Orientation="Horizontal"
                                                 VerticalAlignment="Center"
-                                                Spacing="8">
+                                                helpers:StackPanelHelper.Spacing="8">
                                         <!-- Upload Button (if not uploaded) -->
                                         <ui:Button Click="OnUploadClick"
                                                    Icon="ArrowUpload24"
