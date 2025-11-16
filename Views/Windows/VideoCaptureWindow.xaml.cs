@@ -81,8 +81,8 @@ namespace PrettyScreenSHOT.Views.Windows
             catch (Exception ex)
             {
                 DebugHelper.LogError("VideoCapture", "Error starting recording", ex);
-                System.Windows.MessageBox.Show($"Error starting recording: {ex.Message}", "Error", 
-                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                MessageBoxHelper.Show($"Error starting recording: {ex.Message}", "Error",
+                    System.Windows.MessageBoxButton.OK);
             }
         }
 
@@ -133,8 +133,8 @@ namespace PrettyScreenSHOT.Views.Windows
                     StatusText.Foreground = new System.Windows.Media.SolidColorBrush(
                         System.Windows.Media.Color.FromRgb(76, 175, 80)); // Green
 
-                    System.Windows.MessageBox.Show($"Video saved to:\n{outputPath}", "Success", 
-                        System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                    MessageBoxHelper.Show($"Video saved to:\n{outputPath}", "Success",
+                        System.Windows.MessageBoxButton.OK);
 
                     // Reset UI
                     StartButton.IsEnabled = true;

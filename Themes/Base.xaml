@@ -1,0 +1,21 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+    Base Theme for PrettyScreenSHOT
+
+    This file merges all theme resources into a single dictionary.
+    Include this in App.xaml to apply all custom styles and resources.
+    -->
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Core theme resources -->
+        <ResourceDictionary Source="pack://application:,,,/Themes/Colors.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Themes/Typography.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Themes/Spacing.xaml"/>
+
+        <!-- Custom WPF UI overrides -->
+        <ResourceDictionary Source="pack://application:,,,/Themes/WpfUiCustom.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
