@@ -35,10 +35,12 @@ namespace PrettyScreenSHOT.Views.Windows
         private bool isDrawing = false;
         private Color currentColor = Colors.Red;
         private List<DrawingAction> drawingHistory = new();
+        private int historyIndex = -1; // For undo/redo
         private RenderTargetBitmap? currentCanvasBitmap;
         private ImageBrush? currentCanvasBrush;
         private bool disposed = false;
-        private System.Windows.Controls.Button? activeToolButton = null;
+        private Wpf.Ui.Controls.Button? activeToolButton = null;
+        private double currentZoom = 1.0;
 
         public enum EditTool
         {
@@ -103,7 +105,44 @@ namespace PrettyScreenSHOT.Views.Windows
             if (originalBitmap == null) return;
             EditorCanvas.Width = originalBitmap.PixelWidth;
             EditorCanvas.Height = originalBitmap.PixelHeight;
+
+            // Update status bar with image dimensions
+            UpdateStatusBar();
+
             RedrawCanvas();
+        }
+
+        private void UpdateStatusBar()
+        {
+            if (originalBitmap != null)
+            {
+                ImageSizeLabel.Text = $"{originalBitmap.PixelWidth} x {originalBitmap.PixelHeight} px";
+            }
+
+            // Update history info
+            int totalActions = drawingHistory.Count;
+            int currentPosition = historyIndex + 1;
+            StatusHistoryLabel.Text = $"Edycji: {totalActions}";
+            HistoryLabel.Text = $"Akcji: {currentPosition} / {totalActions}";
+
+            // Update undo/redo button states
+            if (BtnUndo != null)
+                BtnUndo.IsEnabled = historyIndex >= 0;
+            if (BtnRedo != null)
+                BtnRedo.IsEnabled = historyIndex < drawingHistory.Count - 1;
+
+            // Update tool label
+            CurrentToolLabel.Text = currentTool switch
+            {
+                EditTool.Marker => "Marker",
+                EditTool.Rectangle => "Prostokąt",
+                EditTool.Arrow => "Strzałka",
+                EditTool.Blur => "Rozmycie",
+                EditTool.Text => "Tekst",
+                _ => "Brak"
+            };
+
+            StatusModeLabel.Text = currentTool == EditTool.None ? "Tryb edycji" : $"Narzędzie: {CurrentToolLabel.Text}";
         }
 
         private void RedrawCanvas()
@@ -112,13 +151,13 @@ namespace PrettyScreenSHOT.Views.Windows
             var drawingContext = drawingVisual.RenderOpen();
             var brush = new ImageBrush(originalBitmap);
             drawingContext.DrawRectangle(brush, null, new Rect(0, 0, originalBitmap.PixelWidth, originalBitmap.PixelHeight));
-            
-            // Narysuj wszystkie wcześniejsze akcje
-            foreach (var action in drawingHistory)
+
+            // Narysuj akcje tylko do aktualnego historyIndex (dla undo/redo)
+            for (int i = 0; i <= historyIndex && i < drawingHistory.Count; i++)
             {
-                DrawAction(drawingContext, action);
+                DrawAction(drawingContext, drawingHistory[i]);
             }
-            
+
             drawingContext.Close();
 
             if (originalBitmap == null || drawingVisual == null) return;
@@ -383,9 +422,9 @@ namespace PrettyScreenSHOT.Views.Windows
 
         private void OnToolButtonClick(object sender, RoutedEventArgs e)
         {
-            if (sender is System.Windows.Controls.Button btn)
+            if (sender is Wpf.Ui.Controls.Button btn)
             {
-                var newTool = btn.Tag switch
+                var newTool = btn.Tag?.ToString() switch
                 {
                     "marker" => EditTool.Marker,
                     "text" => EditTool.Text,
@@ -409,26 +448,24 @@ namespace PrettyScreenSHOT.Views.Windows
                     UpdateActiveToolButton(btn);
                     DebugHelper.LogDebug($"Narzędzie: {currentTool}");
                 }
+
+                UpdateStatusBar();
             }
         }
 
-        private void UpdateActiveToolButton(System.Windows.Controls.Button? newActiveButton)
+        private void UpdateActiveToolButton(Wpf.Ui.Controls.Button? newActiveButton)
         {
             // Resetuj poprzedni aktywny przycisk
             if (activeToolButton != null)
             {
-                activeToolButton.BorderThickness = new Thickness(0);
-                activeToolButton.BorderBrush = new SolidColorBrush(Colors.Transparent);
-                activeToolButton.Background = new SolidColorBrush(Color.FromRgb(0x3F, 0x3F, 0x3F));
+                activeToolButton.Appearance = Wpf.Ui.Controls.ControlAppearance.Secondary;
             }
 
             // Ustaw nowy aktywny przycisk
             activeToolButton = newActiveButton;
             if (activeToolButton != null)
             {
-                activeToolButton.BorderThickness = new Thickness(2);
-                activeToolButton.BorderBrush = new SolidColorBrush(Colors.Yellow);
-                activeToolButton.Background = new SolidColorBrush(Color.FromRgb(0x5F, 0x5F, 0x5F));
+                activeToolButton.Appearance = Wpf.Ui.Controls.ControlAppearance.Primary;
             }
         }
 
@@ -605,10 +642,10 @@ namespace PrettyScreenSHOT.Views.Windows
             var brush = new ImageBrush(originalBitmap);
             drawingContext.DrawRectangle(brush, null, new Rect(0, 0, originalBitmap.PixelWidth, originalBitmap.PixelHeight));
 
-            // Narysuj wszystkie wcześniejsze akcje
-            foreach (var action in drawingHistory)
+            // Narysuj akcje tylko do aktualnego historyIndex
+            for (int i = 0; i <= historyIndex && i < drawingHistory.Count; i++)
             {
-                DrawAction(drawingContext, action);
+                DrawAction(drawingContext, drawingHistory[i]);
             }
 
             // Narysuj podgląd aktualnej akcji
@@ -725,6 +762,12 @@ namespace PrettyScreenSHOT.Views.Windows
                             var userFontSize = inputWindow.FontSize;
                             DebugHelper.LogDebug($"Tekst wprowadzony: '{userText}', Rozmiar: {userFontSize}");
 
+                            // Usuń wszystkie akcje po aktualnym historyIndex (redo stack)
+                            if (historyIndex < drawingHistory.Count - 1)
+                            {
+                                drawingHistory.RemoveRange(historyIndex + 1, drawingHistory.Count - historyIndex - 1);
+                            }
+
                             // Teraz dodaj akcję do historii z wprowadzonym tekstem
                             drawingHistory.Add(new DrawingAction
                             {
@@ -739,7 +782,9 @@ namespace PrettyScreenSHOT.Views.Windows
                                 TextDecorations = inputWindow.TextDecorations
                             });
 
+                            historyIndex = drawingHistory.Count - 1;
                             RedrawCanvas();
+                            UpdateStatusBar();
                         }
 
                         // Reset narzędzia po zakończeniu
@@ -753,6 +798,12 @@ namespace PrettyScreenSHOT.Views.Windows
                     return;
                 }
 
+                // Usuń wszystkie akcje po aktualnym historyIndex (redo stack)
+                if (historyIndex < drawingHistory.Count - 1)
+                {
+                    drawingHistory.RemoveRange(historyIndex + 1, drawingHistory.Count - historyIndex - 1);
+                }
+
                 drawingHistory.Add(new DrawingAction
                 {
                     Tool = currentTool,
@@ -763,7 +814,9 @@ namespace PrettyScreenSHOT.Views.Windows
                     TextContent = null
                 });
 
+                historyIndex = drawingHistory.Count - 1;
                 RedrawCanvas();
+                UpdateStatusBar();
 
                 // Reset tylko dla narzędzi jednorazowych
                 if (currentTool == EditTool.Text)
@@ -783,19 +836,104 @@ namespace PrettyScreenSHOT.Views.Windows
 
         public void Undo()
         {
-            if (drawingHistory.Count > 0)
+            if (historyIndex >= 0)
             {
-                drawingHistory.RemoveAt(drawingHistory.Count - 1);
+                historyIndex--;
                 RedrawCanvas();
-                DebugHelper.LogDebug("Undo - ostatnia akcja usunięta");
+                UpdateStatusBar();
+                DebugHelper.LogDebug($"Undo - przywrócono stan {historyIndex + 1}");
             }
+        }
+
+        private void OnRedoClick(object sender, RoutedEventArgs e)
+        {
+            Redo();
+        }
+
+        public void Redo()
+        {
+            if (historyIndex < drawingHistory.Count - 1)
+            {
+                historyIndex++;
+                RedrawCanvas();
+                UpdateStatusBar();
+                DebugHelper.LogDebug($"Redo - przywrócono stan {historyIndex + 1}");
+            }
+        }
+
+        // Zoom controls
+        private void OnZoomInClick(object sender, RoutedEventArgs e)
+        {
+            currentZoom = Math.Min(currentZoom + 0.1, 5.0);
+            ApplyZoom();
+        }
+
+        private void OnZoomOutClick(object sender, RoutedEventArgs e)
+        {
+            currentZoom = Math.Max(currentZoom - 0.1, 0.1);
+            ApplyZoom();
+        }
+
+        private void OnZoomFitClick(object sender, RoutedEventArgs e)
+        {
+            currentZoom = 1.0;
+            ApplyZoom();
+        }
+
+        private void ApplyZoom()
+        {
+            CanvasScaleTransform.ScaleX = currentZoom;
+            CanvasScaleTransform.ScaleY = currentZoom;
+            ZoomLabel.Text = $"{(int)(currentZoom * 100)}%";
+            UpdateStatusBar();
+        }
+
+        // Quick color selection
+        private void OnQuickColorClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button btn && btn.Tag is string colorHex)
+            {
+                currentColor = (Color)ColorConverter.ConvertFromString(colorHex);
+                ColorButton.Background = new SolidColorBrush(currentColor);
+                DebugHelper.LogDebug($"Kolor szybki wybór: {colorHex}");
+            }
+        }
+
+        // Title bar actions
+        private void OnCopyClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (originalBitmap == null || drawingVisual == null) return;
+                var renderTargetBitmap = new RenderTargetBitmap(
+                    originalBitmap.PixelWidth,
+                    originalBitmap.PixelHeight,
+                    96, 96,
+                    PixelFormats.Pbgra32);
+                renderTargetBitmap.Render(drawingVisual);
+
+                System.Windows.Clipboard.SetImage(renderTargetBitmap);
+                DebugHelper.ShowMessage("Skopiowano", "Screenshot skopiowany do schowka");
+            }
+            catch (Exception ex)
+            {
+                DebugHelper.LogError("Editor", "Error copying to clipboard", ex);
+            }
+        }
+
+        private void OnShareClick(object sender, RoutedEventArgs e)
+        {
+            // Placeholder for share functionality
+            DebugHelper.ShowMessage("Udostępnianie", "Funkcja udostępniania będzie dostępna wkrótce");
         }
 
         public void ClearAll()
         {
             drawingHistory.Clear();
+            historyIndex = -1;
             RedrawCanvas();
-                DebugHelper.LogDebug("Wszystkie zmiany usunięte");
+            UpdateStatusBar();
+            DebugHelper.LogDebug("Wszystkie zmiany usunięte");
         }
 
         public void SaveScreenshot()

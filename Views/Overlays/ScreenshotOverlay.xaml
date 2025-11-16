@@ -5,6 +5,156 @@
         Background="Transparent"
         WindowStyle="None"
         ShowInTaskbar="False"
-        Topmost="True">
-    <Grid Background="Transparent" />
+        Topmost="True"
+        Cursor="Cross">
+    <Grid x:Name="RootGrid" Background="Transparent">
+        <!-- Help Panel - Keyboard Shortcuts -->
+        <Border x:Name="HelpPanel"
+                Background="#E0000000"
+                CornerRadius="8"
+                Padding="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,40,0,0"
+                Opacity="0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Szybkie zaznaczanie - Skróty klawiszowe"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,12"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Background="#40FFFFFF" CornerRadius="4" Padding="8,4" Margin="0,0,12,8">
+                        <TextBlock Text="ESC" Foreground="White" FontWeight="Bold"/>
+                    </Border>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Anuluj zaznaczanie" Foreground="White" VerticalAlignment="Center" Margin="0,0,0,8"/>
+
+                    <Border Grid.Row="1" Grid.Column="0" Background="#40FFFFFF" CornerRadius="4" Padding="8,4" Margin="0,0,12,8">
+                        <TextBlock Text="Enter" Foreground="White" FontWeight="Bold"/>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Potwierdź zaznaczenie" Foreground="White" VerticalAlignment="Center" Margin="0,0,0,8"/>
+
+                    <Border Grid.Row="2" Grid.Column="0" Background="#40FFFFFF" CornerRadius="4" Padding="8,4" Margin="0,0,12,8">
+                        <TextBlock Text="F1" Foreground="White" FontWeight="Bold"/>
+                    </Border>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Pokaż/ukryj tę pomoc" Foreground="White" VerticalAlignment="Center" Margin="0,0,0,8"/>
+
+                    <Border Grid.Row="3" Grid.Column="0" Background="#40FFFFFF" CornerRadius="4" Padding="8,4" Margin="0,0,12,0">
+                        <TextBlock Text="Spacja" Foreground="White" FontWeight="Bold"/>
+                    </Border>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="Pełny ekran" Foreground="White" VerticalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- Selection Info Panel -->
+        <Border x:Name="InfoPanel"
+                Background="#E0000000"
+                CornerRadius="4"
+                Padding="12,6"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="20,20,0,0"
+                Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="InfoText"
+                           Text="0 x 0 px"
+                           Foreground="White"
+                           FontSize="14"
+                           FontWeight="SemiBold"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Quick Action Toolbar (shown during selection) -->
+        <Border x:Name="QuickToolbar"
+                Background="#E0000000"
+                CornerRadius="8"
+                Padding="8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,40"
+                Visibility="Collapsed">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.4"/>
+            </Border.Effect>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="BtnCapture"
+                        Content="✓ Przechwyć"
+                        Click="OnCaptureClick"
+                        Padding="16,8"
+                        Margin="0,0,8,0"
+                        Background="#FF0078D4"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="SemiBold"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="4"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF1084E8"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="BtnCancel"
+                        Content="✕ Anuluj"
+                        Click="OnCancelClick"
+                        Padding="16,8"
+                        Background="#40FFFFFF"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="SemiBold"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="4"
+                                                Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#60FFFFFF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>
