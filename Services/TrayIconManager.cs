@@ -71,23 +71,28 @@ namespace PrettyScreenSHOT.Services
             {
                 var exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 var exeDir = System.IO.Path.GetDirectoryName(exePath);
-                
-                var icoPath = System.IO.Path.Combine(exeDir ?? "", "app.ico");
+
+                if (string.IsNullOrEmpty(exeDir))
+                    return null;
+
+                // Primary location - same directory as executable
+                var icoPath = System.IO.Path.Combine(exeDir, "app.ico");
                 if (System.IO.File.Exists(icoPath))
                     return new Icon(icoPath);
 
-                // Szukaj w alternatywnych lokalizacjach
+                // Search in alternative locations (for development environments)
                 var altPaths = new[]
                 {
-                    System.IO.Path.Combine(exeDir ?? "", "bin", "Debug", "app.ico"),
-                    System.IO.Path.Combine(exeDir ?? "", "bin", "Release", "app.ico"),
-                    System.IO.Path.Combine(exeDir ?? "", "..", "..", "app.ico"),
+                    // Navigate up from bin/Debug or bin/Release
+                    System.IO.Path.Combine(exeDir, "..", "..", "app.ico"),
+                    System.IO.Path.Combine(exeDir, "..", "..", "..", "app.ico"),
                 };
 
                 foreach (var path in altPaths)
                 {
-                    if (System.IO.File.Exists(path))
-                        return new Icon(path);
+                    var normalizedPath = System.IO.Path.GetFullPath(path);
+                    if (System.IO.File.Exists(normalizedPath))
+                        return new Icon(normalizedPath);
                 }
             }
             catch (Exception ex)
