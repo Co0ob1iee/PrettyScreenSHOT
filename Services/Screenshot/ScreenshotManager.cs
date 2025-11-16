@@ -206,7 +206,7 @@ namespace PrettyScreenSHOT.Services.Screenshot
                             {
                                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                                 {
-                                    TrayIconManager.Instance.ShowNotification(
+                                    ToastNotificationManager.Instance.ShowSuccess(
                                         "Upload Complete",
                                         $"Screenshot uploaded to {result.ProviderName}. URL copied to clipboard.");
                                 });
