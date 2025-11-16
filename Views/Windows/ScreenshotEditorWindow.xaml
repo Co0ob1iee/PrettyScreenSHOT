@@ -14,103 +14,103 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> <!-- Title bar -->
+            <RowDefinition Height="Auto"/> <!-- CommandBar -->
             <RowDefinition Height="*"/>    <!-- Main content -->
+            <RowDefinition Height="Auto"/> <!-- Status bar -->
         </Grid.RowDefinitions>
 
-        <!-- Title Bar with Quick Actions -->
+        <!-- Title Bar -->
         <Grid Grid.Row="0">
-            <ui:TitleBar Title="Screenshot Editor"
+            <ui:TitleBar Title="Screenshot Editor - Sprint 3"
                          Icon="pack://application:,,,/app.ico">
                 <ui:TitleBar.Header>
                     <StackPanel Orientation="Horizontal" Margin="8,0,0,0" helpers:StackPanelHelper.Spacing="4">
                         <ui:Button Icon="Copy24"
+                                   Click="OnCopyClick"
                                    Appearance="Transparent"
-                                   ToolTip="Copy"
+                                   ToolTip="Kopiuj do schowka"
                                    Padding="8"/>
-                        <ui:Button Icon="DocumentCopy24"
+                        <ui:Button Icon="Share24"
+                                   Click="OnShareClick"
                                    Appearance="Transparent"
-                                   ToolTip="Duplicate"
+                                   ToolTip="Udostępnij"
                                    Padding="8"/>
                     </StackPanel>
                 </ui:TitleBar.Header>
             </ui:TitleBar>
         </Grid>
 
-        <!-- Main Editor Layout -->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>  <!-- Lewa pionowa paleta systemowa -->
-                <ColumnDefinition Width="*"/>     <!-- Główny obszar edycji -->
-                <ColumnDefinition Width="Auto"/>  <!-- Prawa pionowa paleta narzędzi -->
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>       <!-- Główny obszar -->
-                <RowDefinition Height="Auto"/>    <!-- Dolny pasek formatowania tekstu -->
-            </Grid.RowDefinitions>
+        <!-- Modern CommandBar -->
+        <ui:Card Grid.Row="1" Margin="12,8,12,0" Padding="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/> <!-- Tools section -->
+                    <ColumnDefinition Width="*"/>    <!-- Spacer -->
+                    <ColumnDefinition Width="Auto"/> <!-- Actions section -->
+                </Grid.ColumnDefinitions>
 
-            <!-- Lewa pionowa paleta narzędzi systemowych -->
-            <ui:Card Grid.Column="0"
-                     Grid.Row="0"
-                     Grid.RowSpan="2"
-                     Margin="12,12,8,12"
-                     Padding="8"
-                     MinWidth="70">
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Center"
-                            helpers:StackPanelHelper.Spacing="8">
-                    <ui:Button Icon="Wifi124"
-                               Appearance="Secondary"
-                               ToolTip="WiFi"/>
-                    <ui:Button Icon="BatteryCharge24"
-                               Appearance="Secondary"
-                               ToolTip="Bateria"/>
-                    <ui:Button Icon="Phone24"
-                               Appearance="Secondary"
-                               ToolTip="Telefon"/>
-                    <ui:Button Icon="Share24"
-                               Appearance="Secondary"
-                               ToolTip="Udostępnij"/>
-                    <ui:Button Icon="Speaker224"
-                               Appearance="Secondary"
-                               ToolTip="Głośność"/>
-                </StackPanel>
-            </ui:Card>
+                <!-- Tools Section -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" helpers:StackPanelHelper.Spacing="4">
+                    <!-- Drawing Tools -->
+                    <ui:Button x:Name="BtnMarker"
+                               Tag="marker"
+                               Click="OnToolButtonClick"
+                               Icon="DrawShape24"
+                               ToolTip="Marker (M)"
+                               Width="40"
+                               Height="40"/>
+                    <ui:Button x:Name="BtnRectangle"
+                               Tag="rectangle"
+                               Click="OnToolButtonClick"
+                               Icon="Rectangle24"
+                               ToolTip="Prostokąt (R)"
+                               Width="40"
+                               Height="40"/>
+                    <ui:Button x:Name="BtnArrow"
+                               Tag="arrow"
+                               Click="OnToolButtonClick"
+                               Icon="ArrowUp24"
+                               ToolTip="Strzałka (A)"
+                               Width="40"
+                               Height="40"/>
+                    <ui:Button x:Name="BtnBlur"
+                               Tag="blur"
+                               Click="OnToolButtonClick"
+                               Icon="EyeOff24"
+                               ToolTip="Rozmycie (B)"
+                               Width="40"
+                               Height="40"/>
+                    <ui:Button x:Name="BtnText"
+                               Tag="text"
+                               Click="OnToolButtonClick"
+                               Icon="TextFont24"
+                               ToolTip="Tekst (T)"
+                               Width="40"
+                               Height="40"/>
 
-            <!-- Główny obszar edycji -->
-            <Grid Grid.Column="1" Grid.Row="0" Margin="0,12,0,8">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/> <!-- Top toolbar -->
-                    <RowDefinition Height="*"/>    <!-- Canvas -->
-                </Grid.RowDefinitions>
+                    <Border Width="1"
+                            Background="{DynamicResource CardStrokeColorDefaultBrush}"
+                            Margin="4,0"/>
 
-                <!-- Górny pasek z akcjami -->
-                <ui:Card Grid.Row="0" Margin="0,0,0,12" Padding="12">
-                    <StackPanel Orientation="Horizontal" helpers:StackPanelHelper.Spacing="8">
-                        <!-- Color Picker -->
-                        <TextBlock Text="KOLOR:"
+                    <!-- Color Picker -->
+                    <Button x:Name="ColorButton"
+                            Click="OnColorPickerClick"
+                            Width="40"
+                            Height="40"
+                            Background="#FF0000"
+                            ToolTip="Wybierz kolor"
+                            CornerRadius="4"
+                            BorderThickness="2"
+                            BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                            Padding="0"/>
+
+                    <!-- Size Slider -->
+                    <StackPanel Orientation="Horizontal" Margin="8,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Grubość:"
                                    VerticalAlignment="Center"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,4,0"/>
-                        <Button x:Name="ColorButton"
-                                Click="OnColorPickerClick"
-                                Width="40"
-                                Height="32"
-                                Background="#FF0000"
-                                ToolTip="Zmien kolor"
-                                Padding="0"/>
-
-                        <Border Width="1"
-                                Background="{DynamicResource CardStrokeColorDefaultBrush}"
-                                Margin="8,0"/>
-
-                        <!-- Size Slider -->
-                        <TextBlock Text="GRUBOŚĆ:"
-                                   VerticalAlignment="Center"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,4,0"/>
+                                   Margin="0,0,8,0"/>
                         <Slider x:Name="SizeSlider"
-                                Width="100"
+                                Width="120"
                                 Minimum="1"
                                 Maximum="30"
                                 Value="3"
@@ -119,213 +119,294 @@
                         <TextBlock x:Name="SizeLabel"
                                    Text="3px"
                                    VerticalAlignment="Center"
-                                   MinWidth="35"/>
-
-                        <Border Width="1"
-                                Background="{DynamicResource CardStrokeColorDefaultBrush}"
-                                Margin="8,0"/>
-
-                        <!-- Action Buttons -->
-                        <ui:Button Content="WYCZYŚĆ"
-                                   Click="OnClearClick"
-                                   Icon="Broom24"
-                                   ToolTip="Wyczyść wszystko"/>
-
-                        <ui:Button Content="COFNIJ"
-                                   Click="OnUndoClick"
-                                   Icon="ArrowUndo24"
-                                   ToolTip="Cofnij ostatnią akcję"/>
-
-                        <Border Width="1"
-                                Background="{DynamicResource CardStrokeColorDefaultBrush}"
-                                Margin="8,0"/>
-
-                        <ui:Button Content="CHMURA"
-                                   Click="OnUploadClick"
-                                   Icon="Cloud24"
-                                   ToolTip="Prześlij do chmury"/>
-
-                        <ui:Button Content="ZAPISZ"
-                                   Click="OnSaveClick"
-                                   Icon="Save24"
-                                   Appearance="Primary"
-                                   ToolTip="Zapisz screenshot"/>
-
-                        <ui:Button Content="ANULUJ"
-                                   Click="OnCancelClick"
-                                   Icon="Dismiss24"
-                                   ToolTip="Anuluj bez zapisu"/>
+                                   MinWidth="35"
+                                   Margin="8,0,0,0"/>
                     </StackPanel>
-                </ui:Card>
+                </StackPanel>
 
-                <!-- Canvas do edycji screenshot -->
-                <Border Grid.Row="1"
-                        Background="White"
+                <!-- Actions Section -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" helpers:StackPanelHelper.Spacing="4">
+                    <ui:Button x:Name="BtnUndo"
+                               Click="OnUndoClick"
+                               Icon="ArrowUndo24"
+                               ToolTip="Cofnij (Ctrl+Z)"
+                               Width="40"
+                               Height="40"/>
+                    <ui:Button x:Name="BtnRedo"
+                               Click="OnRedoClick"
+                               Icon="ArrowRedo24"
+                               ToolTip="Ponów (Ctrl+Y)"
+                               Width="40"
+                               Height="40"/>
+
+                    <Border Width="1"
+                            Background="{DynamicResource CardStrokeColorDefaultBrush}"
+                            Margin="4,0"/>
+
+                    <ui:Button Content="Chmura"
+                               Click="OnUploadClick"
+                               Icon="Cloud24"
+                               ToolTip="Prześlij do chmury"
+                               Padding="12,8"/>
+                    <ui:Button Content="Zapisz"
+                               Click="OnSaveClick"
+                               Icon="Save24"
+                               Appearance="Primary"
+                               ToolTip="Zapisz screenshot (Ctrl+S)"
+                               Padding="12,8"/>
+                    <ui:Button Content="Anuluj"
+                               Click="OnCancelClick"
+                               Icon="Dismiss24"
+                               ToolTip="Zamknij bez zapisu (Esc)"
+                               Padding="12,8"/>
+                </StackPanel>
+            </Grid>
+        </ui:Card>
+
+        <!-- Main Editor Layout -->
+        <Grid Grid.Row="2" Margin="12,8,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>     <!-- Main canvas -->
+                <ColumnDefinition Width="Auto"/>  <!-- Properties panel -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Canvas Area with Zoom Controls -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>    <!-- Canvas -->
+                </Grid.RowDefinitions>
+
+                <!-- Canvas Container -->
+                <Border Background="{DynamicResource ApplicationBackgroundBrush}"
                         CornerRadius="4"
                         BorderThickness="1"
                         BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                    <Canvas x:Name="EditorCanvas"
-                            Background="White"
-                            MouseDown="OnEditorCanvasMouseDown"
-                            MouseMove="OnEditorCanvasMouseMove"
-                            MouseUp="OnEditorCanvasMouseUp"/>
+                    <ScrollViewer x:Name="CanvasScrollViewer"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+                        <Border x:Name="CanvasContainer"
+                                Background="White"
+                                CornerRadius="2"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="CanvasScaleTransform" ScaleX="1.0" ScaleY="1.0"/>
+                            </Border.RenderTransform>
+                            <Canvas x:Name="EditorCanvas"
+                                    Background="White"
+                                    MouseDown="OnEditorCanvasMouseDown"
+                                    MouseMove="OnEditorCanvasMouseMove"
+                                    MouseUp="OnEditorCanvasMouseUp"/>
+                        </Border>
+                    </ScrollViewer>
                 </Border>
+
+                <!-- Floating Zoom Controls -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,16,16"
+                            helpers:StackPanelHelper.Spacing="4">
+                    <ui:Button Icon="ZoomOut24"
+                               Click="OnZoomOutClick"
+                               ToolTip="Pomniejsz (Ctrl+-)"
+                               Width="36"
+                               Height="36"
+                               Appearance="Secondary"/>
+                    <TextBlock x:Name="ZoomLabel"
+                               Text="100%"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               MinWidth="50"
+                               TextAlignment="Center"
+                               FontWeight="SemiBold"/>
+                    <ui:Button Icon="ZoomIn24"
+                               Click="OnZoomInClick"
+                               ToolTip="Powiększ (Ctrl++)"
+                               Width="36"
+                               Height="36"
+                               Appearance="Secondary"/>
+                    <ui:Button Icon="ZoomFit24"
+                               Click="OnZoomFitClick"
+                               ToolTip="Dopasuj (Ctrl+0)"
+                               Width="36"
+                               Height="36"
+                               Appearance="Secondary"/>
+                </StackPanel>
             </Grid>
 
-            <!-- Prawa pionowa paleta narzędzi edycji -->
-            <ui:Card Grid.Column="2"
-                     Grid.Row="0"
-                     Margin="8,12,12,8"
-                     Padding="8"
-                     MinWidth="80">
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Center"
-                            helpers:StackPanelHelper.Spacing="8">
-                    <TextBlock Text="NARZĘDZIA"
-                               FontWeight="SemiBold"
-                               FontSize="12"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,4"/>
-
-                    <!-- Drawing Tools -->
-                    <ui:Button Tag="marker"
-                               Click="OnToolButtonClick"
-                               ToolTip="Marker - Rysuj"
-                               Width="56"
-                               Height="56"
-                               Padding="0">
-                        <Image Source="/Assets/Icons/Tools/marker.png"
-                               Stretch="Uniform"
-                               Width="28"
-                               Height="28"/>
-                    </ui:Button>
-
-                    <ui:Button Tag="rectangle"
-                               Click="OnToolButtonClick"
-                               ToolTip="Prostokąt"
-                               Width="56"
-                               Height="56"
-                               Padding="0">
-                        <Image Source="/Assets/Icons/Tools/zaznaczenie_prostokat.png"
-                               Stretch="Uniform"
-                               Width="28"
-                               Height="28"/>
-                    </ui:Button>
-
-                    <ui:Button Tag="arrow"
-                               Click="OnToolButtonClick"
-                               ToolTip="Strzałka"
-                               Width="56"
-                               Height="56"
-                               Padding="0">
-                        <Image Source="/Assets/Icons/Tools/icon_arrow.png"
-                               Stretch="Uniform"
-                               Width="28"
-                               Height="28"/>
-                    </ui:Button>
-
-                    <ui:Button Tag="blur"
-                               Click="OnToolButtonClick"
-                               ToolTip="Blur - Zamazywanie"
-                               Width="56"
-                               Height="56"
-                               Padding="0">
-                        <Image Source="/Assets/Icons/Tools/icon_blur.png"
-                               Stretch="Uniform"
-                               Width="28"
-                               Height="28"/>
-                    </ui:Button>
-
-                    <ui:Button Tag="text"
-                               Click="OnToolButtonClick"
-                               ToolTip="Tekst"
-                               Width="56"
-                               Height="56"
-                               Padding="0">
-                        <Image Source="/Assets/Icons/Tools/icon_text.png"
-                               Stretch="Uniform"
-                               Width="28"
-                               Height="28"/>
-                    </ui:Button>
-                </StackPanel>
-            </ui:Card>
-
-            <!-- Dolny pasek formatowania tekstu -->
+            <!-- Properties Panel -->
             <ui:Card Grid.Column="1"
-                     Grid.ColumnSpan="2"
-                     Grid.Row="1"
-                     Margin="0,0,12,12"
-                     Padding="12">
-                <StackPanel Orientation="Horizontal" helpers:StackPanelHelper.Spacing="8">
-                    <TextBlock Text="FORMATOWANIE TEKSTU:"
-                               FontWeight="SemiBold"
-                               VerticalAlignment="Center"
-                               Margin="0,0,8,0"/>
+                     Margin="8,0,0,0"
+                     Padding="12"
+                     MinWidth="220"
+                     MaxWidth="280">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="16">
+                        <!-- Tool Properties Header -->
+                        <TextBlock Text="Właściwości narzędzia"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"/>
 
-                    <!-- Style tekstu -->
-                    <ui:Button ToolTip="Pogrubiony"
-                               Width="36"
-                               Height="36"
-                               Padding="0">
-                        <TextBlock Text="B" FontWeight="Bold"/>
-                    </ui:Button>
-                    <ui:Button ToolTip="Kursywa"
-                               Width="36"
-                               Height="36"
-                               Padding="0">
-                        <TextBlock Text="I" FontStyle="Italic"/>
-                    </ui:Button>
-                    <ui:Button ToolTip="Podkreślenie"
-                               Width="36"
-                               Height="36"
-                               Padding="0">
-                        <TextBlock Text="U" TextDecorations="Underline"/>
-                    </ui:Button>
-                    <ui:Button ToolTip="Przekreślenie"
-                               Width="36"
-                               Height="36"
-                               Padding="0">
-                        <TextBlock Text="S" TextDecorations="Strikethrough"/>
-                    </ui:Button>
+                        <!-- Current Tool Display -->
+                        <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="8">
+                            <TextBlock Text="Aktywne narzędzie:"
+                                       FontSize="12"
+                                       Opacity="0.7"/>
+                            <TextBlock x:Name="CurrentToolLabel"
+                                       Text="Brak"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
 
-                    <Border Width="1"
-                            Background="{DynamicResource CardStrokeColorDefaultBrush}"
-                            Margin="4,0"/>
+                        <Separator/>
 
-                    <!-- Wyrównanie tekstu -->
-                    <ui:Button Icon="TextAlignLeft24"
-                               ToolTip="Wyrównaj do lewej"
-                               Width="36"
-                               Height="36"/>
-                    <ui:Button Icon="TextAlignCenter24"
-                               ToolTip="Wyśrodkuj"
-                               Width="36"
-                               Height="36"/>
-                    <ui:Button Icon="TextAlignRight24"
-                               ToolTip="Wyrównaj do prawej"
-                               Width="36"
-                               Height="36"/>
-                    <ui:Button Icon="TextAlignJustify24"
-                               ToolTip="Wyjustuj"
-                               Width="36"
-                               Height="36"/>
+                        <!-- Color Section -->
+                        <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="8">
+                            <TextBlock Text="Kolor"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <ui:Button Click="OnColorPickerClick"
+                                       HorizontalAlignment="Stretch"
+                                       Height="50"
+                                       Padding="0">
+                                <Border Background="{Binding ElementName=ColorButton, Path=Background}"
+                                        CornerRadius="4"
+                                        Height="40"
+                                        Width="180"/>
+                            </ui:Button>
 
-                    <Border Width="1"
-                            Background="{DynamicResource CardStrokeColorDefaultBrush}"
-                            Margin="4,0"/>
+                            <!-- Quick Color Palette -->
+                            <TextBlock Text="Szybki wybór:"
+                                       FontSize="11"
+                                       Opacity="0.7"/>
+                            <UniformGrid Columns="5" Rows="2">
+                                <Button Click="OnQuickColorClick" Tag="#FF0000" Background="#FF0000" Margin="2" Height="30" ToolTip="Czerwony"/>
+                                <Button Click="OnQuickColorClick" Tag="#00FF00" Background="#00FF00" Margin="2" Height="30" ToolTip="Zielony"/>
+                                <Button Click="OnQuickColorClick" Tag="#0000FF" Background="#0000FF" Margin="2" Height="30" ToolTip="Niebieski"/>
+                                <Button Click="OnQuickColorClick" Tag="#FFFF00" Background="#FFFF00" Margin="2" Height="30" ToolTip="Żółty"/>
+                                <Button Click="OnQuickColorClick" Tag="#FF00FF" Background="#FF00FF" Margin="2" Height="30" ToolTip="Magenta"/>
+                                <Button Click="OnQuickColorClick" Tag="#000000" Background="#000000" Margin="2" Height="30" ToolTip="Czarny"/>
+                                <Button Click="OnQuickColorClick" Tag="#FFFFFF" Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="1" Margin="2" Height="30" ToolTip="Biały"/>
+                                <Button Click="OnQuickColorClick" Tag="#FFA500" Background="#FFA500" Margin="2" Height="30" ToolTip="Pomarańczowy"/>
+                                <Button Click="OnQuickColorClick" Tag="#800080" Background="#800080" Margin="2" Height="30" ToolTip="Fioletowy"/>
+                                <Button Click="OnQuickColorClick" Tag="#808080" Background="#808080" Margin="2" Height="30" ToolTip="Szary"/>
+                            </UniformGrid>
+                        </StackPanel>
 
-                    <!-- Listy -->
-                    <ui:Button Icon="TextBulletListLtr24"
-                               ToolTip="Lista punktowana"
-                               Width="36"
-                               Height="36"/>
-                    <ui:Button Icon="TextNumberListLtr24"
-                               ToolTip="Lista numerowana"
-                               Width="36"
-                               Height="36"/>
-                </StackPanel>
+                        <Separator/>
+
+                        <!-- Size Section -->
+                        <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="8">
+                            <TextBlock Text="Grubość / Rozmiar"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <Slider Minimum="1"
+                                    Maximum="30"
+                                    Value="{Binding ElementName=SizeSlider, Path=Value, Mode=TwoWay}"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"/>
+                            <TextBlock Text="{Binding ElementName=SizeLabel, Path=Text}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="13"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <!-- History Section -->
+                        <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="8">
+                            <TextBlock Text="Historia"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ui:Button Grid.Column="0"
+                                           Content="Cofnij"
+                                           Click="OnUndoClick"
+                                           Icon="ArrowUndo24"
+                                           Margin="0,0,4,0"
+                                           HorizontalAlignment="Stretch"/>
+                                <ui:Button Grid.Column="1"
+                                           Content="Ponów"
+                                           Click="OnRedoClick"
+                                           Icon="ArrowRedo24"
+                                           Margin="4,0,0,0"
+                                           HorizontalAlignment="Stretch"/>
+                            </Grid>
+                            <TextBlock x:Name="HistoryLabel"
+                                       Text="Akcji: 0 / 0"
+                                       HorizontalAlignment="Center"
+                                       FontSize="11"
+                                       Opacity="0.7"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <!-- Quick Actions -->
+                        <StackPanel Orientation="Vertical" helpers:StackPanelHelper.Spacing="8">
+                            <TextBlock Text="Szybkie akcje"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <ui:Button Content="Wyczyść wszystko"
+                                       Click="OnClearClick"
+                                       Icon="Delete24"
+                                       HorizontalAlignment="Stretch"
+                                       Appearance="Caution"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
             </ui:Card>
         </Grid>
+
+        <!-- Modern Status Bar -->
+        <ui:Card Grid.Row="3" Margin="12,8,12,12" Padding="8,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left: Image Info -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" helpers:StackPanelHelper.Spacing="16">
+                    <StackPanel Orientation="Horizontal" helpers:StackPanelHelper.Spacing="4">
+                        <ui:SymbolIcon Symbol="Image24" FontSize="16"/>
+                        <TextBlock x:Name="ImageSizeLabel"
+                                   Text="0 x 0 px"
+                                   VerticalAlignment="Center"
+                                   FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" helpers:StackPanelHelper.Spacing="4">
+                        <ui:SymbolIcon Symbol="DocumentBulletList24" FontSize="16"/>
+                        <TextBlock x:Name="StatusHistoryLabel"
+                                   Text="Edycji: 0"
+                                   VerticalAlignment="Center"
+                                   FontSize="12"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Center: Mode/Tool Indicator -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            helpers:StackPanelHelper.Spacing="4">
+                    <ui:SymbolIcon Symbol="Edit24" FontSize="16"/>
+                    <TextBlock x:Name="StatusModeLabel"
+                                   Text="Tryb edycji"
+                                   VerticalAlignment="Center"
+                                   FontSize="12"/>
+                </StackPanel>
+
+                <!-- Right: Zoom Info -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" helpers:StackPanelHelper.Spacing="4">
+                    <ui:SymbolIcon Symbol="ZoomIn24" FontSize="16"/>
+                    <TextBlock Text="{Binding ElementName=ZoomLabel, Path=Text}"
+                               VerticalAlignment="Center"
+                               FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </ui:Card>
     </Grid>
 </ui:FluentWindow>
