@@ -1,17 +1,26 @@
 # Script do automatycznego budowania instalatora PrettyScreenSHOT
 # Użycie: .\build-installer.ps1 -Method MSIX|WiX|InnoSetup
+# Uwaga: Skrypt należy uruchomić z katalogu głównego projektu lub build/installer/
 
 param(
     [Parameter(Mandatory=$true)]
     [ValidateSet("MSIX", "WiX", "InnoSetup")]
     [string]$Method,
-    
+
     [string]$Configuration = "Release",
     [string]$Runtime = "win-x64",
     [bool]$SelfContained = $false
 )
 
 $ErrorActionPreference = "Stop"
+
+# Navigate to project root if running from build/installer/
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+if ($scriptDir -match "build[\\/]installer$") {
+    $projectRoot = (Get-Item $scriptDir).Parent.Parent.FullName
+    Set-Location $projectRoot
+}
+$projectRoot = Get-Location
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "PrettyScreenSHOT Installer Builder" -ForegroundColor Cyan
@@ -99,15 +108,16 @@ switch ($Method) {
             exit 1
         }
         
-        if (-not (Test-Path "Installer.wxs")) {
-            Write-Host "Error: Installer.wxs not found!" -ForegroundColor Red
+        $wxsPath = "build\installer\Installer.wxs"
+        if (-not (Test-Path $wxsPath)) {
+            Write-Host "Error: Installer.wxs not found at $wxsPath!" -ForegroundColor Red
             exit 1
         }
-        
+
         New-Item -ItemType Directory -Force -Path "installer" | Out-Null
-        
+
         # Compile
-        & $candle "Installer.wxs" -ext WixUtilExtension -out "installer\"
+        & $candle $wxsPath -ext WixUtilExtension -out "installer\"
         if ($LASTEXITCODE -ne 0) {
             Write-Host "WiX compilation failed!" -ForegroundColor Red
             exit 1
@@ -135,18 +145,20 @@ switch ($Method) {
             exit 1
         }
         
-        if (-not (Test-Path "Installer.iss")) {
-            Write-Host "Error: Installer.iss not found!" -ForegroundColor Red
+        $issPath = "build\installer\Installer.iss"
+        if (-not (Test-Path $issPath)) {
+            Write-Host "Error: Installer.iss not found at $issPath!" -ForegroundColor Red
             exit 1
         }
-        
+
         # Update source path in ISS file
-        $issContent = Get-Content "Installer.iss" -Raw
+        $issContent = Get-Content $issPath -Raw
         $issContent = $issContent -replace 'Source: "bin\\Release\\net10\.0-windows\\\*"', "Source: `"$publishPath\*`""
-        Set-Content "Installer.iss" -Value $issContent
-        
+        $issTempPath = "installer\Installer_temp.iss"
+        Set-Content $issTempPath -Value $issContent
+
         # Compile
-        & $iscc "Installer.iss"
+        & $iscc $issTempPath
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Inno Setup compilation failed!" -ForegroundColor Red
             exit 1
