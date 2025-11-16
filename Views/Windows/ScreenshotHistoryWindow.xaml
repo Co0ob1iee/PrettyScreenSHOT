@@ -5,8 +5,10 @@
         xmlns:local="clr-namespace:PrettyScreenSHOT.Views.Windows"
         xmlns:helpers="clr-namespace:PrettyScreenSHOT.Helpers"
         Title="Screenshot History"
-        Height="650"
-        Width="720"
+        Height="750"
+        Width="1100"
+        MinHeight="600"
+        MinWidth="900"
         WindowStartupLocation="CenterScreen"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
@@ -22,6 +24,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> <!-- Title bar -->
+            <RowDefinition Height="Auto"/> <!-- Filters -->
             <RowDefinition Height="*"/>    <!-- Main content -->
         </Grid.RowDefinitions>
 
@@ -30,19 +33,24 @@
                      Title="Screenshot History"
                      Icon="pack://application:,,,/app.ico"/>
 
-        <!-- Main Content -->
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> <!-- Search/Filter -->
-                <RowDefinition Height="*"/>    <!-- History List -->
-            </Grid.RowDefinitions>
+        <!-- Advanced Filters Panel -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="20,16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <!-- Search and Filter Card -->
-            <ui:Card Grid.Row="0" Margin="0,0,0,16">
-                <Grid>
+                <!-- Search and Quick Filters -->
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
@@ -50,111 +58,266 @@
                     <ui:TextBox x:Name="SearchTextBox"
                                 Grid.Column="0"
                                 Icon="Search24"
-                                PlaceholderText="Search screenshots..."
-                                Margin="0,0,8,0"
+                                PlaceholderText="Szukaj po nazwie pliku..."
+                                Margin="0,0,12,0"
                                 TextChanged="OnSearchTextChanged"/>
 
                     <!-- Category Filter -->
                     <ComboBox x:Name="CategoryComboBox"
                               Grid.Column="1"
-                              Margin="0,0,8,0"
-                              SelectionChanged="OnCategoryChanged"/>
+                              Margin="0,0,12,0"
+                              SelectionChanged="OnCategoryChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-                    <!-- Clear Filters -->
-                    <ui:Button x:Name="ClearFiltersButton"
-                               Grid.Column="2"
-                               Content="Clear"
-                               Click="OnClearFiltersClick"
-                               Icon="Dismiss24"/>
+                    <!-- Date Range Filter -->
+                    <ComboBox x:Name="DateRangeComboBox"
+                              Grid.Column="2"
+                              Margin="0,0,12,0"
+                              SelectionChanged="OnDateRangeChanged">
+                        <ComboBoxItem Content="Wszystkie" IsSelected="True"/>
+                        <ComboBoxItem Content="Dzisiaj"/>
+                        <ComboBoxItem Content="Ten tydzień"/>
+                        <ComboBoxItem Content="Ten miesiąc"/>
+                        <ComboBoxItem Content="Ostatnie 3 miesiące"/>
+                    </ComboBox>
+
+                    <!-- Action Buttons -->
+                    <StackPanel Grid.Column="3"
+                                Orientation="Horizontal"
+                                helpers:StackPanelHelper.Spacing="8">
+                        <ui:Button x:Name="ClearFiltersButton"
+                                   Content="Wyczyść"
+                                   Click="OnClearFiltersClick"
+                                   Icon="Dismiss24"/>
+                        <ui:Button x:Name="RefreshButton"
+                                   Content="Odśwież"
+                                   Click="OnRefreshClick"
+                                   Icon="ArrowSync24"/>
+                    </StackPanel>
                 </Grid>
-            </ui:Card>
 
-            <!-- History List -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <ItemsControl x:Name="HistoryListBox" ItemsSource="{Binding}">
+                <!-- Tags Filter -->
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            Margin="0,12,0,0"
+                            helpers:StackPanelHelper.Spacing="8">
+                    <TextBlock Text="Tagi:"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    <ItemsControl x:Name="TagsFilterPanel">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ui:Button Content="{Binding}"
+                                           Margin="0,0,4,0"
+                                           Padding="8,4"
+                                           FontSize="12"
+                                           Appearance="Secondary"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- History Grid -->
+        <ScrollViewer Grid.Row="2"
+                      Padding="20"
+                      VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <!-- Empty State -->
+                <StackPanel x:Name="EmptyStatePanel"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Visibility="Collapsed"
+                            helpers:StackPanelHelper.Spacing="16">
+                    <ui:SymbolIcon Symbol="ImageOff24"
+                                   FontSize="64"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    <TextBlock Text="Brak zrzutów ekranu"
+                               FontSize="18"
+                               FontWeight="Medium"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Naciśnij PrtScn aby utworzyć pierwszy zrzut"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Responsive Grid -->
+                <ItemsControl x:Name="HistoryItemsControl" ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ui:Card Margin="0,0,0,12" Padding="16">
+                            <ui:Card Margin="0,0,12,12" Padding="0">
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="180"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
                                     <!-- Thumbnail -->
-                                    <Border Grid.Column="0"
-                                            Width="100"
-                                            Height="75"
-                                            CornerRadius="8"
-                                            Margin="0,0,16,0"
-                                            VerticalAlignment="Center"
-                                            ClipToBounds="True">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="{Binding Thumbnail}"
-                                                        Stretch="UniformToFill"/>
-                                        </Border.Background>
+                                    <Border Grid.Row="0"
+                                            CornerRadius="8,8,0,0"
+                                            ClipToBounds="True"
+                                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                                        <Grid>
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{Binding Thumbnail}"
+                                                            Stretch="UniformToFill"/>
+                                            </Border.Background>
+
+                                            <!-- Overlay on Hover -->
+                                            <Border x:Name="HoverOverlay"
+                                                    Background="#80000000"
+                                                    Opacity="0">
+                                                <StackPanel VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            helpers:StackPanelHelper.Spacing="8">
+                                                    <ui:Button Content="Otwórz"
+                                                               Click="OnOpenClick"
+                                                               Appearance="Primary"
+                                                               Icon="Open24"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
                                     </Border>
 
-                                    <!-- Info -->
-                                    <StackPanel Grid.Column="1"
-                                                VerticalAlignment="Center"
-                                                helpers:StackPanelHelper.Spacing="4">
+                                    <!-- Info Section -->
+                                    <StackPanel Grid.Row="1"
+                                                Padding="16,12"
+                                                helpers:StackPanelHelper.Spacing="6">
                                         <TextBlock Text="{Binding Filename}"
                                                    FontWeight="Medium"
-                                                   FontSize="14"/>
-                                        <TextBlock Text="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm:ss'}"
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                                                   FontSize="12"/>
+                                                   FontSize="13"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Filename}"/>
 
-                                        <!-- Cloud URL -->
+                                        <TextBlock Text="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm'}"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                                   FontSize="11"/>
+
+                                        <!-- Cloud Status -->
                                         <StackPanel Orientation="Horizontal"
-                                                    Margin="0,4,0,0"
+                                                    helpers:StackPanelHelper.Spacing="4"
                                                     Visibility="{Binding CloudUrl, Converter={StaticResource NullToVisibilityConverter}}">
                                             <ui:SymbolIcon Symbol="Cloud24"
-                                                           FontSize="14"
-                                                           Margin="0,0,4,0"/>
+                                                           FontSize="12"
+                                                           Foreground="{DynamicResource AccentFillColorDefaultBrush}"/>
                                             <TextBlock Text="{Binding CloudProvider}"
-                                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                                                       FontSize="12"
-                                                       Margin="0,0,6,0"/>
-                                            <ui:Button Click="OnCloudUrlClick"
-                                                       Appearance="Transparent"
-                                                       Padding="4,2"
-                                                       Cursor="Hand">
-                                                <TextBlock Text="{Binding CloudUrl}"
-                                                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
-                                                           TextDecorations="Underline"
-                                                           TextTrimming="CharacterEllipsis"
-                                                           MaxWidth="200"
-                                                           FontSize="12"/>
-                                            </ui:Button>
+                                                       Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
+                                                       FontSize="11"/>
                                         </StackPanel>
                                     </StackPanel>
 
                                     <!-- Action Buttons -->
-                                    <StackPanel Grid.Column="2"
-                                                Orientation="Horizontal"
-                                                VerticalAlignment="Center"
-                                                helpers:StackPanelHelper.Spacing="8">
-                                        <!-- Upload Button (if not uploaded) -->
-                                        <ui:Button Click="OnUploadClick"
-                                                   Icon="ArrowUpload24"
-                                                   Content="Upload"
-                                                   Visibility="{Binding CloudUrl, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Inverse}"/>
+                                    <Border Grid.Row="2"
+                                            BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                                            BorderThickness="0,1,0,0"
+                                            Padding="12,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <!-- Delete Button -->
-                                        <ui:Button Click="OnDeleteClick"
-                                                   Icon="Delete24"
-                                                   Appearance="Danger"
-                                                   ToolTip="Delete"/>
-                                    </StackPanel>
+                                            <!-- Left Actions -->
+                                            <StackPanel Grid.Column="0"
+                                                        Orientation="Horizontal"
+                                                        helpers:StackPanelHelper.Spacing="4">
+                                                <!-- Edit Button -->
+                                                <ui:Button Click="OnEditClick"
+                                                           Icon="Edit24"
+                                                           Appearance="Transparent"
+                                                           Padding="8,4"
+                                                           ToolTip="Edytuj"
+                                                           FontSize="12"/>
+
+                                                <!-- Copy Link Button -->
+                                                <ui:Button Click="OnCopyLinkClick"
+                                                           Icon="Link24"
+                                                           Appearance="Transparent"
+                                                           Padding="8,4"
+                                                           ToolTip="Kopiuj link"
+                                                           FontSize="12"
+                                                           Visibility="{Binding CloudUrl, Converter={StaticResource NullToVisibilityConverter}}"/>
+
+                                                <!-- Share Button -->
+                                                <ui:Button Click="OnShareClick"
+                                                           Icon="Share24"
+                                                           Appearance="Transparent"
+                                                           Padding="8,4"
+                                                           ToolTip="Udostępnij"
+                                                           FontSize="12"/>
+                                            </StackPanel>
+
+                                            <!-- Right Actions -->
+                                            <StackPanel Grid.Column="1"
+                                                        Orientation="Horizontal"
+                                                        helpers:StackPanelHelper.Spacing="4">
+                                                <!-- Upload Button (if not uploaded) -->
+                                                <ui:Button Click="OnUploadClick"
+                                                           Icon="ArrowUpload24"
+                                                           Appearance="Transparent"
+                                                           Padding="8,4"
+                                                           ToolTip="Prześlij do chmury"
+                                                           FontSize="12"
+                                                           Visibility="{Binding CloudUrl, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Inverse}"/>
+
+                                                <!-- Delete Button -->
+                                                <ui:Button Click="OnDeleteClick"
+                                                           Icon="Delete24"
+                                                           Appearance="Transparent"
+                                                           Padding="8,4"
+                                                           ToolTip="Usuń"
+                                                           FontSize="12"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
                                 </Grid>
+
+                                <!-- Hover Effect Trigger -->
+                                <ui:Card.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="HoverOverlay"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="HoverOverlay"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ui:Card.Triggers>
                             </ui:Card>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </ScrollViewer>
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </ui:FluentWindow>

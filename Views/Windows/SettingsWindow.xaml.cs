@@ -28,6 +28,9 @@ namespace PrettyScreenSHOT.Views.Windows
             settingsManager = SettingsManager.Instance;
             LoadSettings();
             LoadLocalizedStrings();
+
+            // Set default navigation to General
+            SettingsNavigation.SelectedItem = GeneralMenuItem;
         }
 
         private void SettingsWindow_Loaded(object? sender, RoutedEventArgs e)
@@ -279,6 +282,39 @@ namespace PrettyScreenSHOT.Views.Windows
                 settingsManager.ResetToDefaults();
                 LoadSettings();
                 LoadLocalizedStrings();
+            }
+        }
+
+        private void OnSettingsNavigationChanged(NavigationView sender, RoutedEventArgs args)
+        {
+            if (SettingsNavigation.SelectedItem is NavigationViewItem item)
+            {
+                var tag = item.TargetPageTag as string;
+
+                // Hide all sections
+                GeneralSection.Visibility = Visibility.Collapsed;
+                ImageSection.Visibility = Visibility.Collapsed;
+                OptionsSection.Visibility = Visibility.Collapsed;
+                AppearanceSection.Visibility = Visibility.Collapsed;
+
+                // Show selected section
+                switch (tag)
+                {
+                    case "general":
+                        GeneralSection.Visibility = Visibility.Visible;
+                        break;
+                    case "image":
+                        ImageSection.Visibility = Visibility.Visible;
+                        break;
+                    case "options":
+                        OptionsSection.Visibility = Visibility.Visible;
+                        break;
+                    case "appearance":
+                        AppearanceSection.Visibility = Visibility.Visible;
+                        break;
+                }
+
+                DebugHelper.LogInfo("SettingsWindow", $"Switched to section: {tag}");
             }
         }
 
