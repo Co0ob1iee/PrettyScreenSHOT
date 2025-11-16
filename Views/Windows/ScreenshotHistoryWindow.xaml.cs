@@ -37,10 +37,11 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 Source = ScreenshotManager.Instance.History
             };
-            HistoryListBox.ItemsSource = historyViewSource.View;
-            
+            HistoryItemsControl.ItemsSource = historyViewSource.View;
+
             LoadLocalizedStrings();
             InitializeSearchAndFilter();
+            UpdateEmptyState();
         }
 
         private void InitializeSearchAndFilter()
@@ -177,8 +178,125 @@ namespace PrettyScreenSHOT.Views.Windows
                 SearchTextBox.Text = "";
             if (CategoryComboBox != null)
                 CategoryComboBox.SelectedItem = null;
+            if (DateRangeComboBox != null)
+                DateRangeComboBox.SelectedIndex = 0;
 
             ApplyFilters();
+        }
+
+        private void OnDateRangeChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+            UpdateEmptyState();
+        }
+
+        private void OnRefreshClick(object sender, RoutedEventArgs e)
+        {
+            // Refresh the history list
+            ScreenshotManager.Instance.LoadHistory();
+            historyViewSource = new CollectionViewSource
+            {
+                Source = ScreenshotManager.Instance.History
+            };
+            HistoryItemsControl.ItemsSource = historyViewSource.View;
+            ApplyFilters();
+            UpdateEmptyState();
+        }
+
+        private void OnOpenClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = item.FilePath,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    DebugHelper.LogError("HistoryWindow", "Error opening file", ex);
+                    System.Windows.MessageBox.Show(
+                        $"Nie można otworzyć pliku: {ex.Message}",
+                        "Błąd",
+                        System.Windows.MessageBoxButton.OK,
+                        System.Windows.MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void OnEditClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
+            {
+                try
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(item.FilePath);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+
+                    var editorWindow = new ScreenshotEditorWindow(bitmap);
+                    editorWindow.Show();
+                }
+                catch (Exception ex)
+                {
+                    DebugHelper.LogError("HistoryWindow", "Error opening editor", ex);
+                    System.Windows.MessageBox.Show(
+                        $"Nie można otworzyć edytora: {ex.Message}",
+                        "Błąd",
+                        System.Windows.MessageBoxButton.OK,
+                        System.Windows.MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void OnCopyLinkClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
+            {
+                if (!string.IsNullOrEmpty(item.CloudUrl))
+                {
+                    System.Windows.Clipboard.SetText(item.CloudUrl);
+
+                    var messageBox = new Wpf.Ui.Controls.MessageBox
+                    {
+                        Title = "Link skopiowany",
+                        Content = $"Link został skopiowany do schowka:\n{item.CloudUrl}",
+                        ButtonLeftName = "OK"
+                    };
+                    messageBox.ShowDialogAsync();
+                }
+            }
+        }
+
+        private void OnShareClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button btn && btn.DataContext is ScreenshotItem item)
+            {
+                // TODO: Implement share dialog
+                var messageBox = new Wpf.Ui.Controls.MessageBox
+                {
+                    Title = "Udostępnij",
+                    Content = "Funkcja udostępniania zostanie wkrótce dodana.",
+                    ButtonLeftName = "OK"
+                };
+                messageBox.ShowDialogAsync();
+            }
+        }
+
+        private void UpdateEmptyState()
+        {
+            if (EmptyStatePanel != null && HistoryItemsControl != null)
+            {
+                bool isEmpty = ScreenshotManager.Instance.History.Count == 0;
+                EmptyStatePanel.Visibility = isEmpty ? Visibility.Visible : Visibility.Collapsed;
+                HistoryItemsControl.Visibility = isEmpty ? Visibility.Collapsed : Visibility.Visible;
+            }
         }
     }
 

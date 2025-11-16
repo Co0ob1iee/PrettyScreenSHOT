@@ -30,7 +30,8 @@ namespace PrettyScreenSHOT.Services
         private void CreateTrayIcon()
         {
             contextMenu = new ContextMenuStrip();
-            
+
+            var dashboardItem = new ToolStripMenuItem("Dashboard", null, ShowDashboard);
             var editItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_EditLastScreenshot"), null, EditLastScreenshot);
             var historyItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_History"), null, ShowHistory);
             var scrollCaptureItem = new ToolStripMenuItem("Scroll Capture", null, StartScrollCapture);
@@ -38,7 +39,9 @@ namespace PrettyScreenSHOT.Services
             var checkUpdateItem = new ToolStripMenuItem("Check for Updates", null, CheckForUpdates);
             var settingsItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Settings"), null, ShowSettings);
             var exitItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Exit"), null, ExitApplication);
-            
+
+            contextMenu.Items.Add(dashboardItem);
+            contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(editItem);
             contextMenu.Items.Add(historyItem);
             contextMenu.Items.Add(new ToolStripSeparator());
@@ -62,7 +65,7 @@ namespace PrettyScreenSHOT.Services
                 ContextMenuStrip = contextMenu
             };
 
-            notifyIcon.MouseDoubleClick += (s, e) => ShowHistory(null, null);
+            notifyIcon.MouseDoubleClick += (s, e) => ShowDashboard(null, null);
             notifyIcon.BalloonTipClicked += (s, e) => EditLastScreenshot(null, null);
         }
 
@@ -149,6 +152,24 @@ namespace PrettyScreenSHOT.Services
             {
                 DebugHelper.LogError("TrayIcon", "Error opening editor", ex);
             }
+        }
+
+        private void ShowDashboard(object? sender, EventArgs? e)
+        {
+            // Check if MainWindow is already open
+            foreach (Window window in System.Windows.Application.Current.Windows)
+            {
+                if (window is MainWindow mainWindow)
+                {
+                    mainWindow.Activate();
+                    mainWindow.WindowState = WindowState.Normal;
+                    return;
+                }
+            }
+
+            // Create new MainWindow
+            var dashboard = new MainWindow();
+            dashboard.Show();
         }
 
         private void ShowHistory(object? sender, EventArgs? e)

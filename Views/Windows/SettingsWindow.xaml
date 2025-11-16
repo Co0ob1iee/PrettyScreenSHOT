@@ -4,8 +4,10 @@
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                  xmlns:helpers="clr-namespace:PrettyScreenSHOT.Helpers"
                  Title="Ustawienia"
-                 Height="650"
-                 Width="720"
+                 Height="700"
+                 Width="950"
+                 MinHeight="600"
+                 MinWidth="800"
                  WindowStartupLocation="CenterScreen"
                  ExtendsContentIntoTitleBar="True"
                  WindowBackdropType="Mica"
@@ -15,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- WPF UI Title Bar -->
@@ -23,140 +26,293 @@
                      Title="Ustawienia"
                      Icon="pack://application:,,,/app.ico"/>
 
-        <!-- Main Content -->
-        <ScrollViewer Grid.Row="1" Margin="20" VerticalScrollBarVisibility="Auto">
-            <StackPanel helpers:StackPanelHelper.Spacing="16">
+        <!-- Main Content with Navigation -->
+        <ui:NavigationView Grid.Row="1"
+                           x:Name="SettingsNavigation"
+                           IsBackButtonVisible="Collapsed"
+                           IsPaneToggleVisible="True"
+                           OpenPaneLength="180"
+                           SelectionChanged="OnSettingsNavigationChanged">
 
-                <!-- Language -->
-                <ui:Card>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="LanguageLabel" Text="Language:"
-                                   VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1" x:Name="LanguageComboBox"/>
-                    </Grid>
-                </ui:Card>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="Ogólne"
+                                       Icon="Settings24"
+                                       TargetPageTag="general"
+                                       x:Name="GeneralMenuItem"/>
+                <ui:NavigationViewItem Content="Obraz"
+                                       Icon="Image24"
+                                       TargetPageTag="image"/>
+                <ui:NavigationViewItem Content="Opcje"
+                                       Icon="Options24"
+                                       TargetPageTag="options"/>
+                <ui:NavigationViewItem Content="Wygląd"
+                                       Icon="Color24"
+                                       TargetPageTag="appearance"/>
+            </ui:NavigationView.MenuItems>
 
-                <!-- Save Path -->
-                <ui:Card>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="SavePathLabel" Text="Save Path:"
-                                   VerticalAlignment="Center"/>
-                        <ui:TextBox Grid.Column="1" x:Name="SavePathTextBox"
-                                    Margin="0,0,10,0"
-                                    Icon="Folder24"
-                                    PlaceholderText="Select save location..."/>
-                        <ui:Button Grid.Column="2" x:Name="BrowseButton"
-                                   Content="Browse..."
-                                   Click="BrowseButton_Click"
-                                   Icon="FolderOpen24"
-                                   Width="120"/>
-                    </Grid>
-                </ui:Card>
+            <!-- Settings Content -->
+            <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <!-- General Settings Section -->
+                    <StackPanel x:Name="GeneralSection" helpers:StackPanelHelper.Spacing="16" Visibility="Visible">
+                        <TextBlock Text="Ustawienia ogólne"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
 
-                <!-- Hotkey -->
-                <ui:Card>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="HotkeyLabel" Text="Hotkey:"
-                                   VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1" x:Name="HotkeyComboBox"/>
-                    </Grid>
-                </ui:Card>
+                        <!-- Language -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="8">
+                                <TextBlock x:Name="LanguageLabel" Text="Language:"
+                                           FontWeight="Medium"/>
+                                <ComboBox x:Name="LanguageComboBox"/>
+                                <TextBlock Text="Zmiana języka wymaga ponownego uruchomienia aplikacji"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
 
-                <!-- Image Format -->
-                <ui:Card>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="ImageFormatLabel" Text="Image Format:"
-                                   VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1" x:Name="ImageFormatComboBox"/>
-                    </Grid>
-                </ui:Card>
+                        <!-- Save Path -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="8">
+                                <TextBlock x:Name="SavePathLabel" Text="Save Path:"
+                                           FontWeight="Medium"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ui:TextBox Grid.Column="0" x:Name="SavePathTextBox"
+                                                Margin="0,0,10,0"
+                                                Icon="Folder24"
+                                                PlaceholderText="Select save location..."/>
+                                    <ui:Button Grid.Column="1" x:Name="BrowseButton"
+                                               Content="Browse..."
+                                               Click="BrowseButton_Click"
+                                               Icon="FolderOpen24"
+                                               Width="120"/>
+                                </Grid>
+                                <TextBlock Text="Folder, w którym będą zapisywane zrzuty ekranu"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
 
-                <!-- Image Quality -->
-                <ui:Card>
-                    <StackPanel helpers:StackPanelHelper.Spacing="8">
-                        <TextBlock x:Name="ImageQualityLabel" Text="Image Quality:"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="60"/>
-                            </Grid.ColumnDefinitions>
-                            <Slider Grid.Column="0"
-                                    x:Name="QualitySlider"
-                                    Minimum="10"
-                                    Maximum="100"
-                                    Value="90"
-                                    TickFrequency="10"
-                                    IsSnapToTickEnabled="True"
-                                    VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       x:Name="QualityLabel"
-                                       Text="{Binding Value, ElementName=QualitySlider, StringFormat={}{0:F0}%}"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
+                        <!-- Hotkey -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="8">
+                                <TextBlock x:Name="HotkeyLabel" Text="Hotkey:"
+                                           FontWeight="Medium"/>
+                                <ComboBox x:Name="HotkeyComboBox"/>
+                                <TextBlock Text="Skrót klawiszowy do przechwytywania ekranu"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
                     </StackPanel>
-                </ui:Card>
 
-                <!-- Options -->
-                <ui:Card>
-                    <StackPanel helpers:StackPanelHelper.Spacing="12">
-                        <TextBlock Text="Options" FontSize="16" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="AutoSaveCheckBox" Content="Auto Save"/>
-                        <CheckBox x:Name="CopyToClipboardCheckBox" Content="Copy to Clipboard"/>
-                        <CheckBox x:Name="ShowNotificationsCheckBox" Content="Show Notifications"/>
-                        <CheckBox x:Name="AutoUploadCheckBox" Content="Auto Upload"/>
+                    <!-- Image Settings Section -->
+                    <StackPanel x:Name="ImageSection" helpers:StackPanelHelper.Spacing="16" Visibility="Collapsed">
+                        <TextBlock Text="Ustawienia obrazu"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
+
+                        <!-- Image Format -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="8">
+                                <TextBlock x:Name="ImageFormatLabel" Text="Image Format:"
+                                           FontWeight="Medium"/>
+                                <ComboBox x:Name="ImageFormatComboBox"/>
+                                <TextBlock Text="Format pliku dla zapisywanych zrzutów"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
+
+                        <!-- Image Quality -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="12">
+                                <TextBlock x:Name="ImageQualityLabel" Text="Image Quality:"
+                                           FontWeight="Medium"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Slider Grid.Column="0"
+                                            x:Name="QualitySlider"
+                                            Minimum="10"
+                                            Maximum="100"
+                                            Value="90"
+                                            TickFrequency="10"
+                                            IsSnapToTickEnabled="True"
+                                            VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="QualityLabel"
+                                               Text="{Binding Value, ElementName=QualitySlider, StringFormat={}{0:F0}%}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               FontWeight="SemiBold"/>
+                                </Grid>
+                                <TextBlock Text="Wyższa jakość = większy rozmiar pliku"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
                     </StackPanel>
-                </ui:Card>
 
-                <!-- Theme -->
-                <ui:Card>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="ThemeLabel" Text="Theme:"
-                                   VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1" x:Name="ThemeComboBox"/>
-                    </Grid>
-                </ui:Card>
+                    <!-- Options Section -->
+                    <StackPanel x:Name="OptionsSection" helpers:StackPanelHelper.Spacing="16" Visibility="Collapsed">
+                        <TextBlock Text="Opcje aplikacji"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
 
-                <!-- Action Buttons -->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right"
-                            helpers:StackPanelHelper.Spacing="8"
-                            Margin="0,16,0,0">
-                    <ui:Button x:Name="ResetButton"
-                               Content="Reset to Defaults"
-                               Click="ResetButton_Click"/>
-                    <ui:Button x:Name="CancelButton"
-                               Content="Cancel"
-                               Click="CancelButton_Click"/>
-                    <ui:Button x:Name="SaveButton"
-                               Content="Save"
-                               Click="SaveButton_Click"
-                               Appearance="Primary"
-                               Icon="Save24"/>
-                </StackPanel>
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="16">
+                                <CheckBox x:Name="AutoSaveCheckBox" Content="Auto Save">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Automatycznie zapisuj zrzuty bez pytania"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
 
+                                <CheckBox x:Name="CopyToClipboardCheckBox" Content="Copy to Clipboard">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Kopiuj zrzut do schowka po utworzeniu"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+
+                                <CheckBox x:Name="ShowNotificationsCheckBox" Content="Show Notifications">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Pokazuj powiadomienia o akcjach"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+
+                                <CheckBox x:Name="AutoUploadCheckBox" Content="Auto Upload">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Automatycznie przesyłaj do chmury"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+                            </StackPanel>
+                        </ui:Card>
+                    </StackPanel>
+
+                    <!-- Appearance Section -->
+                    <StackPanel x:Name="AppearanceSection" helpers:StackPanelHelper.Spacing="16" Visibility="Collapsed">
+                        <TextBlock Text="Wygląd aplikacji"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8"/>
+
+                        <!-- Theme -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="8">
+                                <TextBlock x:Name="ThemeLabel" Text="Theme:"
+                                           FontWeight="Medium"/>
+                                <ComboBox x:Name="ThemeComboBox"/>
+                                <TextBlock Text="Wybierz motyw kolorystyczny aplikacji"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
+
+                        <!-- Accent Color Preview -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="12">
+                                <TextBlock Text="Podgląd kolorów"
+                                           FontWeight="Medium"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Sample Elements -->
+                                    <Border Grid.Column="0" Grid.Row="0"
+                                            Background="{DynamicResource AccentFillColorDefaultBrush}"
+                                            CornerRadius="4"
+                                            Height="40"
+                                            Margin="0,0,4,4">
+                                        <TextBlock Text="Accent"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White"/>
+                                    </Border>
+
+                                    <ui:Button Grid.Column="1" Grid.Row="0"
+                                               Content="Button"
+                                               Appearance="Primary"
+                                               Margin="4,0,4,4"
+                                               HorizontalAlignment="Stretch"/>
+
+                                    <ui:Card Grid.Column="2" Grid.Row="0"
+                                             Margin="4,0,0,4"
+                                             Padding="8">
+                                        <TextBlock Text="Card"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </ui:Card>
+                                </Grid>
+
+                                <TextBlock Text="Zmiany motywu są natychmiast widoczne"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                           FontSize="12"/>
+                            </StackPanel>
+                        </ui:Card>
+
+                        <!-- Window Settings -->
+                        <ui:Card Padding="20">
+                            <StackPanel helpers:StackPanelHelper.Spacing="12">
+                                <TextBlock Text="Ustawienia okna"
+                                           FontWeight="Medium"/>
+
+                                <CheckBox x:Name="MinimalModeCheckBox" Content="Tryb minimalny">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Ukryj dodatkowe elementy interfejsu"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+
+                                <CheckBox x:Name="TransparencyCheckBox" Content="Efekt przezroczystości (Mica/Acrylic)">
+                                    <CheckBox.ToolTip>
+                                        <ToolTip Content="Wymaga Windows 11"/>
+                                    </CheckBox.ToolTip>
+                                </CheckBox>
+                            </StackPanel>
+                        </ui:Card>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </ui:NavigationView>
+
+        <!-- Action Buttons -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="20,16">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        helpers:StackPanelHelper.Spacing="8">
+                <ui:Button x:Name="ResetButton"
+                           Content="Reset to Defaults"
+                           Click="ResetButton_Click"
+                           Icon="ArrowReset24"/>
+                <ui:Button x:Name="CancelButton"
+                           Content="Cancel"
+                           Click="CancelButton_Click"/>
+                <ui:Button x:Name="SaveButton"
+                           Content="Save"
+                           Click="SaveButton_Click"
+                           Appearance="Primary"
+                           Icon="Save24"/>
             </StackPanel>
-        </ScrollViewer>
+        </Border>
     </Grid>
 </ui:FluentWindow>
