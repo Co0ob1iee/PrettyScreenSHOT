@@ -517,5 +517,162 @@
   <data name="Common_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <!-- Sprint 3 - Toast Notifications -->
+  <data name="Toast_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Toast_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Toast_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Toast_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Toast_ScreenshotCaptured" xml:space="preserve">
+    <value>Screenshot captured</value>
+  </data>
+  <data name="Toast_FullScreenCaptured" xml:space="preserve">
+    <value>Full screen captured</value>
+  </data>
+  <data name="Toast_UploadComplete" xml:space="preserve">
+    <value>Upload Complete</value>
+  </data>
+  <data name="Toast_URLCopied" xml:space="preserve">
+    <value>URL copied</value>
+  </data>
+  <data name="Toast_URLCopiedMessage" xml:space="preserve">
+    <value>URL has been copied to clipboard</value>
+  </data>
+  <!-- Sprint 3 - Upload History -->
+  <data name="UploadHistory_Title" xml:space="preserve">
+    <value>Upload History</value>
+  </data>
+  <data name="UploadHistory_Header" xml:space="preserve">
+    <value>Recent Uploads</value>
+  </data>
+  <data name="UploadHistory_Description" xml:space="preserve">
+    <value>History of uploaded screenshots to cloud</value>
+  </data>
+  <data name="UploadHistory_Empty" xml:space="preserve">
+    <value>No upload history</value>
+  </data>
+  <data name="UploadHistory_EmptyMessage" xml:space="preserve">
+    <value>Your uploaded screenshots will appear here</value>
+  </data>
+  <data name="UploadHistory_CopyURL" xml:space="preserve">
+    <value>Copy URL</value>
+  </data>
+  <data name="UploadHistory_Reupload" xml:space="preserve">
+    <value>Reupload</value>
+  </data>
+  <data name="UploadHistory_OpenBrowser" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="UploadHistory_Uploading" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="UploadHistory_FileNotFound" xml:space="preserve">
+    <value>Source file not found</value>
+  </data>
+  <data name="UploadHistory_ReuploadSuccess" xml:space="preserve">
+    <value>Screenshot reuploaded. URL copied to clipboard.</value>
+  </data>
+  <data name="UploadHistory_Status_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="UploadHistory_Status_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <!-- Sprint 3 - Editor Improvements -->
+  <data name="Editor_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Editor_ZoomIn" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="Editor_ZoomOut" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="Editor_ZoomFit" xml:space="preserve">
+    <value>Fit to Window</value>
+  </data>
+  <data name="Editor_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Editor_Properties" xml:space="preserve">
+    <value>Tool Properties</value>
+  </data>
+  <data name="Editor_ActiveTool" xml:space="preserve">
+    <value>Active Tool:</value>
+  </data>
+  <data name="Editor_QuickColors" xml:space="preserve">
+    <value>Quick Colors:</value>
+  </data>
+  <data name="Editor_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Editor_QuickActions" xml:space="preserve">
+    <value>Quick Actions</value>
+  </data>
+  <data name="Editor_ClearAll" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="Editor_StatusImageSize" xml:space="preserve">
+    <value>{0} x {1} px</value>
+  </data>
+  <data name="Editor_StatusEdits" xml:space="preserve">
+    <value>Edits: {0}</value>
+  </data>
+  <data name="Editor_StatusHistory" xml:space="preserve">
+    <value>Actions: {0} / {1}</value>
+  </data>
+  <data name="Editor_StatusMode" xml:space="preserve">
+    <value>Edit Mode</value>
+  </data>
+  <data name="Editor_Tool_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Editor_Tool_Marker" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Editor_Tool_Rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="Editor_Tool_Arrow" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="Editor_Tool_Blur" xml:space="preserve">
+    <value>Blur</value>
+  </data>
+  <data name="Editor_Tool_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <!-- Sprint 3 - Overlay Improvements -->
+  <data name="Overlay_Help_Title" xml:space="preserve">
+    <value>Quick Select - Keyboard Shortcuts</value>
+  </data>
+  <data name="Overlay_Help_ESC" xml:space="preserve">
+    <value>Cancel selection</value>
+  </data>
+  <data name="Overlay_Help_Enter" xml:space="preserve">
+    <value>Confirm selection</value>
+  </data>
+  <data name="Overlay_Help_F1" xml:space="preserve">
+    <value>Show/hide help</value>
+  </data>
+  <data name="Overlay_Help_Space" xml:space="preserve">
+    <value>Full screen</value>
+  </data>
+  <data name="Overlay_Capture" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="Overlay_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Overlay_Dimensions" xml:space="preserve">
+    <value>{0} x {1} px</value>
+  </data>
 </root>
 
