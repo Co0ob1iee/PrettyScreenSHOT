@@ -27,7 +27,7 @@ jobs:
       with:
         dotnet-version: '10.0.x'
 
-    - name: Extract version
+    - name: Extract and validate version
       id: version
       shell: pwsh
       run: |
@@ -36,8 +36,38 @@ jobs:
         } else {
           $version = "${{ github.ref_name }}".TrimStart('v')
         }
+
+        # Validate version format and determine release type
+        # Version scheme:
+        #   0.0.X = Development builds (X = build number) - handled by CI
+        #   0.X.0 = Pre-release/Beta (X = release number)
+        #   X.0.0 = Full production release (X = major version)
+        if ($version -match '^(\d+)\.0\.0$') {
+          $releaseType = "production"
+          $versionLabel = "Production Release"
+          $isPrerelease = $false
+        } elseif ($version -match '^0\.(\d+)\.0$') {
+          $releaseType = "prerelease"
+          $versionLabel = "Pre-release/Beta"
+          $isPrerelease = $true
+        } elseif ($version -match '^0\.0\.(\d+)$') {
+          $releaseType = "development"
+          $versionLabel = "Development Build"
+          $isPrerelease = $true
+        } else {
+          # Fallback for any other semantic version
+          $releaseType = "custom"
+          $versionLabel = "Release"
+          $isPrerelease = $version -match '(alpha|beta|rc|dev)'
+        }
+
         echo "VERSION=$version" >> $env:GITHUB_OUTPUT
-        echo "Release version: $version"
+        echo "RELEASE_TYPE=$releaseType" >> $env:GITHUB_OUTPUT
+        echo "VERSION_LABEL=$versionLabel" >> $env:GITHUB_OUTPUT
+        echo "IS_PRERELEASE=$isPrerelease" >> $env:GITHUB_OUTPUT
+        echo "📦 Release version: v$version"
+        echo "🏷️  Release type: $versionLabel"
+        echo "🔖 Pre-release: $isPrerelease"
 
     - name: Restore dependencies
       run: dotnet restore PrettyScreenSHOT.csproj
@@ -69,13 +99,29 @@ jobs:
     - name: Create Release Notes
       shell: pwsh
       run: |
+        $versionLabel = "${{ steps.version.outputs.VERSION_LABEL }}"
+        $releaseType = "${{ steps.version.outputs.RELEASE_TYPE }}"
+
         @"
-        # PrettyScreenSHOT v${{ steps.version.outputs.VERSION }}
+        # PrettyScreenSHOT v${{ steps.version.outputs.VERSION }} - $versionLabel
+
+        ## 🏷️ Release Information
+
+        - **Version:** ${{ steps.version.outputs.VERSION }}
+        - **Type:** $versionLabel
+        - **Build Date:** $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss UTC')
 
         ## 📦 Downloads
 
         - **PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip** - Requires .NET 10.0 Runtime
         - **PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip** - Standalone (includes runtime)
+
+        ## 📋 Version Scheme
+
+        This project uses the following versioning scheme:
+        - **0.0.X** - Development builds (X = CI build number)
+        - **0.X.0** - Pre-release/Beta versions (X = release number)
+        - **X.0.0** - Full production releases (X = major version)
 
         ## ✅ Changes
 
@@ -114,6 +160,7 @@ jobs:
           checksums.txt
         body_path: release-notes.md
         draft: false
-        prerelease: ${{ contains(steps.version.outputs.VERSION, 'beta') || contains(steps.version.outputs.VERSION, 'alpha') }}
+        prerelease: ${{ steps.version.outputs.IS_PRERELEASE == 'True' }}
+        name: "v${{ steps.version.outputs.VERSION }} - ${{ steps.version.outputs.VERSION_LABEL }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

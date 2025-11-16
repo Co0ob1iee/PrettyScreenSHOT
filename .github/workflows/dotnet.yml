@@ -26,20 +26,36 @@ jobs:
     - name: Display .NET version
       run: dotnet --version
 
+    - name: Set development build version
+      shell: pwsh
+      run: |
+        $buildNumber = "${{ github.run_number }}"
+        $version = "0.0.$buildNumber"
+        echo "BUILD_VERSION=$version" >> $env:GITHUB_ENV
+        echo "Building version: $version"
+
     - name: Restore dependencies
       run: dotnet restore PrettyScreenSHOT.csproj
 
     - name: Build solution
-      run: dotnet build PrettyScreenSHOT.csproj --configuration Release --no-restore
+      run: dotnet build PrettyScreenSHOT.csproj --configuration Release --no-restore /p:Version=${{ env.BUILD_VERSION }} /p:AssemblyVersion=${{ env.BUILD_VERSION }} /p:FileVersion=${{ env.BUILD_VERSION }} /p:InformationalVersion=${{ env.BUILD_VERSION }}-build.${{ github.run_number }}
 
     - name: Restore test dependencies
       run: dotnet restore Tests/PrettyScreenSHOT.Tests.csproj
 
     - name: Build tests
-      run: dotnet build Tests/PrettyScreenSHOT.Tests.csproj --configuration Release --no-restore
+      run: dotnet build Tests/PrettyScreenSHOT.Tests.csproj --configuration Release --no-restore /p:Version=${{ env.BUILD_VERSION }}
 
     - name: Run unit tests
       run: dotnet test Tests/PrettyScreenSHOT.Tests.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
+
+    - name: Display build version info
+      shell: pwsh
+      run: |
+        echo "✅ Build completed successfully"
+        echo "📦 Version: ${{ env.BUILD_VERSION }}"
+        echo "🔢 Build number: ${{ github.run_number }}"
+        echo "🌿 Branch: ${{ github.ref_name }}"
 
     - name: Upload test results
       if: always()

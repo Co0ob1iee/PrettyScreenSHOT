@@ -160,6 +160,16 @@ See [ROADMAP.md](ROADMAP.md) for detailed development plan.
 - GPU acceleration for image processing
 - Advanced scroll capture algorithms
 
+## 🔢 Versioning
+
+This project uses a custom versioning scheme for clear build tracking:
+
+- **0.0.X** - Development builds (X = CI build number, automatic)
+- **0.X.0** - Pre-release/Beta versions (X = release number)
+- **X.0.0** - Full production releases (X = major version)
+
+For detailed information, see [VERSIONING.md](VERSIONING.md).
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
