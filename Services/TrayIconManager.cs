@@ -33,14 +33,16 @@ namespace PrettyScreenSHOT.Services
             
             var editItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_EditLastScreenshot"), null, EditLastScreenshot);
             var historyItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_History"), null, ShowHistory);
+            var uploadHistoryItem = new ToolStripMenuItem("Historia uploadów", null, ShowUploadHistory);
             var scrollCaptureItem = new ToolStripMenuItem("Scroll Capture", null, StartScrollCapture);
             var videoCaptureItem = new ToolStripMenuItem("Video Capture", null, StartVideoCapture);
             var checkUpdateItem = new ToolStripMenuItem("Check for Updates", null, CheckForUpdates);
             var settingsItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Settings"), null, ShowSettings);
             var exitItem = new ToolStripMenuItem(LocalizationHelper.GetString("Menu_Exit"), null, ExitApplication);
-            
+
             contextMenu.Items.Add(editItem);
             contextMenu.Items.Add(historyItem);
+            contextMenu.Items.Add(uploadHistoryItem);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(scrollCaptureItem);
             contextMenu.Items.Add(videoCaptureItem);
@@ -155,6 +157,12 @@ namespace PrettyScreenSHOT.Services
         {
             var historyWindow = new ScreenshotHistoryWindow();
             historyWindow.Show();
+        }
+
+        private void ShowUploadHistory(object? sender, EventArgs? e)
+        {
+            var uploadHistoryWindow = new UploadHistoryWindow();
+            uploadHistoryWindow.Show();
         }
 
         private void ShowSettings(object? sender, EventArgs? e)

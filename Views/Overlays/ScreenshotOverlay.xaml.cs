@@ -135,7 +135,7 @@ namespace PrettyScreenSHOT.Views.Overlays
 
                 if (TrayIconManager.Instance != null && SettingsManager.Instance.ShowNotifications)
                 {
-                    TrayIconManager.Instance.ShowNotification(
+                    ToastNotificationManager.Instance.ShowSuccess(
                         LocalizationHelper.GetString("Notification_Title"),
                         "Przechwycono pełny ekran");
                 }
@@ -361,7 +361,7 @@ namespace PrettyScreenSHOT.Views.Overlays
                     // Show notification
                     if (TrayIconManager.Instance != null && SettingsManager.Instance.ShowNotifications)
                     {
-                        TrayIconManager.Instance.ShowNotification(
+                        ToastNotificationManager.Instance.ShowSuccess(
                             LocalizationHelper.GetString("Notification_Title"),
                             LocalizationHelper.GetString("Notification_ScreenshotSaved"));
                         DebugHelper.LogInfo("Overlay", "Notification shown");
