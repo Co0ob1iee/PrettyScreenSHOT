@@ -1,0 +1,166 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    name: Create Release Build
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Extract and validate version
+      id: version
+      shell: pwsh
+      run: |
+        if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+          $version = "${{ github.event.inputs.version }}"
+        } else {
+          $version = "${{ github.ref_name }}".TrimStart('v')
+        }
+
+        # Validate version format and determine release type
+        # Version scheme:
+        #   0.0.X = Development builds (X = build number) - handled by CI
+        #   0.X.0 = Pre-release/Beta (X = release number)
+        #   X.0.0 = Full production release (X = major version)
+        if ($version -match '^(\d+)\.0\.0$') {
+          $releaseType = "production"
+          $versionLabel = "Production Release"
+          $isPrerelease = $false
+        } elseif ($version -match '^0\.(\d+)\.0$') {
+          $releaseType = "prerelease"
+          $versionLabel = "Pre-release/Beta"
+          $isPrerelease = $true
+        } elseif ($version -match '^0\.0\.(\d+)$') {
+          $releaseType = "development"
+          $versionLabel = "Development Build"
+          $isPrerelease = $true
+        } else {
+          # Fallback for any other semantic version
+          $releaseType = "custom"
+          $versionLabel = "Release"
+          $isPrerelease = $version -match '(alpha|beta|rc|dev)'
+        }
+
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+        echo "RELEASE_TYPE=$releaseType" >> $env:GITHUB_OUTPUT
+        echo "VERSION_LABEL=$versionLabel" >> $env:GITHUB_OUTPUT
+        echo "IS_PRERELEASE=$isPrerelease" >> $env:GITHUB_OUTPUT
+        echo "📦 Release version: v$version"
+        echo "🏷️  Release type: $versionLabel"
+        echo "🔖 Pre-release: $isPrerelease"
+
+    - name: Restore dependencies
+      run: dotnet restore PrettyScreenSHOT.csproj
+
+    - name: Build Release
+      run: dotnet build PrettyScreenSHOT.csproj --configuration Release --no-restore /p:Version=${{ steps.version.outputs.VERSION }}
+
+    - name: Run tests
+      run: dotnet test Tests/PrettyScreenSHOT.Tests.csproj --configuration Release --no-build --verbosity normal
+
+    - name: Publish Windows x64
+      run: dotnet publish PrettyScreenSHOT.csproj --configuration Release --runtime win-x64 --self-contained false --output publish/win-x64 /p:Version=${{ steps.version.outputs.VERSION }} /p:PublishSingleFile=false
+
+    - name: Publish Windows x64 Self-Contained
+      run: dotnet publish PrettyScreenSHOT.csproj --configuration Release --runtime win-x64 --self-contained true --output publish/win-x64-standalone /p:Version=${{ steps.version.outputs.VERSION }} /p:PublishSingleFile=true
+
+    - name: Create ZIP archives
+      shell: pwsh
+      run: |
+        Compress-Archive -Path publish/win-x64/* -DestinationPath PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip
+        Compress-Archive -Path publish/win-x64-standalone/* -DestinationPath PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip
+
+    - name: Generate checksums
+      shell: pwsh
+      run: |
+        Get-FileHash PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip -Algorithm SHA256 | Select-Object Hash, Path | Out-File -FilePath checksums.txt
+        Get-FileHash PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip -Algorithm SHA256 | Select-Object Hash, Path | Out-File -Append -FilePath checksums.txt
+
+    - name: Create Release Notes
+      shell: pwsh
+      run: |
+        $versionLabel = "${{ steps.version.outputs.VERSION_LABEL }}"
+        $releaseType = "${{ steps.version.outputs.RELEASE_TYPE }}"
+
+        @"
+        # PrettyScreenSHOT v${{ steps.version.outputs.VERSION }} - $versionLabel
+
+        ## 🏷️ Release Information
+
+        - **Version:** ${{ steps.version.outputs.VERSION }}
+        - **Type:** $versionLabel
+        - **Build Date:** $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss UTC')
+
+        ## 📦 Downloads
+
+        - **PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip** - Requires .NET 10.0 Runtime
+        - **PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip** - Standalone (includes runtime)
+
+        ## 📋 Version Scheme
+
+        This project uses the following versioning scheme:
+        - **0.0.X** - Development builds (X = CI build number)
+        - **0.X.0** - Pre-release/Beta versions (X = release number)
+        - **X.0.0** - Full production releases (X = major version)
+
+        ## ✅ Changes
+
+        See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
+
+        ## 🔒 Checksums
+
+        SHA256 checksums are available in the checksums.txt file.
+
+        ## 📝 Installation
+
+        1. Download the appropriate ZIP file
+        2. Extract to a folder
+        3. Run PrettyScreenSHOT.exe
+
+        For detailed instructions, see [INSTALLATION.md](https://github.com/${{ github.repository }}/blob/main/docs/installation/INSTALLATION.md).
+        "@ | Out-File -FilePath release-notes.md
+
+    - name: Upload Release Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-artifacts-v${{ steps.version.outputs.VERSION }}
+        path: |
+          PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip
+          PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip
+          checksums.txt
+          release-notes.md
+
+    - name: Create GitHub Release
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64.zip
+          PrettyScreenSHOT-v${{ steps.version.outputs.VERSION }}-win-x64-standalone.zip
+          checksums.txt
+        body_path: release-notes.md
+        draft: false
+        prerelease: ${{ steps.version.outputs.IS_PRERELEASE == 'True' }}
+        name: "v${{ steps.version.outputs.VERSION }} - ${{ steps.version.outputs.VERSION_LABEL }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
