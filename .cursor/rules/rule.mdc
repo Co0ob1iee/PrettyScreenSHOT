@@ -1,0 +1,426 @@
+---
+alwaysApply: false
+---
+Comprehensive Cursor Rules
+Core Principles
+1. Documentation-First Development
+
+CRITICAL: Every code change MUST be immediately reflected in documentation
+Maintain real-time synchronization between code and documentation
+Never commit code without updating corresponding documentation
+Documentation is the single source of truth
+
+2. Interactive Development Approach
+
+ALWAYS ask for clarification when requirements are ambiguous
+Engage in substantive technical discussions
+Challenge illogical requirements constructively
+Provide detailed reasoning for technical decisions
+Never proceed with assumptions - always confirm understanding
+
+3. Comprehensive Documentation Requirements
+For Every Code Element Document:
+
+Purpose: Clear explanation of why it exists
+Dependencies: Complete list of what it depends on
+Dependents: All locations where it's used
+Implementation Status: [✅ Implemented], [🚧 In Progress], [❌ Not Started]
+API Contract: Input/output specifications
+Side Effects: Any state changes or external interactions
+Performance Characteristics: O(n) complexity, memory usage
+Thread Safety: Concurrent access considerations
+
+Language-Specific Standards
+C# Best Practices
+Naming Conventions
+csharp// Classes, Interfaces, Methods: PascalCase
+public interface IUserRepository { }
+public class UserService { }
+public async Task<User> GetUserAsync() { }
+
+// Local variables, parameters: camelCase
+int userId = 42;
+string userName = "John";
+
+// Private fields: _camelCase with underscore
+private readonly ILogger _logger;
+private int _retryCount;
+
+// Constants: UPPER_SNAKE_CASE or PascalCase
+public const int MAX_RETRY_COUNT = 3;
+public const string DefaultConnectionString = "...";
+Modern C# Features (C# 12/13)
+csharp// Primary constructors
+public class UserService(IUserRepository repository, ILogger<UserService> logger)
+{
+    public async Task<User> GetUserAsync(int id)
+        => await repository.GetByIdAsync(id);
+}
+
+// Collection expressions
+int[] numbers = [1, 2, 3, 4, 5];
+List<string> names = ["Alice", "Bob", "Charlie"];
+
+// Pattern matching
+public string ProcessValue(object value) => value switch
+{
+    int n when n > 0 => $"Positive: {n}",
+    string { Length: > 10 } s => $"Long string",
+    null => "Null value",
+    _ => "Unknown"
+};
+
+// Required properties
+public required string Name { get; init; }
+Memory Management
+csharp// Use Span<T> for performance
+public void ProcessData(ReadOnlySpan<byte> data)
+{
+    // Process without allocation
+}
+
+// IAsyncEnumerable for streaming
+public async IAsyncEnumerable<T> StreamDataAsync<T>()
+{
+    await foreach (var item in GetDataAsync())
+    {
+        yield return item;
+    }
+}
+
+// Record types for immutability
+public record UserDto(int Id, string Name, string Email);
+Error Handling
+csharp// Result pattern
+public record Result<T>
+{
+    public bool IsSuccess { get; init; }
+    public T? Value { get; init; }
+    public string? Error { get; init; }
+    
+    public static Result<T> Success(T value) => new() { IsSuccess = true, Value = value };
+    public static Result<T> Failure(string error) => new() { IsSuccess = false, Error = error };
+}
+
+// Guard clauses
+ArgumentNullException.ThrowIfNull(user);
+ArgumentException.ThrowIfNullOrWhiteSpace(name);
+C Best Practices (C23)
+Naming Conventions
+c// Constants: UPPER_SNAKE_CASE
+#define MAX_BUFFER_SIZE 1024
+const int MAX_CONNECTIONS = 100;
+
+// Functions: snake_case
+void process_data(const char* input);
+int calculate_checksum(const uint8_t* data, size_t length);
+
+// Types: _t suffix
+typedef struct point_t {
+    int x;
+    int y;
+} point_t;
+
+// Enums: UPPER_SNAKE_CASE for values
+typedef enum {
+    ERROR_NONE = 0,
+    ERROR_INVALID_PARAM = -1,
+    ERROR_OUT_OF_MEMORY = -2
+} error_code_t;
+Memory Management
+c// Always check allocations
+char* buffer = malloc(size);
+if (!buffer) {
+    LOG_ERROR("Memory allocation failed for size %zu", size);
+    return ERROR_OUT_OF_MEMORY;
+}
+
+// Always pair malloc/free
+free(buffer);
+buffer = NULL; // Prevent use-after-free
+
+// Use appropriate allocation functions
+int* array = calloc(count, sizeof(int)); // Zero-initialized
+aligned_alloc(alignment, size); // Aligned memory
+Modern C23 Features
+c// typeof and auto
+#define SWAP_GENERIC(a, b) do { \
+    typeof(a) _temp = (a); \
+    (a) = (b); \
+    (b) = _temp; \
+} while(0)
+
+// Attributes
+[[nodiscard]] int important_calculation(void);
+[[maybe_unused]] static void debug_function(void);
+
+// Binary literals and digit separators
+uint32_t flags = 0b1010'1010'1010'1010;
+long population = 7'900'000'000L;
+C++ Best Practices (C++23/26)
+Modern Resource Management
+cpp// RAII and smart pointers
+class ResourceManager {
+private:
+    std::unique_ptr<Resource> m_resource;
+    std::shared_ptr<SharedData> m_sharedData;
+    
+public:
+    // Rule of Five
+    ResourceManager() = default;
+    ~ResourceManager() = default;
+    ResourceManager(const ResourceManager&) = delete;
+    ResourceManager& operator=(const ResourceManager&) = delete;
+    ResourceManager(ResourceManager&&) = default;
+    ResourceManager& operator=(ResourceManager&&) = default;
+};
+
+// Use std::expected for error handling
+std::expected<int, std::string> divide(int a, int b) {
+    if (b == 0) {
+        return std::unexpected("Division by zero");
+    }
+    return a / b;
+}
+Concepts and Constraints (C++20)
+cpptemplate<typename T>
+concept Arithmetic = std::integral<T> || std::floating_point<T>;
+
+template<typename T>
+concept Container = requires(T t) {
+    typename T::value_type;
+    { t.begin() } -> std::same_as<typename T::iterator>;
+    { t.size() } -> std::convertible_to<std::size_t>;
+};
+
+template<Arithmetic T>
+T add(T a, T b) {
+    return a + b;
+}
+Ranges and Views (C++23)
+cppauto process_data(std::span<const int> data) {
+    return data 
+        | std::views::filter([](int n) { return n > 0; })
+        | std::views::transform([](int n) { return n * n; })
+        | std::views::take(10)
+        | std::ranges::to<std::vector>();
+}
+Documentation Structure
+1. Project Overview (README.md)
+markdown# Project Name
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-95%25-green)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+
+## 📋 Table of Contents
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [API Documentation](#api-documentation)
+- [Development](#development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+
+## 🏗️ Architecture
+
+\```mermaid
+graph TB
+    A[Client Layer] --> B[API Gateway]
+    B --> C[Service Layer]
+    C --> D[Data Layer]
+    C --> E[Cache Layer]
+\```
+
+## 🚀 Quick Start
+
+### Prerequisites
+| Component | Version | Required |
+|-----------|---------|----------|
+| .NET      | 8.0+    | ✅       |
+| Node.js   | 20.0+   | ✅       |
+| Docker    | 24.0+   | ⚠️       |
+
+### Installation
+\```bash
+# Clone repository
+git clone https://github.com/org/project.git
+
+# Install dependencies
+dotnet restore
+npm install
+
+# Run application
+dotnet run
+\```
+2. Component Documentation (COMPONENTS.md)
+markdown# Component Registry
+
+## UserService Class
+- **Location**: `/src/Services/UserService.cs`
+- **Status**: [✅ Implemented]
+- **Dependencies**: 
+  - `IUserRepository`
+  - `ILogger<UserService>`
+  - `IMemoryCache`
+- **Used By**:
+  - `UserController` [✅]
+  - `AuthenticationService` [✅]
+  - `NotificationService` [🚧]
+- **Methods**:
+  - `GetUserAsync(int id)` - Retrieves user by ID
+  - `CreateUserAsync(UserDto dto)` - Creates new user
+  - `UpdateUserAsync(int id, UserDto dto)` - Updates existing user
+
+### Implementation Details
+\```csharp
+public class UserService : IUserService
+{
+    private readonly IUserRepository _repository;
+    private readonly ILogger<UserService> _logger;
+    
+    public async Task<Result<User>> GetUserAsync(int id)
+    {
+        // Implementation documented in detail
+    }
+}
+\```
+3. API Documentation (API.md)
+markdown# API Documentation
+
+## Endpoints
+
+### Users API
+
+#### GET /api/v1/users/{id}
+Retrieves a specific user by ID.
+
+**Parameters:**
+- `id` (path, required): User identifier
+
+**Response:**
+\```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "createdAt": "2024-01-15T10:30:00Z"
+}
+\```
+
+**Status Codes:**
+- `200 OK`: User found
+- `404 Not Found`: User doesn't exist
+- `401 Unauthorized`: Missing authentication
+
+**Implementation Status**: [✅ Implemented]
+**Test Coverage**: 95%
+Development Workflow
+1. Before Writing Code
+
+Review existing documentation
+Identify all dependencies
+Document planned changes
+Get confirmation on approach
+
+2. While Writing Code
+
+Update documentation in real-time
+Add inline comments for complex logic
+Mark implementation status
+Document any deviations from plan
+
+3. After Writing Code
+
+Verify documentation completeness
+Update dependency graphs
+Add usage examples
+Update test documentation
+
+Interactive Development Guidelines
+When to Ask Questions
+
+Ambiguous Requirements: "Could you clarify what you mean by X?"
+Missing Context: "I need more information about Y to proceed"
+Technical Concerns: "This approach might cause Z issue, should we consider an alternative?"
+Best Practice Violations: "The requested approach violates principle X, here's why..."
+
+How to Engage in Discussions
+
+Provide Context: Explain technical reasoning
+Offer Alternatives: Present multiple solutions
+Highlight Trade-offs: Discuss pros and cons
+Seek Confirmation: Verify understanding before proceeding
+
+Testing Standards
+Test Documentation Requirements
+csharp/// <summary>
+/// Tests user creation with valid data
+/// </summary>
+/// <remarks>
+/// Dependencies: InMemory database, AutoFixture
+/// Related Components: UserService, UserRepository
+/// Test Data: Valid UserDto with all required fields
+/// </remarks>
+[Fact]
+public async Task CreateUser_WithValidData_ReturnsSuccess()
+{
+    // Arrange - Document test setup
+    // Act - Document action being tested  
+    // Assert - Document expected outcome
+}
+Performance Guidelines
+Documentation Requirements
+
+Big O notation for algorithms
+Memory allocation patterns
+Benchmark results
+Optimization rationale
+
+Example
+csharp/// <summary>
+/// Searches for user by email
+/// </summary>
+/// <remarks>
+/// Performance: O(log n) with indexed email column
+/// Memory: O(1) - no additional allocations
+/// Benchmarks: 0.5ms average response time
+/// </remarks>
+public async Task<User?> FindByEmailAsync(string email)
+{
+    // Implementation
+}
+Security Considerations
+Documentation Requirements
+
+Authentication: Document required permissions
+Authorization: Document access controls
+Data Protection: Document encryption/hashing
+Audit Trail: Document logging requirements
+
+Continuous Improvement
+Code Review Checklist
+
+ Documentation updated
+ Dependencies documented
+ Usage locations identified
+ Implementation status marked
+ Tests documented
+ Performance characteristics noted
+ Security considerations addressed
+
+Questions to Always Ask
+
+Is this the most maintainable solution?
+Have all edge cases been considered?
+Is the documentation sufficient for a new developer?
+Are there any performance implications?
+Does this follow established patterns?
+
+Remember
+
+Documentation is not optional - it's part of the definition of "done"
+When in doubt, ask - clarity prevents costly mistakes
+Think long-term - code is read more than written
+Be proactive - identify issues before they become problems
+Collaborate - development is a team effort

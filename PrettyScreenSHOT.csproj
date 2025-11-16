@@ -11,7 +11,7 @@
     <StartupObject>PrettyScreenSHOT.App</StartupObject>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-    <!-- <ApplicationIcon>app.ico</ApplicationIcon> -->
+    <ApplicationIcon>Assets\Icons\app.ico</ApplicationIcon>
     <PlatformTarget>x64</PlatformTarget>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <Platforms>AnyCPU;x64</Platforms>
