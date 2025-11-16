@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Windows;
+using PrettyScreenSHOT.Services.Settings;
 
 namespace PrettyScreenSHOT.Helpers
 {

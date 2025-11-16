@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Win32;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services.Video;
 using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Windows
@@ -80,7 +82,7 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 DebugHelper.LogError("VideoCapture", "Error starting recording", ex);
                 System.Windows.MessageBox.Show($"Error starting recording: {ex.Message}", "Error", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
 
@@ -132,7 +134,7 @@ namespace PrettyScreenSHOT.Views.Windows
                         System.Windows.Media.Color.FromRgb(76, 175, 80)); // Green
 
                     System.Windows.MessageBox.Show($"Video saved to:\n{outputPath}", "Success", 
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
 
                     // Reset UI
                     StartButton.IsEnabled = true;
@@ -151,7 +153,7 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 DebugHelper.LogError("VideoCapture", "Error stopping recording", ex);
                 System.Windows.MessageBox.Show($"Error saving video: {ex.Message}", "Error", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
 
@@ -161,9 +163,9 @@ namespace PrettyScreenSHOT.Views.Windows
             {
                 var result = System.Windows.MessageBox.Show(
                     "Recording is in progress. Do you want to stop and discard?", 
-                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    "Confirm", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
+                if (result == System.Windows.MessageBoxResult.Yes)
                 {
                     try
                     {

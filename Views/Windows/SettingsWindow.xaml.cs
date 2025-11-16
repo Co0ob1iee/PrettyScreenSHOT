@@ -2,9 +2,13 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using PrettyScreenSHOT.Helpers;
 using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Settings;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
+using WpfMessageBoxButton = Wpf.Ui.Controls.MessageBoxButton;
+using WpfMessageBoxResult = Wpf.Ui.Controls.MessageBoxResult;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -52,7 +56,7 @@ namespace PrettyScreenSHOT.Views.Windows
         private void LoadLocalizedStrings()
         {
             Title = LocalizationHelper.GetString("Settings_Title");
-            TitleText.Text = LocalizationHelper.GetString("Settings_Title");
+            TitleText.Title = LocalizationHelper.GetString("Settings_Title");
             LanguageLabel.Text = LocalizationHelper.GetString("Settings_Language");
             SavePathLabel.Text = LocalizationHelper.GetString("Settings_SavePath");
             BrowseButton.Content = LocalizationHelper.GetString("Settings_Browse");
@@ -66,8 +70,9 @@ namespace PrettyScreenSHOT.Views.Windows
                 AutoUploadCheckBox.Content = LocalizationHelper.GetString("Settings_AutoUpload");
             if (ThemeLabel != null)
                 ThemeLabel.Text = LocalizationHelper.GetString("Settings_Theme");
-            if (SubtitleText != null)
-                SubtitleText.Text = LocalizationHelper.GetString("Settings_Subtitle");
+            // SubtitleText doesn't exist in XAML - commented out
+            // if (SubtitleText != null)
+            //     SubtitleText.Text = LocalizationHelper.GetString("Settings_Subtitle");
             SaveButton.Content = LocalizationHelper.GetString("Settings_Save");
             CancelButton.Content = LocalizationHelper.GetString("Settings_Cancel");
             ResetButton.Content = LocalizationHelper.GetString("Settings_Reset");
@@ -194,8 +199,8 @@ namespace PrettyScreenSHOT.Views.Windows
                             System.Windows.MessageBox.Show(
                                 LocalizationHelper.GetString("Settings_InvalidPath"),
                                 LocalizationHelper.GetString("Settings_SaveError"),
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                                System.Windows.MessageBoxButton.OK,
+                                System.Windows.MessageBoxImage.Error);
                             return;
                         }
                     }
@@ -227,8 +232,8 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.MessageBox.Show(
                     LocalizationHelper.GetString("Settings_SaveSuccessMessage"),
                     LocalizationHelper.GetString("Settings_SaveSuccess"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Information);
                 this.Close();
             }
             catch (Exception ex)
@@ -238,8 +243,8 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.MessageBox.Show(
                     message,
                     LocalizationHelper.GetString("Settings_SaveError"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Error);
             }
         }
 
@@ -266,10 +271,10 @@ namespace PrettyScreenSHOT.Views.Windows
             var result = System.Windows.MessageBox.Show(
                 LocalizationHelper.GetString("Settings_ResetConfirm"),
                 LocalizationHelper.GetString("Editor_Confirm"),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+                System.Windows.MessageBoxButton.YesNo,
+                System.Windows.MessageBoxImage.Question);
 
-            if (result == MessageBoxResult.Yes)
+            if (result == System.Windows.MessageBoxResult.Yes)
             {
                 settingsManager.ResetToDefaults();
                 LoadSettings();

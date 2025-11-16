@@ -53,7 +53,7 @@ namespace PrettyScreenSHOT.Helpers
         private static void ApplySpacing(StackPanel stackPanel)
         {
             var spacing = GetSpacing(stackPanel);
-            var isHorizontal = stackPanel.Orientation == Orientation.Horizontal;
+            var isHorizontal = stackPanel.Orientation == System.Windows.Controls.Orientation.Horizontal;
 
             for (int i = 0; i < stackPanel.Children.Count; i++)
             {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
 using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Dialogs

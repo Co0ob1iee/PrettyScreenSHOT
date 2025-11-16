@@ -1,5 +1,6 @@
 using System;
 using Wpf.Ui.Appearance;
+using PrettyScreenSHOT.Helpers;
 
 namespace PrettyScreenSHOT.Services
 {
@@ -77,11 +78,8 @@ namespace PrettyScreenSHOT.Services
             }
             else
             {
-                ApplicationThemeManager.Apply(
-                    theme,
-                    WindowBackdropType.Mica,  // Windows 11 Mica effect
-                    true  // updateAccents
-                );
+                // Apply theme - WindowBackdropType may not be available in this WPF UI version
+                ApplicationThemeManager.Apply(theme);
 
                 DebugHelper.LogInfo("ThemeService", $"Applied theme: {theme}");
             }

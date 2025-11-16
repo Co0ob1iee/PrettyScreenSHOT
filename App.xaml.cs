@@ -3,6 +3,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Wpf.Ui.Appearance;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Update;
+using PrettyScreenSHOT.Services.Cloud;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Views.Windows;
 
 namespace PrettyScreenSHOT
 {
@@ -59,11 +66,8 @@ namespace PrettyScreenSHOT
             }
             else
             {
-                ApplicationThemeManager.Apply(
-                    appTheme,
-                    WindowBackdropType.Mica,  // Windows 11 Mica effect
-                    true  // updateAccents
-                );
+                // Apply theme - WindowBackdropType may not be available in this WPF UI version
+                ApplicationThemeManager.Apply(appTheme);
             }
 
             DebugHelper.LogInfo("App", $"WPF UI Theme initialized: {themeName} -> {appTheme}");

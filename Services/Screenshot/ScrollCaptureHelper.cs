@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using PrettyScreenSHOT.Helpers;
 
 namespace PrettyScreenSHOT.Services.Screenshot
 {

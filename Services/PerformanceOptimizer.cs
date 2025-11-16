@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Threading.Tasks;
+using PrettyScreenSHOT.Helpers;
 
 namespace PrettyScreenSHOT.Services
 {

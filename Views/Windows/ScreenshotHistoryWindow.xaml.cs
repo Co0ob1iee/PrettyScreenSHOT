@@ -4,7 +4,14 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Cloud;
+using PrettyScreenSHOT.Services.Input;
+using PrettyScreenSHOT.Services.Screenshot;
 using Wpf.Ui.Controls;
+using WpfMessageBoxButton = Wpf.Ui.Controls.MessageBoxButton;
+using WpfTextBlock = Wpf.Ui.Controls.TextBlock;
 
 namespace PrettyScreenSHOT.Views.Windows
 {
@@ -102,7 +109,7 @@ namespace PrettyScreenSHOT.Views.Windows
                 try
                 {
                     btn.IsEnabled = false;
-                    btn.Content = new TextBlock { Text = LocalizationHelper.GetString("History_Uploading"), FontSize = 11, FontWeight = FontWeights.Bold };
+                    btn.Content = new System.Windows.Controls.TextBlock { Text = LocalizationHelper.GetString("History_Uploading"), FontSize = 11, FontWeight = FontWeights.Bold };
 
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
@@ -114,7 +121,7 @@ namespace PrettyScreenSHOT.Views.Windows
                     var result = await CloudUploadManager.Instance.UploadScreenshotAsync(bitmap, item.Filename);
                     
                     btn.IsEnabled = true;
-                    btn.Content = new TextBlock { Text = LocalizationHelper.GetString("History_Upload"), FontSize = 11, FontWeight = FontWeights.Bold };
+                    btn.Content = new System.Windows.Controls.TextBlock { Text = LocalizationHelper.GetString("History_Upload"), FontSize = 11, FontWeight = FontWeights.Bold };
 
                     if (result.Success && !string.IsNullOrEmpty(result.Url))
                     {
@@ -123,20 +130,20 @@ namespace PrettyScreenSHOT.Views.Windows
                         System.Windows.Clipboard.SetText(result.Url);
                         var message = string.Format(LocalizationHelper.GetString("History_UploadSuccessMessage"), "\n", result.Url);
                         System.Windows.MessageBox.Show(message, 
-                            LocalizationHelper.GetString("History_UploadSuccess"), MessageBoxButton.OK, MessageBoxImage.Information);
+                            LocalizationHelper.GetString("History_UploadSuccess"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                     }
                     else
                     {
                         var errorMsg = result.ErrorMessage ?? LocalizationHelper.GetString("History_Error");
                         var message = string.Format(LocalizationHelper.GetString("History_UploadErrorMessage"), "\n", errorMsg);
                         System.Windows.MessageBox.Show(message, 
-                            LocalizationHelper.GetString("History_UploadError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                            LocalizationHelper.GetString("History_UploadError"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                     }
                 }
                 catch (Exception ex)
                 {
                     var message = string.Format(LocalizationHelper.GetString("History_ErrorWithMessage"), ex.Message);
-                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("History_Error"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show(message, LocalizationHelper.GetString("History_Error"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 }
             }
         }
@@ -148,7 +155,7 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.Clipboard.SetText(item.CloudUrl);
                 var message = string.Format(LocalizationHelper.GetString("History_UrlCopied"), "\n", item.CloudUrl);
                 System.Windows.MessageBox.Show(message, 
-                    LocalizationHelper.GetString("History_CloudUrlTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+                    LocalizationHelper.GetString("History_CloudUrlTitle"), System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             }
         }
 

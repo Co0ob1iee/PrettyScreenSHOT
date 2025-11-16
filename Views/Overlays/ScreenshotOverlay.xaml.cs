@@ -2,6 +2,10 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Runtime.InteropServices;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Screenshot;
+using PrettyScreenSHOT.Services.Settings;
 using Point = System.Windows.Point;
 
 namespace PrettyScreenSHOT.Views.Overlays

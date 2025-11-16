@@ -7,6 +7,7 @@ using PrettyScreenSHOT.Services.Settings;
 using PrettyScreenSHOT.Services.Update;
 using PrettyScreenSHOT.Services.Video;
 using PrettyScreenSHOT.Views.Windows;
+using PrettyScreenSHOT.Views.Overlays;
 
 namespace PrettyScreenSHOT.Services
 {

@@ -5,6 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Models;
+using PrettyScreenSHOT.Services.Update;
 using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Windows
@@ -100,8 +103,8 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.MessageBox.Show(
                     $"Error downloading update:\n\n{ex.Message}\n\nPlease try downloading manually from GitHub.",
                     "Download Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Error);
 
                 // Przywróć UI
                 DownloadButton.IsEnabled = true;

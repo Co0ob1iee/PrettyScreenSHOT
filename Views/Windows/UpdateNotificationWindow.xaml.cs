@@ -3,6 +3,10 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using PrettyScreenSHOT.Helpers;
+using PrettyScreenSHOT.Models;
+using PrettyScreenSHOT.Services.Settings;
+using PrettyScreenSHOT.Services.Update;
 using Wpf.Ui.Controls;
 
 namespace PrettyScreenSHOT.Views.Windows
@@ -100,8 +104,8 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.MessageBox.Show(
                     $"Error: {ex.Message}",
                     "Update Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Error);
                 
                 UpdateNowButton.IsEnabled = true;
                 UpdateNowButton.Content = "Update Now";
@@ -125,8 +129,8 @@ namespace PrettyScreenSHOT.Views.Windows
                 System.Windows.MessageBox.Show(
                     "Failed to install MSIX package.",
                     "Install Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Error);
             }
         }
 

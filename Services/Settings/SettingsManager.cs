@@ -1,6 +1,8 @@
 using System.IO;
 using System.Text.Json;
+using PrettyScreenSHOT.Helpers;
 using PrettyScreenSHOT.Services;
+using PrettyScreenSHOT.Services.Cloud;
 
 namespace PrettyScreenSHOT.Services.Settings
 {
@@ -249,6 +251,12 @@ namespace PrettyScreenSHOT.Services.Settings
             set { settings.RemoveMetadata = value; SaveSettings(); }
         }
 
+        public bool PrivacyMode
+        {
+            get => settings.PrivacyMode;
+            set { settings.PrivacyMode = value; SaveSettings(); }
+        }
+
         // Performance settings
         public bool EnableCache
         {
@@ -405,6 +413,7 @@ namespace PrettyScreenSHOT.Services.Settings
             public bool EnableWatermark { get; set; } = false;
             public string WatermarkText { get; set; } = "PrettyScreenSHOT";
             public bool RemoveMetadata { get; set; } = false;
+            public bool PrivacyMode { get; set; } = false;
             
             // Performance
             public bool EnableCache { get; set; } = true;

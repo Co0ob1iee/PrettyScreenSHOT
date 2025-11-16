@@ -64,18 +64,11 @@
         <Setter Property="Margin" Value="0,0,0,8"/>
     </Style>
 
-    <!-- StackPanel with consistent spacing using Attached Property -->
-    <Style x:Key="StandardSpacing" TargetType="StackPanel">
-        <Setter Property="helpers:StackPanelHelper.Spacing" Value="12"/>
-    </Style>
-
-    <Style x:Key="CompactSpacing" TargetType="StackPanel">
-        <Setter Property="helpers:StackPanelHelper.Spacing" Value="8"/>
-    </Style>
-
-    <Style x:Key="WideSpacing" TargetType="StackPanel">
-        <Setter Property="helpers:StackPanelHelper.Spacing" Value="16"/>
-    </Style>
+    <!-- 
+    Note: StackPanel spacing styles removed - attached properties cannot be set in Style Setters.
+    Use helpers:StackPanelHelper.Spacing directly on StackPanel elements instead.
+    Example: <StackPanel helpers:StackPanelHelper.Spacing="12">...</StackPanel>
+    -->
 
     <!-- Section separator -->
     <Style x:Key="SectionSeparator" TargetType="Border">
