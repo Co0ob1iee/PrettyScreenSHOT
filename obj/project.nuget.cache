@@ -1,21 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "kwNoqR1hs8U=",
+  "dgSpecHash": "yLMNc3BM5DU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
+  "projectFilePath": "D:\\source\\rabbitware-site\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\clobi\\.nuget\\packages\\magick.net-q16-anycpu\\14.9.1\\magick.net-q16-anycpu.14.9.1.nupkg.sha512",
     "C:\\Users\\clobi\\.nuget\\packages\\magick.net.core\\14.9.1\\magick.net.core.14.9.1.nupkg.sha512",
-    "C:\\Users\\clobi\\.nuget\\packages\\system.drawing.common\\10.0.0\\system.drawing.common.10.0.0.nupkg.sha512"
+    "C:\\Users\\clobi\\.nuget\\packages\\system.drawing.common\\10.0.0\\system.drawing.common.10.0.0.nupkg.sha512",
+    "C:\\Users\\clobi\\.nuget\\packages\\wpf-ui\\4.0.3\\wpf-ui.4.0.3.nupkg.sha512",
+    "C:\\Users\\clobi\\.nuget\\packages\\wpf-ui.abstractions\\4.0.3\\wpf-ui.abstractions.4.0.3.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1510",
       "level": "Warning",
       "message": "Element PackageReference System.Drawing.Common nie zostanie oczyszczony. Rozważ usunięcie tego pakietu z zależności, ponieważ prawdopodobnie nie jest on potrzebny.",
-      "projectPath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
+      "projectPath": "D:\\source\\rabbitware-site\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\clobi\\source\\repos\\PrettyScreenSHOT\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
+      "filePath": "D:\\source\\rabbitware-site\\PrettyScreenSHOT\\PrettyScreenSHOT.csproj",
       "libraryId": "System.Drawing.Common",
       "targetGraphs": [
         "net10.0-windows7.0"
